@@ -31,6 +31,8 @@
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.22.0-alpha" />
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Weaviate" Version="1.22.0-alpha" />
     <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.22.0-alpha" />
+    <!-- Kernel Memory -->
+    <PackageVersion Include="Microsoft.KernelMemory.Core" Version="0.90.241020.3" />
     <!-- Symbols -->
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
