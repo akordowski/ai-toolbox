@@ -1,4 +1,5 @@
 using AIToolbox.Options.Agents;
+using AIToolbox.Options.KernelMemory;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +44,12 @@ internal sealed class KernelServiceBuilder : IKernelServiceBuilder
 
     public IMemoryServiceBuilder AddMemory(Action<MemoryOptions> optionsAction) =>
         _builderService.AddMemory(optionsAction);
+
+    public IKernelMemoryServiceBuilder AddKernelMemory(KernelMemoryOptions? options = null) =>
+        _builderService.AddKernelMemory(options);
+
+    public IKernelMemoryServiceBuilder AddKernelMemory(Action<KernelMemoryOptions> optionsAction) =>
+        _builderService.AddKernelMemory(optionsAction);
 
     public IKernelServiceBuilder WithCustomAIServiceSelector(Func<IServiceProvider, IAIServiceSelector> factory)
     {

@@ -6,16 +6,17 @@ namespace AIToolbox.SemanticKernel;
 
 public sealed class KernelProvider : IKernelProvider
 {
-    private readonly KernelOptions _kernelOptions;
+    private readonly KernelOptions _options;
     private readonly IEnumerable<IKernelBuilderConfigurator> _configurators;
 
     public KernelProvider(
-        KernelOptions kernelOptions,
+        KernelOptions options,
         IEnumerable<IKernelBuilderConfigurator> configurators)
     {
-        ArgumentNullException.ThrowIfNull(kernelOptions, nameof(kernelOptions));
+        ArgumentNullException.ThrowIfNull(options, nameof(options));
+        ArgumentNullException.ThrowIfNull(configurators, nameof(configurators));
 
-        _kernelOptions = kernelOptions;
+        _options = options;
         _configurators = configurators;
     }
 
@@ -39,7 +40,7 @@ public sealed class KernelProvider : IKernelProvider
 
     private void ConfigureLogging(IKernelBuilder builder)
     {
-        if (_kernelOptions.AddLogging)
+        if (_options.AddLogging)
         {
             builder.Services.AddLogging();
         }
@@ -47,13 +48,11 @@ public sealed class KernelProvider : IKernelProvider
 
     private void ImportPlugins(Kernel kernel)
     {
-        var options = _kernelOptions.Plugins;
-
-        if (options is null)
+        if (_options.Plugins is null)
         {
             return;
         }
 
-        kernel.ImportPluginsFromOptions(options);
+        kernel.ImportPluginsFromOptions(_options.Plugins);
     }
 }

@@ -1,6 +1,7 @@
 using AIToolbox.Options;
 using AIToolbox.Options.Agents;
 using AIToolbox.Options.Connectors;
+using AIToolbox.Options.KernelMemory;
 using AIToolbox.Options.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -82,6 +83,28 @@ internal sealed class ServiceBuilderService : IServiceBuilderService
         optionsAction(_options.Memory);
 
         return AddMemory(_options.Memory!);
+    }
+
+    public IKernelMemoryServiceBuilder AddKernelMemory(KernelMemoryOptions? options = null)
+    {
+        _options.KernelMemory ??= new KernelMemoryOptions();
+
+        if (options is not null)
+        {
+            _options.KernelMemory = options;
+        }
+
+        return new KernelMemoryServiceBuilder(_options.KernelMemory!, _services, this);
+    }
+
+    public IKernelMemoryServiceBuilder AddKernelMemory(Action<KernelMemoryOptions> optionsAction)
+    {
+        Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
+
+        _options.KernelMemory ??= new KernelMemoryOptions();
+        optionsAction(_options.KernelMemory);
+
+        return AddKernelMemory(_options.KernelMemory!);
     }
 
     public IAgentServiceBuilder AddAgents(AgentOptions? options = null)

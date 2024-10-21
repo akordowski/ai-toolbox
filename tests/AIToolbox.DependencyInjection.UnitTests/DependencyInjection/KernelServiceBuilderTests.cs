@@ -1,4 +1,5 @@
 using AIToolbox.Options.Agents;
+using AIToolbox.Options.KernelMemory;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using FluentAssertions;
@@ -136,6 +137,40 @@ public class KernelServiceBuilderTests
         // Assert
         result.Should().NotBeNull();
         _builderServiceMock.Verify(o => o.AddMemory(optionsAction), Times.Once);
+    }
+
+    [Fact]
+    public void Should_Add_KernelMemory_With_Options()
+    {
+        // Arrange
+        var options = new KernelMemoryOptions();
+        _builderServiceMock
+            .Setup(o => o.AddKernelMemory(options))
+            .Returns(Mock.Of<IKernelMemoryServiceBuilder>());
+
+        // Act
+        var result = _builder.AddKernelMemory(options);
+
+        // Assert
+        result.Should().NotBeNull();
+        _builderServiceMock.Verify(o => o.AddKernelMemory(options), Times.Once);
+    }
+
+    [Fact]
+    public void Should_Add_KernelMemory_With_Options_Action()
+    {
+        // Arrange
+        Action<KernelMemoryOptions> optionsAction = _ => { };
+        _builderServiceMock
+            .Setup(o => o.AddKernelMemory(optionsAction))
+            .Returns(Mock.Of<IKernelMemoryServiceBuilder>());
+
+        // Act
+        var result = _builder.AddKernelMemory(optionsAction);
+
+        // Assert
+        result.Should().NotBeNull();
+        _builderServiceMock.Verify(o => o.AddKernelMemory(optionsAction), Times.Once);
     }
 
     [Fact]

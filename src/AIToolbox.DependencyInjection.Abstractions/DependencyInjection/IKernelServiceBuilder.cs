@@ -3,7 +3,7 @@ using Microsoft.SemanticKernel;
 
 namespace AIToolbox.DependencyInjection;
 
-public interface IKernelServiceBuilder : IServiceBuilder<KernelOptions>, IAddAgents, IAddMemory
+public interface IKernelServiceBuilder : IServiceBuilder<KernelOptions>, IAddAgents, IAddMemory, IAddKernelMemory
 {
     IKernelServiceBuilder WithCustomAIServiceSelector(Func<IServiceProvider, IAIServiceSelector> factory);
     IKernelServiceBuilder WithCustomAIServiceSelector(IAIServiceSelector instance);

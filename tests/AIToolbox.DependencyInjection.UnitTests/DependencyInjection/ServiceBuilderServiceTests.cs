@@ -1,6 +1,7 @@
 using AIToolbox.Options;
 using AIToolbox.Options.Agents;
 using AIToolbox.Options.Connectors;
+using AIToolbox.Options.KernelMemory;
 using AIToolbox.Options.SemanticKernel;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
@@ -188,6 +189,53 @@ public class ServiceBuilderServiceTests
     {
         // Act
         var act = () => _builderService.AddMemory((Action<MemoryOptions>)null!);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>().WithParameterName("optionsAction");
+    }
+
+    [Fact]
+    public void Should_Add_KernelMemory_With_Options()
+    {
+        // Arrange
+        var options = new KernelMemoryOptions();
+
+        // Act
+        var result = _builderService.AddKernelMemory(options);
+
+        // Assert
+        result.Should().NotBeNull();
+        _options.KernelMemory.Should().Be(options);
+    }
+
+    [Fact]
+    public void Should_Add_KernelMemory_With_Null_Options()
+    {
+        // Act
+        var result = _builderService.AddKernelMemory();
+
+        // Assert
+        result.Should().NotBeNull();
+        _options.KernelMemory.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void Should_Add_KernelMemory_With_Options_Action()
+    {
+        // Act
+        var result = _builderService.AddKernelMemory(options => options.Memory = new MemoryDbOptions());
+
+        // Assert
+        result.Should().NotBeNull();
+        _options.KernelMemory.Should().NotBeNull();
+        _options.KernelMemory!.Memory.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void Should_Throw_Exception_When_Add_KernelMemory_With_Null_Options_Action()
+    {
+        // Act
+        var act = () => _builderService.AddKernelMemory((Action<KernelMemoryOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithParameterName("optionsAction");
