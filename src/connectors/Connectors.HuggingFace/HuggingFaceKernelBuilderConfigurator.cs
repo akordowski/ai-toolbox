@@ -37,7 +37,7 @@ public sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.HuggingFace!.ChatCompletion;
+        var options = _kernelOptions.Connectors?.HuggingFace?.ChatCompletion;
 
         if (options is null)
         {
@@ -63,7 +63,7 @@ public sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureImageToText(IKernelBuilder builder)
     {
-        var options = _kernelOptions.HuggingFace!.ImageToText;
+        var options = _kernelOptions.Connectors?.HuggingFace?.ImageToText;
 
         if (options is null)
         {
@@ -89,7 +89,7 @@ public sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureTextEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.HuggingFace!.TextEmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.HuggingFace?.TextEmbeddingGeneration;
 
         if (options is null)
         {
@@ -115,7 +115,7 @@ public sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureTextGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.HuggingFace!.TextGeneration;
+        var options = _kernelOptions.Connectors?.HuggingFace?.TextGeneration;
 
         if (options is null)
         {

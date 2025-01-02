@@ -3,21 +3,23 @@ using AIToolbox.Agents.ChatCompletion.Resources;
 using AIToolbox.Agents.ChatCompletion.Services;
 using AIToolbox.Data;
 using AIToolbox.Options;
-using AIToolbox.Options.Agents;
-using AIToolbox.Options.Data;
+using AIToolbox.Options.DataStorage;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.SemanticKernel.ChatCompletion;
 using AIToolbox.SemanticKernel.Memory;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Memory;
 using Moq;
 
 namespace AIToolbox.DependencyInjection;
 
 public class ChatCompletionAgentServiceBuilderTests
 {
-    private readonly ChatCompletionAgentOptions _options = new()
+    private readonly ChatCompletionOptions _options = new()
     {
         ChatHistory = new ChatHistoryOptions(),
         MemorySearch = new MemorySearchOptions(),
@@ -35,9 +37,6 @@ public class ChatCompletionAgentServiceBuilderTests
     public void Should_Construct_With_Valid_Parameters()
     {
         // Arrange
-        _options.ChatHistoryServiceType = ServiceType.Default;
-        _options.PromptExecutionSettingsServiceType = ServiceType.Default;
-
         var services = new ServiceCollection();
 
         // Act
@@ -46,9 +45,6 @@ public class ChatCompletionAgentServiceBuilderTests
         // Assert
         builder.Options.Should().Be(_options);
         builder.Services.Should().BeEquivalentTo(services);
-
-        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(ChatAgentOptions) &&
-                                                      descriptor.Lifetime == ServiceLifetime.Singleton);
 
         services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IChatResource) &&
                                                       descriptor.Lifetime == ServiceLifetime.Scoped);
@@ -70,6 +66,15 @@ public class ChatCompletionAgentServiceBuilderTests
 
         services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IPersistentChatAgent) &&
                                                       descriptor.Lifetime == ServiceLifetime.Scoped);
+
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(ChatHistoryOptions) &&
+                                                      descriptor.Lifetime == ServiceLifetime.Singleton);
+
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(MemorySearchOptions) &&
+                                                      descriptor.Lifetime == ServiceLifetime.Singleton);
+
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(PromptExecutionOptions) &&
+                                                      descriptor.Lifetime == ServiceLifetime.Singleton);
 
         services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IChatHistoryRetriever) &&
                                                       descriptor.Lifetime == ServiceLifetime.Scoped);
@@ -99,10 +104,14 @@ public class ChatCompletionAgentServiceBuilderTests
     }
 
     [Fact]
-    public void Should_Not_Add_ChatHistoryRetriever_When_ChatHistoryServiceType_Is_Custom()
+    public void Should_Add_Custom_ChatHistoryRetriever_By_AssemblyQualifiedName()
     {
         // Arrange
-        _options.ChatHistoryServiceType = ServiceType.Custom;
+        _options.ChatHistoryRetriever = new ClassOptions
+        {
+            AssemblyQualifiedName = typeof(CustomChatHistoryRetriever).AssemblyQualifiedName
+        };
+
         var services = new ServiceCollection();
         var builder = new ChatCompletionAgentServiceBuilder(_options, services);
 
@@ -110,14 +119,20 @@ public class ChatCompletionAgentServiceBuilderTests
         // No additional action needed as services are added in the constructor
 
         // Assert
-        services.Should().NotContain(descriptor => descriptor.ServiceType == typeof(IChatHistoryRetriever));
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IChatHistoryRetriever) &&
+                                                      descriptor.ImplementationFactory != null &&
+                                                      descriptor.Lifetime == ServiceLifetime.Scoped);
     }
 
     [Fact]
-    public void Should_Not_Add_PromptExecutionSettingsRetriever_When_PromptExecutionSettingsServiceType_Is_Custom()
+    public void Should_Add_Custom_ChatHistoryRetriever_By_Type()
     {
         // Arrange
-        _options.PromptExecutionSettingsServiceType = ServiceType.Custom;
+        _options.ChatHistoryRetriever = new ClassOptions
+        {
+            Type = typeof(CustomChatHistoryRetriever)
+        };
+
         var services = new ServiceCollection();
         var builder = new ChatCompletionAgentServiceBuilder(_options, services);
 
@@ -125,7 +140,87 @@ public class ChatCompletionAgentServiceBuilderTests
         // No additional action needed as services are added in the constructor
 
         // Assert
-        services.Should().NotContain(descriptor => descriptor.ServiceType == typeof(IPromptExecutionSettingsRetriever));
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IChatHistoryRetriever) &&
+                                                      descriptor.ImplementationFactory != null &&
+                                                      descriptor.Lifetime == ServiceLifetime.Scoped);
+    }
+
+    [Fact]
+    public void Should_Add_Default_ChatHistoryRetriever_If_Options_Are_Null()
+    {
+        // Arrange
+        _options.ChatHistoryRetriever = new ClassOptions();
+
+        var services = new ServiceCollection();
+        var builder = new ChatCompletionAgentServiceBuilder(_options, services);
+
+        // Act
+        // No additional action needed as services are added in the constructor
+
+        // Assert
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IChatHistoryRetriever) &&
+                                                      descriptor.ImplementationType == typeof(ChatHistoryRetriever) &&
+                                                      descriptor.Lifetime == ServiceLifetime.Scoped);
+    }
+
+    [Fact]
+    public void Should_Add_Custom_PromptExecutionSettingsRetriever_By_AssemblyQualifiedName()
+    {
+        // Arrange
+        _options.PromptExecutionSettingsRetriever = new ClassOptions
+        {
+            AssemblyQualifiedName = typeof(CustomPromptExecutionSettingsRetriever).AssemblyQualifiedName
+        };
+
+        var services = new ServiceCollection();
+        var builder = new ChatCompletionAgentServiceBuilder(_options, services);
+
+        // Act
+        // No additional action needed as services are added in the constructor
+
+        // Assert
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IPromptExecutionSettingsRetriever) &&
+                                                      descriptor.ImplementationFactory != null &&
+                                                      descriptor.Lifetime == ServiceLifetime.Scoped);
+    }
+
+    [Fact]
+    public void Should_Add_Custom_PromptExecutionSettingsRetriever_By_Type()
+    {
+        // Arrange
+        _options.PromptExecutionSettingsRetriever = new ClassOptions
+        {
+            Type = typeof(CustomPromptExecutionSettingsRetriever)
+        };
+
+        var services = new ServiceCollection();
+        var builder = new ChatCompletionAgentServiceBuilder(_options, services);
+
+        // Act
+        // No additional action needed as services are added in the constructor
+
+        // Assert
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IPromptExecutionSettingsRetriever) &&
+                                                      descriptor.ImplementationFactory != null &&
+                                                      descriptor.Lifetime == ServiceLifetime.Scoped);
+    }
+
+    [Fact]
+    public void Should_Add_Default_PromptExecutionSettingsRetriever_If_Options_Are_Null()
+    {
+        // Arrange
+        _options.PromptExecutionSettingsRetriever = new ClassOptions();
+
+        var services = new ServiceCollection();
+        var builder = new ChatCompletionAgentServiceBuilder(_options, services);
+
+        // Act
+        // No additional action needed as services are added in the constructor
+
+        // Assert
+        services.Should().ContainSingle(descriptor => descriptor.ServiceType == typeof(IPromptExecutionSettingsRetriever) &&
+                                                      descriptor.ImplementationType == typeof(PromptExecutionSettingsRetriever) &&
+                                                      descriptor.Lifetime == ServiceLifetime.Scoped);
     }
 
     [Fact]
@@ -171,7 +266,7 @@ public class ChatCompletionAgentServiceBuilderTests
     public void Should_Add_SimpleDataStorage_With_Null_Options()
     {
         // Arrange
-        _options.DataStorage = new ChatCompletionAgentDataStorageOptions
+        _options.DataStorage = new DataStorageOptions
         {
             SimpleDataStorage = new SimpleDataStorageOptions()
         };
@@ -216,5 +311,21 @@ public class ChatCompletionAgentServiceBuilderTests
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");
+    }
+
+    private class CustomChatHistoryRetriever : IChatHistoryRetriever
+    {
+        public ChatHistory GetChatHistory(
+            IEnumerable<MemoryQueryResult> memories,
+            IEnumerable<ChatMessageContent> messages,
+            ChatHistoryOptions? options = null) => [];
+    }
+
+    private class CustomPromptExecutionSettingsRetriever : IPromptExecutionSettingsRetriever
+    {
+        public PromptExecutionSettings? GetPromptExecutionSettings(
+            Kernel kernel,
+            Type serviceType,
+            PromptExecutionOptions? options = null) => null;
     }
 }

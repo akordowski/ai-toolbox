@@ -1,4 +1,4 @@
-namespace AIToolbox.Options.Data;
+namespace AIToolbox.Options.DataStorage;
 
 public class SimpleDataStorageOptions
 {

@@ -1,9 +1,9 @@
-using AIToolbox.Options.Agents;
+using AIToolbox.Options.SemanticKernel;
 
 namespace AIToolbox.DependencyInjection;
 
 public interface IIncludeChatCompletionAgent
 {
-    IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(ChatCompletionAgentOptions? options = null);
-    IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(Action<ChatCompletionAgentOptions> optionsAction);
+    IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(ChatCompletionOptions? options = null);
+    IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(Action<ChatCompletionOptions> optionsAction);
 }

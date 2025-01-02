@@ -35,7 +35,7 @@ public sealed class MistralAIKernelBuilderConfigurator : IKernelBuilderConfigura
 
     private void ConfigureMistralChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.Mistral!.ChatCompletion;
+        var options = _kernelOptions.Connectors?.Mistral?.ChatCompletion;
 
         if (options is null)
         {
@@ -61,7 +61,7 @@ public sealed class MistralAIKernelBuilderConfigurator : IKernelBuilderConfigura
 
     private void ConfigureMistralTextEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.Mistral!.TextEmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.Mistral?.TextEmbeddingGeneration;
 
         if (options is null)
         {

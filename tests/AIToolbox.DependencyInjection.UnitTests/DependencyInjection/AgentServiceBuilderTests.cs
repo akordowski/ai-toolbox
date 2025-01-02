@@ -1,4 +1,5 @@
-using AIToolbox.Options.Agents;
+using AIToolbox.Options.DataStorage;
+using AIToolbox.Options.SemanticKernel;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -56,7 +57,7 @@ public class AgentServiceBuilderTests
     public void Should_Include_Agent_With_Options()
     {
         // Arrange
-        var options = new ChatCompletionAgentOptions();
+        var options = new ChatCompletionOptions();
 
         // Act
         var result = _builder.IncludeChatCompletionAgent(options);
@@ -81,7 +82,7 @@ public class AgentServiceBuilderTests
     public void Should_Include_Agent_With_Options_Action()
     {
         // Act
-        var result = _builder.IncludeChatCompletionAgent(options => options.DataStorage = new ChatCompletionAgentDataStorageOptions());
+        var result = _builder.IncludeChatCompletionAgent(options => options.DataStorage = new DataStorageOptions());
 
         // Assert
         result.Should().NotBeNull();
@@ -93,7 +94,7 @@ public class AgentServiceBuilderTests
     public void Should_Throw_Exception_When_Include_Agent_With_Null_Options_Action()
     {
         // Act
-        var act = () => _builder.IncludeChatCompletionAgent((Action<ChatCompletionAgentOptions>)null!);
+        var act = () => _builder.IncludeChatCompletionAgent((Action<ChatCompletionOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

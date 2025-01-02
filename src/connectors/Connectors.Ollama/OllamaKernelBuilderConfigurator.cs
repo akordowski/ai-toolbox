@@ -40,7 +40,7 @@ public sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.Ollama?.ChatCompletion;
+        var options = _kernelOptions.Connectors?.Ollama?.ChatCompletion;
 
         if (options is null)
         {
@@ -80,7 +80,7 @@ public sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureTextEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.Ollama?.TextEmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.Ollama?.TextEmbeddingGeneration;
 
         if (options is null)
         {
@@ -120,7 +120,7 @@ public sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureTextGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.Ollama?.TextGeneration;
+        var options = _kernelOptions.Connectors?.Ollama?.TextGeneration;
 
         if (options is null)
         {

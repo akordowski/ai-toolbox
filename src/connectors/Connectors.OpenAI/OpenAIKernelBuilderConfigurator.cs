@@ -38,7 +38,7 @@ public sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureAudioToText(IKernelBuilder builder)
     {
-        var options = _kernelOptions.OpenAI!.AudioToText;
+        var options = _kernelOptions.Connectors?.OpenAI?.AudioToText;
 
         if (options is null)
         {
@@ -64,7 +64,7 @@ public sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.OpenAI!.ChatCompletion;
+        var options = _kernelOptions.Connectors?.OpenAI?.ChatCompletion;
 
         if (options is null)
         {
@@ -90,7 +90,7 @@ public sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureTextEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.OpenAI!.TextEmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.OpenAI?.TextEmbeddingGeneration;
 
         if (options is null)
         {
@@ -117,7 +117,7 @@ public sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureTextToAudio(IKernelBuilder builder)
     {
-        var options = _kernelOptions.OpenAI!.TextToAudio;
+        var options = _kernelOptions.Connectors?.OpenAI?.TextToAudio;
 
         if (options is null)
         {
@@ -143,7 +143,7 @@ public sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureTextToImage(IKernelBuilder builder)
     {
-        var options = _kernelOptions.OpenAI!.TextToImage;
+        var options = _kernelOptions.Connectors?.OpenAI?.TextToImage;
 
         if (options is null)
         {

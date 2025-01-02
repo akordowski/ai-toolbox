@@ -1,4 +1,4 @@
-using AIToolbox.Options.Agents;
+using AIToolbox.Options.SemanticKernel;
 
 namespace AIToolbox.DependencyInjection;
 

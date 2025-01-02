@@ -1,9 +1,9 @@
-using AIToolbox.Options.Agents;
-using AIToolbox.Options.Data;
+using AIToolbox.Options.DataStorage;
+using AIToolbox.Options.SemanticKernel;
 
 namespace AIToolbox.DependencyInjection;
 
-public interface IChatCompletionAgentServiceBuilder : IServiceBuilder<ChatCompletionAgentOptions>
+public interface IChatCompletionAgentServiceBuilder : IServiceBuilder<ChatCompletionOptions>
 {
     IChatCompletionAgentServiceBuilder WithSemanticTextMemoryRetriever();
     IChatCompletionAgentServiceBuilder WithSimpleDataStorage(SimpleDataStorageOptions? options = null);

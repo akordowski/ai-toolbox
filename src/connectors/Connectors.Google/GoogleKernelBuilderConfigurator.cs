@@ -40,7 +40,7 @@ public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureGoogleAI(IKernelBuilder builder)
     {
-        var options = _kernelOptions.GoogleAI;
+        var options = _kernelOptions.Connectors?.GoogleAI;
 
         if (options is null)
         {
@@ -55,7 +55,7 @@ public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureVertexAI(IKernelBuilder builder)
     {
-        var options = _kernelOptions.VertexAI;
+        var options = _kernelOptions.Connectors?.VertexAI;
 
         if (options is null)
         {
@@ -70,7 +70,7 @@ public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureGoogleAIGeminiChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.GoogleAI!.ChatCompletion;
+        var options = _kernelOptions.Connectors?.GoogleAI?.ChatCompletion;
 
         if (options is null)
         {
@@ -96,7 +96,7 @@ public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureGoogleAIEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.GoogleAI!.EmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.GoogleAI?.EmbeddingGeneration;
 
         if (options is null)
         {
@@ -121,7 +121,7 @@ public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureVertexAIGeminiChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.VertexAI!.ChatCompletion;
+        var options = _kernelOptions.Connectors?.VertexAI?.ChatCompletion;
 
         if (options is null)
         {
@@ -151,7 +151,7 @@ public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 
     private void ConfigureVertexAIEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.VertexAI!.EmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.VertexAI?.EmbeddingGeneration;
 
         if (options is null)
         {

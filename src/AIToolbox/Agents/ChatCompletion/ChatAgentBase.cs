@@ -1,4 +1,4 @@
-using AIToolbox.Options.Agents;
+using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.SemanticKernel.ChatCompletion;
 using AIToolbox.SemanticKernel.Memory;
@@ -13,7 +13,9 @@ public abstract class ChatAgentBase
     private readonly IChatHistoryRetriever _chatHistoryRetriever;
     private readonly IPromptExecutionSettingsRetriever? _promptExecutionSettingsRetriever;
     private readonly ISemanticTextMemoryRetriever? _semanticTextMemoryRetriever;
-    private readonly ChatAgentOptions? _options;
+    private readonly ChatHistoryOptions? _chatHistoryOptions;
+    private readonly MemorySearchOptions? _memorySearchOptions;
+    private readonly PromptExecutionOptions? _promptExecutionOptions;
     private readonly Kernel _kernel;
 
     protected ChatAgentBase(
@@ -21,12 +23,16 @@ public abstract class ChatAgentBase
         IChatHistoryRetriever chatHistoryRetriever,
         IPromptExecutionSettingsRetriever? promptExecutionSettingsRetriever = null,
         ISemanticTextMemoryRetriever? semanticTextMemoryRetriever = null,
-        ChatAgentOptions? options = null)
+        ChatHistoryOptions? chatHistoryOptions = null,
+        MemorySearchOptions? memorySearchOptions = null,
+        PromptExecutionOptions? promptExecutionOptions = null)
     {
         _chatHistoryRetriever = chatHistoryRetriever;
         _promptExecutionSettingsRetriever = promptExecutionSettingsRetriever;
         _semanticTextMemoryRetriever = semanticTextMemoryRetriever;
-        _options = options;
+        _chatHistoryOptions = chatHistoryOptions;
+        _memorySearchOptions = memorySearchOptions;
+        _promptExecutionOptions = promptExecutionOptions;
 
 #pragma warning disable CA1062 // Validate arguments of public methods
         _kernel = kernelProvider.GetKernel();
@@ -77,9 +83,8 @@ public abstract class ChatAgentBase
             return [];
         }
 
-        var options = _options?.MemorySearch;
-        var limit = options?.Limit ?? 1;
-        var minRelevanceScore = options?.MinRelevanceScore ?? 0.7;
+        var limit = _memorySearchOptions?.Limit ?? 1;
+        var minRelevanceScore = _memorySearchOptions?.MinRelevanceScore ?? 0.7;
 
         return await _semanticTextMemoryRetriever
             .SearchMemoriesAsync(
@@ -103,11 +108,11 @@ public abstract class ChatAgentBase
         _chatHistoryRetriever.GetChatHistory(
             memories,
             messages,
-            _options?.ChatHistory);
+            _chatHistoryOptions);
 
     private PromptExecutionSettings? GetPromptExecutionSettings(Type serviceType) =>
         _promptExecutionSettingsRetriever?.GetPromptExecutionSettings(
             _kernel,
             serviceType,
-            _options?.PromptExecution);
+            _promptExecutionOptions);
 }

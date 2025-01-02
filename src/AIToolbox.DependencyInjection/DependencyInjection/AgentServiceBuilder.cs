@@ -1,4 +1,4 @@
-using AIToolbox.Options.Agents;
+using AIToolbox.Options.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
 
 // ReSharper disable InvertIf
@@ -22,9 +22,9 @@ internal sealed class AgentServiceBuilder : IAgentServiceBuilder
         Services.AddSingleton(Options);
     }
 
-    public IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(ChatCompletionAgentOptions? options = null)
+    public IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(ChatCompletionOptions? options = null)
     {
-        Options.ChatCompletion ??= new ChatCompletionAgentOptions();
+        Options.ChatCompletion ??= new ChatCompletionOptions();
 
         if (options is not null)
         {
@@ -34,11 +34,11 @@ internal sealed class AgentServiceBuilder : IAgentServiceBuilder
         return new ChatCompletionAgentServiceBuilder(Options.ChatCompletion!, Services);
     }
 
-    public IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(Action<ChatCompletionAgentOptions> optionsAction)
+    public IChatCompletionAgentServiceBuilder IncludeChatCompletionAgent(Action<ChatCompletionOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        Options.ChatCompletion ??= new ChatCompletionAgentOptions();
+        Options.ChatCompletion ??= new ChatCompletionOptions();
         optionsAction(Options.ChatCompletion);
 
         return IncludeChatCompletionAgent(Options.ChatCompletion!);

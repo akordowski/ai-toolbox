@@ -38,7 +38,7 @@ public sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureAudioToText(IKernelBuilder builder)
     {
-        var options = _kernelOptions.AzureOpenAI?.AudioToText;
+        var options = _kernelOptions.Connectors?.AzureOpenAI?.AudioToText;
 
         if (options is null)
         {
@@ -65,7 +65,7 @@ public sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureChatCompletion(IKernelBuilder builder)
     {
-        var options = _kernelOptions.AzureOpenAI?.ChatCompletion;
+        var options = _kernelOptions.Connectors?.AzureOpenAI?.ChatCompletion;
 
         if (options is null)
         {
@@ -92,7 +92,7 @@ public sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureTextEmbeddingGeneration(IKernelBuilder builder)
     {
-        var options = _kernelOptions.AzureOpenAI?.TextEmbeddingGeneration;
+        var options = _kernelOptions.Connectors?.AzureOpenAI?.TextEmbeddingGeneration;
 
         if (options is null)
         {
@@ -120,7 +120,7 @@ public sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureTextToAudio(IKernelBuilder builder)
     {
-        var options = _kernelOptions.AzureOpenAI?.TextToAudio;
+        var options = _kernelOptions.Connectors?.AzureOpenAI?.TextToAudio;
 
         if (options is null)
         {
@@ -147,7 +147,7 @@ public sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfigu
 
     private void ConfigureTextToImage(IKernelBuilder builder)
     {
-        var options = _kernelOptions.AzureOpenAI?.TextToImage;
+        var options = _kernelOptions.Connectors?.AzureOpenAI?.TextToImage;
 
         if (options is null)
         {

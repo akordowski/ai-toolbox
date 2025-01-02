@@ -1,8 +1,7 @@
 namespace AIToolbox.Options.SemanticKernel;
 
-public sealed class KernelOptions
+public class KernelConnectorOptions
 {
-    public bool AddLogging { get; set; }
     public AzureOpenAIOptions? AzureOpenAI { get; set; }
     public GoogleAIOptions? GoogleAI { get; set; }
     public HuggingFaceOptions? HuggingFace { get; set; }
@@ -10,5 +9,4 @@ public sealed class KernelOptions
     public OllamaOptions? Ollama { get; set; }
     public OpenAIOptions? OpenAI { get; set; }
     public VertexAIOptions? VertexAI { get; set; }
-    public PluginOptions? Plugins { get; set; }
 }

@@ -1,5 +1,4 @@
 using AIToolbox.Options;
-using AIToolbox.Options.Agents;
 using AIToolbox.Options.Connectors;
 using AIToolbox.Options.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,61 +47,70 @@ internal sealed class ServiceBuilderService : IServiceBuilderService
     {
         if (options is not null)
         {
-            _options.Kernel = options;
+            _options.SemanticKernel ??= new SemanticKernelOptions();
+            _options.SemanticKernel.Kernel = options;
         }
 
-        return new KernelServiceBuilder(_options.Kernel!, _services, this);
+        return new KernelServiceBuilder(_options.SemanticKernel?.Kernel!, _services, this);
     }
 
     public IKernelServiceBuilder AddKernel(Action<KernelOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        _options.Kernel ??= new KernelOptions();
-        optionsAction(_options.Kernel);
+        _options.SemanticKernel ??= new SemanticKernelOptions();
+        _options.SemanticKernel.Kernel ??= new KernelOptions();
 
-        return AddKernel(_options.Kernel!);
+        optionsAction(_options.SemanticKernel.Kernel);
+
+        return AddKernel(_options.SemanticKernel.Kernel);
     }
 
     public IMemoryServiceBuilder AddMemory(MemoryOptions? options = null)
     {
         if (options is not null)
         {
-            _options.Memory = options;
+            _options.SemanticKernel ??= new SemanticKernelOptions();
+            _options.SemanticKernel.Memory = options;
         }
 
-        return new MemoryServiceBuilder(_options.Memory!, _services, this);
+        return new MemoryServiceBuilder(_options.SemanticKernel?.Memory!, _services, this);
     }
 
     public IMemoryServiceBuilder AddMemory(Action<MemoryOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        _options.Memory ??= new MemoryOptions();
-        optionsAction(_options.Memory);
+        _options.SemanticKernel ??= new SemanticKernelOptions();
+        _options.SemanticKernel.Memory ??= new MemoryOptions();
 
-        return AddMemory(_options.Memory!);
+        optionsAction(_options.SemanticKernel.Memory);
+
+        return AddMemory(_options.SemanticKernel.Memory);
     }
 
     public IAgentServiceBuilder AddAgents(AgentOptions? options = null)
     {
-        _options.Agents ??= new AgentOptions();
+        _options.SemanticKernel ??= new SemanticKernelOptions();
+        _options.SemanticKernel.Agents ??= new AgentOptions();
 
         if (options is not null)
         {
-            _options.Agents = options;
+            _options.SemanticKernel.Agents = options;
         }
 
-        return new AgentServiceBuilder(_options.Agents!, _services);
+        return new AgentServiceBuilder(_options.SemanticKernel.Agents!, _services);
     }
 
     public IAgentServiceBuilder AddAgents(Action<AgentOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        _options.Agents ??= new AgentOptions();
-        optionsAction(_options.Agents);
+        _options.SemanticKernel ??= new SemanticKernelOptions();
+        _options.SemanticKernel.Agents ??= new AgentOptions();
 
-        return AddAgents(_options.Agents!);
+        optionsAction(_options.SemanticKernel.Agents);
+
+        return AddAgents(_options.SemanticKernel.Agents);
     }
 }

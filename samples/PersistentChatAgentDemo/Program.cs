@@ -3,7 +3,6 @@ using AIToolbox.Agents.ChatCompletion.Models;
 using AIToolbox.Agents.ChatCompletion.Services;
 using AIToolbox.DependencyInjection;
 using AIToolbox.Options;
-using AIToolbox.Options.Agents;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel.Memory;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,9 +21,12 @@ using var host = Host.CreateDefaultBuilder(args)
             .IncludeOllamaConnector(options => options.Endpoint = "http://localhost:11434")
             .AddKernel(options =>
             {
-                options.Ollama = new OllamaOptions
+                options.Connectors = new KernelConnectorOptions
                 {
-                    ChatCompletion = new OllamaChatCompletionOptions { ModelId = modelId }
+                    Ollama = new OllamaOptions
+                    {
+                        ChatCompletion = new OllamaChatCompletionOptions { ModelId = modelId }
+                    }
                 };
             })
             .AddMemory(options =>

@@ -1,6 +1,6 @@
 using AIToolbox.Agents.ChatCompletion.Models;
 using AIToolbox.Agents.ChatCompletion.Services;
-using AIToolbox.Options.Agents;
+using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.SemanticKernel.ChatCompletion;
 using AIToolbox.SemanticKernel.Memory;
@@ -41,8 +41,17 @@ public class PersistentChatAgent : ChatAgentBase, IPersistentChatAgent
         IChatHistoryRetriever chatHistoryRetriever,
         IPromptExecutionSettingsRetriever? promptExecutionSettingsRetriever = null,
         ISemanticTextMemoryRetriever? semanticTextMemoryRetriever = null,
-        ChatAgentOptions? options = null)
-        : base(kernelProvider, chatHistoryRetriever, promptExecutionSettingsRetriever, semanticTextMemoryRetriever, options)
+        ChatHistoryOptions? chatHistoryOptions = null,
+        MemorySearchOptions? memorySearchOptions = null,
+        PromptExecutionOptions? promptExecutionOptions = null)
+        : base(
+            kernelProvider,
+            chatHistoryRetriever,
+            promptExecutionSettingsRetriever,
+            semanticTextMemoryRetriever,
+            chatHistoryOptions,
+            memorySearchOptions,
+            promptExecutionOptions)
     {
         _service = service;
     }

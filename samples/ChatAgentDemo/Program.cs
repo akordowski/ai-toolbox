@@ -15,9 +15,12 @@ using var host = Host.CreateDefaultBuilder(args)
             .IncludeOllamaConnector(options => options.Endpoint = "http://localhost:11434")
             .AddKernel(options =>
             {
-                options.Ollama = new OllamaOptions
+                options.Connectors = new KernelConnectorOptions
                 {
-                    ChatCompletion = new OllamaChatCompletionOptions { ModelId = "llama3" }
+                    Ollama = new OllamaOptions
+                    {
+                        ChatCompletion = new OllamaChatCompletionOptions { ModelId = "llama3" }
+                    }
                 };
             })
             .AddAgents()

@@ -1,5 +1,4 @@
 using AIToolbox.Options;
-using AIToolbox.Options.Agents;
 using AIToolbox.Options.Connectors;
 using AIToolbox.Options.SemanticKernel;
 using FluentAssertions;
@@ -11,8 +10,11 @@ public class ServiceBuilderServiceTests
 {
     private readonly AIToolboxOptions _options = new()
     {
-        Kernel = new KernelOptions(),
-        Memory = new MemoryOptions(),
+        SemanticKernel = new SemanticKernelOptions
+        {
+            Kernel = new KernelOptions(),
+            Memory = new MemoryOptions()
+        }
     };
     private readonly ServiceCollection _services = [];
     private readonly ServiceBuilderService _builderService;
@@ -110,7 +112,7 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Kernel.Should().Be(options);
+        _options.SemanticKernel!.Kernel.Should().Be(options);
     }
 
     [Fact]
@@ -121,7 +123,7 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Kernel.Should().NotBeNull();
+        _options.SemanticKernel!.Kernel.Should().NotBeNull();
     }
 
     [Fact]
@@ -132,8 +134,8 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Kernel.Should().NotBeNull();
-        _options.Kernel!.AddLogging.Should().BeTrue();
+        _options.SemanticKernel!.Kernel.Should().NotBeNull();
+        _options.SemanticKernel!.Kernel!.AddLogging.Should().BeTrue();
     }
 
     [Fact]
@@ -157,7 +159,7 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Memory.Should().Be(options);
+        _options.SemanticKernel!.Memory.Should().Be(options);
     }
 
     [Fact]
@@ -168,7 +170,7 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Memory.Should().NotBeNull();
+        _options.SemanticKernel!.Memory.Should().NotBeNull();
     }
 
     [Fact]
@@ -179,8 +181,8 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Memory.Should().NotBeNull();
-        _options.Memory!.Store.Should().NotBeNull();
+        _options.SemanticKernel!.Memory.Should().NotBeNull();
+        _options.SemanticKernel!.Memory!.Store.Should().NotBeNull();
     }
 
     [Fact]
@@ -204,7 +206,7 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Agents.Should().Be(options);
+        _options.SemanticKernel!.Agents.Should().Be(options);
     }
 
     [Fact]
@@ -215,19 +217,19 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Agents.Should().NotBeNull();
+        _options.SemanticKernel!.Agents.Should().NotBeNull();
     }
 
     [Fact]
     public void Should_Add_Agents_With_Options_Action()
     {
         // Act
-        var result = _builderService.AddAgents(options => options.ChatCompletion = new ChatCompletionAgentOptions());
+        var result = _builderService.AddAgents(options => options.ChatCompletion = new ChatCompletionOptions());
 
         // Assert
         result.Should().NotBeNull();
-        _options.Agents.Should().NotBeNull();
-        _options.Agents!.ChatCompletion.Should().NotBeNull();
+        _options.SemanticKernel!.Agents.Should().NotBeNull();
+        _options.SemanticKernel!.Agents!.ChatCompletion.Should().NotBeNull();
     }
 
     [Fact]

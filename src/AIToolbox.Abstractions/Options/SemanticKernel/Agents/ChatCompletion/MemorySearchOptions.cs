@@ -1,4 +1,4 @@
-namespace AIToolbox.Options.Agents;
+namespace AIToolbox.Options.SemanticKernel;
 
 public sealed class MemorySearchOptions
 {

@@ -3,8 +3,8 @@ using AIToolbox.Agents.ChatCompletion.Resources;
 using AIToolbox.Agents.ChatCompletion.Services;
 using AIToolbox.Data;
 using AIToolbox.Options;
-using AIToolbox.Options.Agents;
-using AIToolbox.Options.Data;
+using AIToolbox.Options.DataStorage;
+using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.SemanticKernel.ChatCompletion;
 using AIToolbox.SemanticKernel.Memory;
@@ -14,28 +14,20 @@ namespace AIToolbox.DependencyInjection;
 
 internal sealed class ChatCompletionAgentServiceBuilder : IChatCompletionAgentServiceBuilder
 {
-    public ChatCompletionAgentOptions Options { get; }
+    public ChatCompletionOptions Options { get; }
     public IServiceCollection Services { get; }
 
     public ChatCompletionAgentServiceBuilder(
-        ChatCompletionAgentOptions options,
+        ChatCompletionOptions options,
         IServiceCollection services)
     {
-        Verify.ThrowIfNull(options, nameof(options), $"No '{nameof(ChatCompletionAgentOptions)}' provided.");
+        Verify.ThrowIfNull(options, nameof(options), $"No '{nameof(ChatCompletionOptions)}' provided.");
         Verify.ThrowIfNull(services, nameof(services));
 
         Options = options;
         Services = services;
 
-        var chatAgentOptions = new ChatAgentOptions
-        {
-            ChatHistory = Options.ChatHistory,
-            MemorySearch = Options.MemorySearch,
-            PromptExecution = Options.PromptExecution
-        };
-
         Services
-            .AddSingleton(chatAgentOptions)
             .AddScoped<IChatResource, ChatResource>()
             .AddScoped<IMessageResource, MessageResource>()
             .AddScoped<IParticipantResource, ParticipantResource>()
@@ -44,15 +36,12 @@ internal sealed class ChatCompletionAgentServiceBuilder : IChatCompletionAgentSe
             .AddScoped<IChatAgent, ChatAgent>()
             .AddScoped<IPersistentChatAgent, PersistentChatAgent>();
 
-        if (Options.ChatHistoryServiceType == ServiceType.Default)
-        {
-            Services.AddScoped<IChatHistoryRetriever, ChatHistoryRetriever>();
-        }
+        AddSingleton(options.ChatHistory);
+        AddSingleton(options.MemorySearch);
+        AddSingleton(options.PromptExecution);
 
-        if (Options.PromptExecutionSettingsServiceType == ServiceType.Default)
-        {
-            Services.AddScoped<IPromptExecutionSettingsRetriever, PromptExecutionSettingsRetriever>();
-        }
+        AddService<IChatHistoryRetriever, ChatHistoryRetriever>(Options.ChatHistoryRetriever);
+        AddService<IPromptExecutionSettingsRetriever, PromptExecutionSettingsRetriever>(Options.PromptExecutionSettingsRetriever);
     }
 
     public IChatCompletionAgentServiceBuilder WithSemanticTextMemoryRetriever()
@@ -77,7 +66,7 @@ internal sealed class ChatCompletionAgentServiceBuilder : IChatCompletionAgentSe
     {
         if (options is not null)
         {
-            Options.DataStorage ??= new ChatCompletionAgentDataStorageOptions();
+            Options.DataStorage ??= new DataStorageOptions();
             Options.DataStorage.SimpleDataStorage = options;
         }
 
@@ -96,11 +85,62 @@ internal sealed class ChatCompletionAgentServiceBuilder : IChatCompletionAgentSe
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        Options.DataStorage ??= new ChatCompletionAgentDataStorageOptions();
+        Options.DataStorage ??= new DataStorageOptions();
         Options.DataStorage.SimpleDataStorage ??= new SimpleDataStorageOptions();
 
         optionsAction(Options.DataStorage.SimpleDataStorage);
 
         return WithSimpleDataStorage(Options.DataStorage.SimpleDataStorage);
+    }
+
+    private void AddSingleton<TService>(TService? implementationInstance) where TService : class
+    {
+        if (implementationInstance is not null)
+        {
+            Services.AddSingleton(implementationInstance);
+        }
+    }
+
+    private void AddService<TService, TImplementation>(ClassOptions? options = null)
+        where TService : class
+        where TImplementation : class, TService
+    {
+        var addImplementation = true;
+
+        if (options is not null)
+        {
+            var serviceType = typeof(TService);
+            Type? type = null;
+
+            if (!string.IsNullOrWhiteSpace(options.AssemblyQualifiedName))
+            {
+                var assemblyQualifiedName = options.AssemblyQualifiedName;
+
+                type = Type.GetType(assemblyQualifiedName) ??
+                       throw new InvalidOperationException($"Could not find the type '{assemblyQualifiedName}'.");
+            }
+            else if (options.Type is not null)
+            {
+                type = options.Type;
+            }
+
+            if (type is not null)
+            {
+                if (!type.IsAssignableTo(serviceType))
+                {
+                    throw new InvalidOperationException($"The '{type.FullName}' must implement the '{serviceType.FullName}' interface.");
+                }
+
+                Services.AddScoped(_ => Activator.CreateInstance(type) as TService ??
+                                        throw new InvalidOperationException($"Could not create an instance of type '{type.FullName}'."));
+
+                addImplementation = false;
+            }
+        }
+
+        if (addImplementation)
+        {
+            Services.AddScoped<TService, TImplementation>();
+        }
     }
 }
