@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AIToolbox.SemanticKernel.Connectors.Ollama</AssemblyName>
+    <RootNamespace>AIToolbox.SemanticKernel</RootNamespace>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <NoWarn>$(NoWarn);SKEXP0001;SKEXP0070</NoWarn>
+    <EnablePackageValidation>false</EnablePackageValidation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AIToolbox.DependencyInjection.Abstractions\AIToolbox.DependencyInjection.Abstractions.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
+
+  <PropertyGroup>
+    <!-- NuGet Package Settings -->
+    <Title>AI Toolbox - Semantic Kernel's Ollama connector</Title>
+    <Description>Semantic Kernel's Ollama connector for AI Toolbox.</Description>
+  </PropertyGroup>
+
+</Project>

@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
-    <ProjectReference Include="..\..\src\connectors\Connectors.Ollama\Connectors.Ollama.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Ollama\SemanticKernel.Connectors.Ollama.csproj" />
   </ItemGroup>
 
 </Project>

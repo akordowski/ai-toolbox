@@ -13,47 +13,47 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{ED8D027E-868F-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memory", "Memory", "{96651845-9E49-4688-8D14-5B7DEB59F018}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.AzureOpenAI", "src\connectors\Connectors.AzureOpenAI\Connectors.AzureOpenAI.csproj", "{0444730A-4BAC-4763-A22C-D0F260856D9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.AzureOpenAI", "src\connectors\SemanticKernel.Connectors.AzureOpenAI\SemanticKernel.Connectors.AzureOpenAI.csproj", "{0444730A-4BAC-4763-A22C-D0F260856D9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Google", "src\connectors\Connectors.Google\Connectors.Google.csproj", "{66E0EF14-2654-4A55-BB87-4B1C74F7E0A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Google", "src\connectors\SemanticKernel.Connectors.Google\SemanticKernel.Connectors.Google.csproj", "{66E0EF14-2654-4A55-BB87-4B1C74F7E0A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.HuggingFace", "src\connectors\Connectors.HuggingFace\Connectors.HuggingFace.csproj", "{BB5AE8BE-7BE1-4745-B2D8-142450F38120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.HuggingFace", "src\connectors\SemanticKernel.Connectors.HuggingFace\SemanticKernel.Connectors.HuggingFace.csproj", "{BB5AE8BE-7BE1-4745-B2D8-142450F38120}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.MistralAI", "src\connectors\Connectors.MistralAI\Connectors.MistralAI.csproj", "{5C658001-1103-42F0-B08F-AAAA3C1EFFE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.MistralAI", "src\connectors\SemanticKernel.Connectors.MistralAI\SemanticKernel.Connectors.MistralAI.csproj", "{5C658001-1103-42F0-B08F-AAAA3C1EFFE2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Ollama", "src\connectors\Connectors.Ollama\Connectors.Ollama.csproj", "{3644A938-DE05-40B7-8417-C8B6E5AB6CBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Ollama", "src\connectors\SemanticKernel.Connectors.Ollama\SemanticKernel.Connectors.Ollama.csproj", "{3644A938-DE05-40B7-8417-C8B6E5AB6CBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.OpenAI", "src\connectors\Connectors.OpenAI\Connectors.OpenAI.csproj", "{B7851507-4D11-4572-9D8A-D01320D370B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.OpenAI", "src\connectors\SemanticKernel.Connectors.OpenAI\SemanticKernel.Connectors.OpenAI.csproj", "{B7851507-4D11-4572-9D8A-D01320D370B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.AzureAISearch", "src\connectors\Connectors.AzureAISearch\Connectors.AzureAISearch.csproj", "{BEEEC732-9461-4B5B-B4A6-BADEE1653314}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.AzureAISearch", "src\connectors\SemanticKernel.Connectors.AzureAISearch\SemanticKernel.Connectors.AzureAISearch.csproj", "{BEEEC732-9461-4B5B-B4A6-BADEE1653314}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.AzureCosmosDBMongoDB", "src\connectors\Connectors.AzureCosmosDBMongoDB\Connectors.AzureCosmosDBMongoDB.csproj", "{60C41ADF-CC3A-4EC7-A5B8-FC742DB39F8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.AzureCosmosDBMongoDB", "src\connectors\SemanticKernel.Connectors.AzureCosmosDBMongoDB\SemanticKernel.Connectors.AzureCosmosDBMongoDB.csproj", "{60C41ADF-CC3A-4EC7-A5B8-FC742DB39F8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.AzureCosmosDBNoSQL", "src\connectors\Connectors.AzureCosmosDBNoSQL\Connectors.AzureCosmosDBNoSQL.csproj", "{75B12218-9FCC-4804-8FD6-380D83AEC9FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.AzureCosmosDBNoSQL", "src\connectors\SemanticKernel.Connectors.AzureCosmosDBNoSQL\SemanticKernel.Connectors.AzureCosmosDBNoSQL.csproj", "{75B12218-9FCC-4804-8FD6-380D83AEC9FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Chroma", "src\connectors\Connectors.Chroma\Connectors.Chroma.csproj", "{C6645A30-9BB5-46B0-A97F-B90A9F6DC77F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Chroma", "src\connectors\SemanticKernel.Connectors.Chroma\SemanticKernel.Connectors.Chroma.csproj", "{C6645A30-9BB5-46B0-A97F-B90A9F6DC77F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.DuckDB", "src\connectors\Connectors.DuckDB\Connectors.DuckDB.csproj", "{A87AC95F-A67B-4BC8-9CA0-20FC53F32E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.DuckDB", "src\connectors\SemanticKernel.Connectors.DuckDB\SemanticKernel.Connectors.DuckDB.csproj", "{A87AC95F-A67B-4BC8-9CA0-20FC53F32E3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Kusto", "src\connectors\Connectors.Kusto\Connectors.Kusto.csproj", "{9042613D-A752-4C1E-BF1E-3AA2047B3B39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Kusto", "src\connectors\SemanticKernel.Connectors.Kusto\SemanticKernel.Connectors.Kusto.csproj", "{9042613D-A752-4C1E-BF1E-3AA2047B3B39}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Milvus", "src\connectors\Connectors.Milvus\Connectors.Milvus.csproj", "{58FD8631-1780-4179-B06D-DEC2BDC42C76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Milvus", "src\connectors\SemanticKernel.Connectors.Milvus\SemanticKernel.Connectors.Milvus.csproj", "{58FD8631-1780-4179-B06D-DEC2BDC42C76}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.MongoDB", "src\connectors\Connectors.MongoDB\Connectors.MongoDB.csproj", "{8B0C7E37-E179-453A-8D7A-44FEC6F64076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.MongoDB", "src\connectors\SemanticKernel.Connectors.MongoDB\SemanticKernel.Connectors.MongoDB.csproj", "{8B0C7E37-E179-453A-8D7A-44FEC6F64076}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Pinecone", "src\connectors\Connectors.Pinecone\Connectors.Pinecone.csproj", "{BE57BDDD-F6EC-46E2-9F85-F096E976C1EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Pinecone", "src\connectors\SemanticKernel.Connectors.Pinecone\SemanticKernel.Connectors.Pinecone.csproj", "{BE57BDDD-F6EC-46E2-9F85-F096E976C1EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Postgres", "src\connectors\Connectors.Postgres\Connectors.Postgres.csproj", "{95940FB5-9893-48EE-B087-C6337F18822C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Postgres", "src\connectors\SemanticKernel.Connectors.Postgres\SemanticKernel.Connectors.Postgres.csproj", "{95940FB5-9893-48EE-B087-C6337F18822C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Qdrant", "src\connectors\Connectors.Qdrant\Connectors.Qdrant.csproj", "{305C4F20-E572-4E8F-A8F1-FA354A82AD22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Qdrant", "src\connectors\SemanticKernel.Connectors.Qdrant\SemanticKernel.Connectors.Qdrant.csproj", "{305C4F20-E572-4E8F-A8F1-FA354A82AD22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Redis", "src\connectors\Connectors.Redis\Connectors.Redis.csproj", "{45A9A980-F9BE-4C3B-B56C-8F96127BF7C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Redis", "src\connectors\SemanticKernel.Connectors.Redis\SemanticKernel.Connectors.Redis.csproj", "{45A9A980-F9BE-4C3B-B56C-8F96127BF7C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Sqlite", "src\connectors\Connectors.Sqlite\Connectors.Sqlite.csproj", "{3B93E1F1-622D-43D3-B886-436D53F74AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Sqlite", "src\connectors\SemanticKernel.Connectors.Sqlite\SemanticKernel.Connectors.Sqlite.csproj", "{3B93E1F1-622D-43D3-B886-436D53F74AFC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.SqlServer", "src\connectors\Connectors.SqlServer\Connectors.SqlServer.csproj", "{4D017C56-F6FE-401F-A5A2-928AE0C23A3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.SqlServer", "src\connectors\SemanticKernel.Connectors.SqlServer\SemanticKernel.Connectors.SqlServer.csproj", "{4D017C56-F6FE-401F-A5A2-928AE0C23A3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connectors.Weaviate", "src\connectors\Connectors.Weaviate\Connectors.Weaviate.csproj", "{B92B7711-25B6-49DE-A535-DBB79AA16B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticKernel.Connectors.Weaviate", "src\connectors\SemanticKernel.Connectors.Weaviate\SemanticKernel.Connectors.Weaviate.csproj", "{B92B7711-25B6-49DE-A535-DBB79AA16B63}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIToolbox.DependencyInjection", "src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj", "{E3A45199-88BA-4CCE-9C84-FC9DBBA64B37}"
 EndProject
@@ -72,6 +72,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIToolbox.DependencyInjection.UnitTests", "tests\AIToolbox.DependencyInjection.UnitTests\AIToolbox.DependencyInjection.UnitTests.csproj", "{14513348-A938-4CF8-9FC4-06780BF07C72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistentChatAgentDemo", "samples\PersistentChatAgentDemo\PersistentChatAgentDemo.csproj", "{722B987B-C972-43A5-920E-02FCE43D7681}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SemanticKernel", "SemanticKernel", "{4C6AC337-E8B1-47EC-A278-9928F7F90668}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -202,8 +204,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A31DF23C-56C6-4E11-980F-61D2786232C7} = {0B0B6534-7C18-4DCC-A417-E9EB3CB1C218}
 		{1A1D014D-7DAC-4BA3-8281-FCB90C6E9BA9} = {0B0B6534-7C18-4DCC-A417-E9EB3CB1C218}
-		{ED8D027E-868F-4B0F-948A-CCCE6A41412D} = {1A1D014D-7DAC-4BA3-8281-FCB90C6E9BA9}
-		{96651845-9E49-4688-8D14-5B7DEB59F018} = {1A1D014D-7DAC-4BA3-8281-FCB90C6E9BA9}
+		{ED8D027E-868F-4B0F-948A-CCCE6A41412D} = {4C6AC337-E8B1-47EC-A278-9928F7F90668}
+		{96651845-9E49-4688-8D14-5B7DEB59F018} = {4C6AC337-E8B1-47EC-A278-9928F7F90668}
 		{0444730A-4BAC-4763-A22C-D0F260856D9B} = {ED8D027E-868F-4B0F-948A-CCCE6A41412D}
 		{66E0EF14-2654-4A55-BB87-4B1C74F7E0A9} = {ED8D027E-868F-4B0F-948A-CCCE6A41412D}
 		{BB5AE8BE-7BE1-4745-B2D8-142450F38120} = {ED8D027E-868F-4B0F-948A-CCCE6A41412D}
@@ -232,6 +234,7 @@ Global
 		{98DA527A-AC26-47B5-BF80-92FAA62D3988} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 		{14513348-A938-4CF8-9FC4-06780BF07C72} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 		{722B987B-C972-43A5-920E-02FCE43D7681} = {EFC53EAE-C0FF-40F6-B2D9-A7D953725870}
+		{4C6AC337-E8B1-47EC-A278-9928F7F90668} = {1A1D014D-7DAC-4BA3-8281-FCB90C6E9BA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF730793-C36F-463C-B7C4-8A2A7A5CF158}
