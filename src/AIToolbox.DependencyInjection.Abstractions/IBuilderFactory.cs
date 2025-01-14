@@ -1,0 +1,17 @@
+using AIToolbox.Options;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace AIToolbox.DependencyInjection;
+
+public interface IBuilderFactory
+{
+    /// <summary>
+    /// Gets the <see cref="AIToolboxOptions"/>.
+    /// </summary>
+    AIToolboxOptions Options { get; }
+
+    /// <summary>
+    /// Gets the <see cref="IServiceCollection"/> where AIToolbox services are configured.
+    /// </summary>
+    IServiceCollection Services { get; }
+}
