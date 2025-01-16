@@ -43,7 +43,7 @@ public class ServiceCollectionExtensionsTests
     public void Should_Add_AIToolbox_With_Options_Action()
     {
         // Act
-        var builder = _services.AddAIToolbox(options => { });
+        var builder = _services.AddAIToolbox((Action<AIToolboxOptions>)(options => { }));
 
         // Assert
         builder.Should().NotBeNull();

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AIToolbox.DependencyInjection;
 
-public static class ServiceCollectionExtensions
+public static partial class ServiceCollectionExtensions
 {
     public static IAIToolboxServiceBuilder AddAIToolbox(this IServiceCollection services) =>
         services.AddAIToolbox(new AIToolboxOptions());
@@ -33,5 +33,5 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration,
         string sectionName = "AIToolbox") =>
-        services.AddAIToolbox(options => configuration.GetRequiredSection(sectionName).Bind(options));
+        services.AddAIToolbox((Action<AIToolboxOptions>)(options => configuration.GetRequiredSection(sectionName).Bind(options)));
 }
