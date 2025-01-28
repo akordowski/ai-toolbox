@@ -16,6 +16,13 @@ public class ServiceCollectionExtensionsAIToolboxTests
     private static readonly Mock<Action<AIToolboxOptions>> OptionsActionMock = new();
     private static readonly Mock<IConfiguration> ConfigurationMock = new();
 
+    public ServiceCollectionExtensionsAIToolboxTests()
+    {
+        BuilderActionMock.Reset();
+        OptionsActionMock.Reset();
+        ConfigurationMock.Reset();
+    }
+
     public static TheoryData<Action> AddAIToolboxWithNullServices =>
     [
         () => NullServices.AddAIToolbox(BuilderActionMock.Object),
