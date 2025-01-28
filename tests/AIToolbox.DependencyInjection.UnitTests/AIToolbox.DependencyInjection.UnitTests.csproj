@@ -53,6 +53,7 @@
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Sqlite\SemanticKernel.Connectors.Sqlite.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.SqlServer\SemanticKernel.Connectors.SqlServer.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Weaviate\SemanticKernel.Connectors.Weaviate.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
     <ProjectReference Include="..\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
   </ItemGroup>
 
