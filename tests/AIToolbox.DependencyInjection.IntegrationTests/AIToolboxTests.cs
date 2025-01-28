@@ -1,6 +1,7 @@
 using AIToolbox.DependencyInjection;
 using AIToolbox.Options;
 using AIToolbox.Options.Connectors;
+using AIToolbox.Options.SemanticKernel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +15,10 @@ public class AIToolboxTests
     public void Should_Build_AIToolbox_Dependencies_With_Default_Options()
     {
         // Arrange
-        _services.AddAIToolbox((Action<AIToolboxOptions>)(builder => { }));
+        _services.AddAIToolbox(builder =>
+        {
+            builder.UseSemanticKernel(skBuilder => { });
+        });
     }
 
     [Fact]
@@ -24,7 +28,9 @@ public class AIToolboxTests
         _services.AddAIToolbox(
             builder =>
             {
-                builder.ConfigureConnectors(new ConnectorOptions());
+                builder
+                    .ConfigureConnectors(new ConnectorOptions())
+                    .UseSemanticKernel(skBuilder => { }, new SemanticKernelOptions());
             },
             new AIToolboxOptions());
     }
@@ -36,7 +42,9 @@ public class AIToolboxTests
         _services.AddAIToolbox(
             builder =>
             {
-                builder.ConfigureConnectors(options => { });
+                builder
+                    .ConfigureConnectors(options => { })
+                    .UseSemanticKernel(skBuilder => { }, options => { });
             },
             options => { });
     }
@@ -53,7 +61,12 @@ public class AIToolboxTests
             }!)
             .Build();
 
-
-        _services.AddAIToolbox(builder => { }, config, section);
+        _services.AddAIToolbox(
+            builder =>
+            {
+                builder.UseSemanticKernel(skBuilder => { });
+            },
+            config,
+            section);
     }
 }

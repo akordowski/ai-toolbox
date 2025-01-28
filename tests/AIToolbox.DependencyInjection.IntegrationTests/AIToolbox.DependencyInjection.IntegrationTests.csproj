@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
   </ItemGroup>
 
   <ItemGroup>
