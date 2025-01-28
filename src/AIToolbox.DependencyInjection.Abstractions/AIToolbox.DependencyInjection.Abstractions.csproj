@@ -35,6 +35,7 @@
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Sqlite" />
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.SqlServer" />
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Weaviate" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.DependencyInjection" />
   </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />

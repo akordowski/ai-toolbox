@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AIToolbox.SemanticKernel.DependencyInjection</AssemblyName>
+    <RootNamespace>AIToolbox.DependencyInjection</RootNamespace>
+    <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>$(NoWarn)</NoWarn>
+    <EnablePackageValidation>false</EnablePackageValidation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AIToolbox.DependencyInjection.Abstractions\AIToolbox.DependencyInjection.Abstractions.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
+
+  <PropertyGroup>
+    <!-- NuGet Package Settings -->
+    <Title>AI Toolbox - Semantic Kernel's dependency injection</Title>
+    <Description>Semantic Kernel's dependency injection for AI Toolbox.</Description>
+  </PropertyGroup>
+
+</Project>
