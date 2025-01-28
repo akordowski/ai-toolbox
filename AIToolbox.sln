@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistentChatAgentDemo", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SemanticKernel", "SemanticKernel", "{4C6AC337-E8B1-47EC-A278-9928F7F90668}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIToolbox.DependencyInjection.IntegrationTests", "tests\AIToolbox.DependencyInjection.IntegrationTests\AIToolbox.DependencyInjection.IntegrationTests.csproj", "{29AEFD03-2F32-494B-A6DD-A9A7F8CB3D9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{722B987B-C972-43A5-920E-02FCE43D7681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{722B987B-C972-43A5-920E-02FCE43D7681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{722B987B-C972-43A5-920E-02FCE43D7681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29AEFD03-2F32-494B-A6DD-A9A7F8CB3D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29AEFD03-2F32-494B-A6DD-A9A7F8CB3D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29AEFD03-2F32-494B-A6DD-A9A7F8CB3D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29AEFD03-2F32-494B-A6DD-A9A7F8CB3D9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +241,7 @@ Global
 		{14513348-A938-4CF8-9FC4-06780BF07C72} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 		{722B987B-C972-43A5-920E-02FCE43D7681} = {EFC53EAE-C0FF-40F6-B2D9-A7D953725870}
 		{4C6AC337-E8B1-47EC-A278-9928F7F90668} = {1A1D014D-7DAC-4BA3-8281-FCB90C6E9BA9}
+		{29AEFD03-2F32-494B-A6DD-A9A7F8CB3D9B} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF730793-C36F-463C-B7C4-8A2A7A5CF158}
