@@ -103,7 +103,7 @@ public class AIToolboxBuilderExtensionsSemanticKernelTests
         builderFactoryMock.SetupGet(builderFactory => builderFactory.Options).Returns(new AIToolboxOptions());
         builderFactoryMock.SetupGet(builderFactory => builderFactory.Services).Returns(new ServiceCollection());
 
-        BuilderMock.SetupGet(x => x.BuilderFactory).Returns(builderFactoryMock.Object);
+        BuilderMock.SetupGet(builder => builder.BuilderFactory).Returns(builderFactoryMock.Object);
 
         // Act
         BuilderMock.Object.UseSemanticKernel(BuilderActionMock.Object, OptionsActionMock.Object);
