@@ -9,7 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AIToolbox.DependencyInjection.Abstractions\AIToolbox.DependencyInjection.Abstractions.csproj" />
+    <ProjectReference Include="..\..\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection.UnitTests" />
   </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
