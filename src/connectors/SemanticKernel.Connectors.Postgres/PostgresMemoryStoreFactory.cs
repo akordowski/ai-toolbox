@@ -14,10 +14,9 @@ public sealed class PostgresMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Postgres;
+        var opt = options.Postgres!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(PostgresMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new PostgresMemoryStore(
             opt.ConnectionString,

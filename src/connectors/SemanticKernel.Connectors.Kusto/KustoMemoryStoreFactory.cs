@@ -26,10 +26,9 @@ public sealed class KustoMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Kusto;
+        var opt = options.Kusto!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(KustoMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new KustoMemoryStore(
             _cslAdminProvider,

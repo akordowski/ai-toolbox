@@ -14,10 +14,9 @@ public sealed class SqliteMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Sqlite;
+        var opt = options.Sqlite!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(SqliteMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return SqliteMemoryStore.ConnectAsync(opt.Filename).GetAwaiter().GetResult();
     }

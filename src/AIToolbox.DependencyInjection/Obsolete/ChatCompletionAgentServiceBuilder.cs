@@ -70,9 +70,7 @@ internal sealed class ChatCompletionAgentServiceBuilder : IChatCompletionAgentSe
             Options.DataStorage.SimpleDataStorage = options;
         }
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            Options.DataStorage?.SimpleDataStorage,
-            $"No '{nameof(SimpleDataStorageOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(Options.DataStorage?.SimpleDataStorage);
 
         Services
             .AddSingleton(Options.DataStorage!.SimpleDataStorage!)

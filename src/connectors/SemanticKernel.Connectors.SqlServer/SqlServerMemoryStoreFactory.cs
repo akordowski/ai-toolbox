@@ -14,10 +14,9 @@ public sealed class SqlServerMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.SqlServer;
+        var opt = options.SqlServer!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(SqlServerMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new SqlServerMemoryStore(
             opt.ConnectionString,

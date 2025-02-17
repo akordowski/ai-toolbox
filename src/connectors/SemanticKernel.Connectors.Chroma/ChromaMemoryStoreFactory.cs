@@ -14,10 +14,9 @@ public sealed class ChromaMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Chroma;
+        var opt = options.Chroma!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(ChromaMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new ChromaMemoryStore(opt.Endpoint, loggerFactory);
     }

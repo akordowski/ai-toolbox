@@ -14,10 +14,9 @@ public sealed class MilvusMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Milvus;
+        var opt = options.Milvus!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(MilvusMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new MilvusMemoryStore(
             opt.Host,

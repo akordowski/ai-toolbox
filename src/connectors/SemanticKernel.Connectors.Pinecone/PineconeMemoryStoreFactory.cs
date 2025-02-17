@@ -14,10 +14,9 @@ public sealed class PineconeMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Pinecone;
+        var opt = options.Pinecone!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(PineconeMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new PineconeMemoryStore(
             opt.PineconeEnvironment,

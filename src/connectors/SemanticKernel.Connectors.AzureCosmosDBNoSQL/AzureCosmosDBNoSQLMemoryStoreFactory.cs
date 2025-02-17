@@ -14,10 +14,9 @@ public sealed class AzureCosmosDBNoSQLMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.AzureCosmosDBNoSQL;
+        var opt = options.AzureCosmosDBNoSQL!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(AzureCosmosDBNoSQLMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new AzureCosmosDBNoSQLMemoryStore(
             opt.ConnectionString,

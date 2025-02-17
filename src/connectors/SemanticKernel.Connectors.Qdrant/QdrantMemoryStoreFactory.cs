@@ -14,10 +14,9 @@ public sealed class QdrantMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Qdrant;
+        var opt = options.Qdrant!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(QdrantMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new QdrantMemoryStore(
             opt.Endpoint,

@@ -14,10 +14,9 @@ public sealed class AzureCosmosDBMongoDBMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.AzureCosmosDBMongoDB;
+        var opt = options.AzureCosmosDBMongoDB!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(AzureCosmosDBMongoDBMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         var config = new AzureCosmosDBMongoDBConfig(opt.Dimensions);
 

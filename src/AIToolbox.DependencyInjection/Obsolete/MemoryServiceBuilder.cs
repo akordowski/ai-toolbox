@@ -44,9 +44,7 @@ internal sealed class MemoryServiceBuilder : IMemoryServiceBuilder
             Options.Store.SimpleMemoryStore = options;
         }
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            Options.Store?.SimpleMemoryStore,
-            $"No '{nameof(SimpleMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(Options.Store?.SimpleMemoryStore);
 
         Services.AddSingleton<IMemoryStoreFactory, SimpleMemoryStoreFactory>();
 

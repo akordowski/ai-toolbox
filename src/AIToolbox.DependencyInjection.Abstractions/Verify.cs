@@ -16,13 +16,11 @@ internal static class Verify
         }
     }
 
-    public static void ThrowInvalidOperationExceptionIfNull(
-        [NotNull] object? argument,
-        string? message = null)
+    public static void ThrowIfOptionsNull<T>(T? options)
     {
-        if (argument is null)
+        if (options is null)
         {
-            throw new InvalidOperationException(message);
+            throw new InvalidOperationException($"No '{typeof(T).Name}' provided.");
         }
     }
 }

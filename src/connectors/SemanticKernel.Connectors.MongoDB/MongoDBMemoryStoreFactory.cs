@@ -14,10 +14,9 @@ public sealed class MongoDBMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.MongoDB;
+        var opt = options.MongoDB!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(MongoDBMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new MongoDBMemoryStore(
             opt.ConnectionString,

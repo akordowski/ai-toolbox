@@ -14,10 +14,9 @@ public sealed class WeaviateMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.Weaviate;
+        var opt = options.Weaviate!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(WeaviateMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return new WeaviateMemoryStore(
             opt.Endpoint,

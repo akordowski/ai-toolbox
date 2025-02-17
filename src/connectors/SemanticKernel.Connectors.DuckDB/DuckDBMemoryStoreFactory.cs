@@ -14,10 +14,9 @@ public sealed class DuckDBMemoryStoreFactory : IMemoryStoreFactory
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var opt = options.DuckDB;
+        var opt = options.DuckDB!;
 
-        Verify.ThrowInvalidOperationExceptionIfNull(
-            opt, $"No '{nameof(DuckDBMemoryStoreOptions)}' provided.");
+        Verify.ThrowIfOptionsNull(opt);
 
         return opt.VectorSize is null
             ? DuckDBMemoryStore.ConnectAsync(opt.Filename).GetAwaiter().GetResult()
