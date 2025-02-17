@@ -43,69 +43,41 @@ public class AIToolboxBuilderTests
     }
 
     [Fact]
-    public void Should_Configure_Connectors_With_Null_Default_Options()
+    public void Should_Throw_Exception_When_Builder_Action_Is_Null()
+    {
+        // Act
+        var act = () => _builder.ConfigureGlobalConnectorOptions(null!);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>().WithParameterName("builderAction");
+    }
+
+    [Fact]
+    public void Should_Configure_Global_Connectors_With_Default_Options()
     {
         // Arrange
         _options.GlobalConnectors = null;
-        var connectorOptions = new GlobalConnectorOptions();
+        var builder = new AIToolboxBuilder(_options, _services);
 
         // Act
-        _builder.ConfigureConnectors(connectorOptions);
+        builder.ConfigureGlobalConnectorOptions(_ => { });
 
         // Assert
-        _options.GlobalConnectors.Should().Be(connectorOptions);
+        _options.GlobalConnectors.Should().NotBeNull();
     }
 
     [Fact]
-    public void Should_Configure_Connectors_With_Default_Options()
+    public void Should_Configure_Global_Connectors_With_Custom_Options()
     {
         // Arrange
-        _options.GlobalConnectors = new GlobalConnectorOptions();
-        var connectorOptions = new GlobalConnectorOptions();
+        var globalConnectorOptions = new GlobalConnectorOptions();
+        _options.GlobalConnectors = globalConnectorOptions;
+        var builder = new AIToolboxBuilder(_options, _services);
 
         // Act
-        _builder.ConfigureConnectors(connectorOptions);
+        builder.ConfigureGlobalConnectorOptions(_ => { });
 
         // Assert
-        _options.GlobalConnectors.Should().Be(connectorOptions);
-    }
-
-    [Fact]
-    public void Should_Throw_Exception_When_Options_Action_Is_Null()
-    {
-        // Act
-        var act = () => _builder.ConfigureConnectors((Action<GlobalConnectorOptions>)null!);
-
-        // Assert
-        act.Should().Throw<ArgumentNullException>().WithParameterName("optionsAction");
-    }
-
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public void Should_Configure_Connectors_With_Options_Action(bool hasConnectorOptions)
-    {
-        // Arrange
-        var connectorOptions = hasConnectorOptions
-            ? new GlobalConnectorOptions()
-            : null;
-        var azureOpenAIOptions = new GlobalAzureOpenAIOptions { ApiKey = "test" };
-        _options.GlobalConnectors = connectorOptions;
-
-        // Act
-        _builder.ConfigureConnectors(opt => opt.AzureOpenAI = azureOpenAIOptions);
-
-        // Assert
-        if (hasConnectorOptions)
-        {
-            _options.GlobalConnectors.Should().Be(connectorOptions);
-        }
-        else
-        {
-            _options.GlobalConnectors.Should().NotBeNull();
-        }
-
-        _options.GlobalConnectors!.AzureOpenAI.Should().NotBeNull();
-        _options.GlobalConnectors!.AzureOpenAI.Should().Be(azureOpenAIOptions);
+        _options.GlobalConnectors.Should().Be(globalConnectorOptions);
     }
 }

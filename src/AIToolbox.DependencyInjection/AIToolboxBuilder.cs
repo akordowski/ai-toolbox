@@ -22,22 +22,12 @@ internal sealed class AIToolboxBuilder : IAIToolboxBuilder
     }
 
     /// <inheritdoc />
-    public IAIToolboxBuilder ConfigureConnectors(GlobalConnectorOptions options)
+    public IAIToolboxBuilder ConfigureGlobalConnectorOptions(Action<IGlobalConnectorBuilder> builderAction)
     {
-        Verify.ThrowIfNull(options, nameof(options));
-
-        Options.GlobalConnectors = options;
-
-        return this;
-    }
-
-    /// <inheritdoc />
-    public IAIToolboxBuilder ConfigureConnectors(Action<GlobalConnectorOptions> optionsAction)
-    {
-        Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
+        Verify.ThrowIfNull(builderAction, nameof(builderAction));
 
         Options.GlobalConnectors ??= new GlobalConnectorOptions();
-        optionsAction(Options.GlobalConnectors);
+        builderAction(new GlobalConnectorBuilder(Options.GlobalConnectors, Services));
 
         return this;
     }
