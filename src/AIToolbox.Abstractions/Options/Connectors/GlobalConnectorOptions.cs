@@ -8,4 +8,5 @@ public sealed class GlobalConnectorOptions
     public GlobalMistralAIOptions? MistralAI { get; set; }
     public GlobalOllamaOptions? Ollama { get; set; }
     public GlobalOpenAIOptions? OpenAI { get; set; }
+    public GlobalVertexAIOptions? VertexAI { get; set; }
 }
