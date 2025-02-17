@@ -11,7 +11,7 @@ public class MistralAIConnectorServiceBuilderExtensionsTests : BaseConnectorServ
     public void Should_Include_MistralAIConnector_With_Options()
     {
         // Arrange
-        var options = new MistralAIConnectorOptions();
+        var options = new GlobalMistralAIOptions();
 
         // Act
         var result = Builder.IncludeMistralAIConnector(options);
@@ -27,7 +27,7 @@ public class MistralAIConnectorServiceBuilderExtensionsTests : BaseConnectorServ
     public void Should_Include_MistralAIConnector_With_Null_Options()
     {
         // Arrange
-        Options.MistralAI = new MistralAIConnectorOptions();
+        Options.MistralAI = new GlobalMistralAIOptions();
 
         // Act
         var result = Builder.IncludeMistralAIConnector();
@@ -57,7 +57,7 @@ public class MistralAIConnectorServiceBuilderExtensionsTests : BaseConnectorServ
     public void Should_Throw_Exception_When_Include_MistralAIConnector_With_Null_Options_Action()
     {
         // Act
-        var act = () => Builder.IncludeMistralAIConnector((Action<MistralAIConnectorOptions>)null!);
+        var act = () => Builder.IncludeMistralAIConnector((Action<GlobalMistralAIOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

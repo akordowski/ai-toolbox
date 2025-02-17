@@ -11,7 +11,7 @@ public class OpenAIConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Include_OpenAIConnector_With_Options()
     {
         // Arrange
-        var options = new OpenAIConnectorOptions();
+        var options = new GlobalOpenAIOptions();
 
         // Act
         var result = Builder.IncludeOpenAIConnector(options);
@@ -27,7 +27,7 @@ public class OpenAIConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Include_OpenAIConnector_With_Null_Options()
     {
         // Arrange
-        Options.OpenAI = new OpenAIConnectorOptions();
+        Options.OpenAI = new GlobalOpenAIOptions();
 
         // Act
         var result = Builder.IncludeOpenAIConnector();
@@ -57,7 +57,7 @@ public class OpenAIConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Throw_Exception_When_Include_OpenAIConnector_With_Null_Options_Action()
     {
         // Act
-        var act = () => Builder.IncludeOpenAIConnector((Action<OpenAIConnectorOptions>)null!);
+        var act = () => Builder.IncludeOpenAIConnector((Action<GlobalOpenAIOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

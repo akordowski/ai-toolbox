@@ -8,12 +8,12 @@ namespace AIToolbox.SemanticKernel;
 public sealed class AzureOpenAIMemoryBuilderConfigurator : IMemoryBuilderConfigurator
 {
     private readonly MemoryOptions _memoryOptions;
-    private readonly AzureOpenAIConnectorOptions? _connectorOptions;
+    private readonly GlobalAzureOpenAIOptions? _connectorOptions;
     private readonly IHttpClientFactory? _httpClientFactory;
 
     public AzureOpenAIMemoryBuilderConfigurator(
         MemoryOptions memoryOptions,
-        AzureOpenAIConnectorOptions? connectorOptions = null,
+        GlobalAzureOpenAIOptions? connectorOptions = null,
         IHttpClientFactory? httpClientFactory = null)
     {
         ArgumentNullException.ThrowIfNull(memoryOptions, nameof(memoryOptions));

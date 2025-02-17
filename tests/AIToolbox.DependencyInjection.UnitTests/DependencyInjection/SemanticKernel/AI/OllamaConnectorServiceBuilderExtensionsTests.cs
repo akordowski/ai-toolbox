@@ -11,7 +11,7 @@ public class OllamaConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Include_OllamaConnector_With_Options()
     {
         // Arrange
-        var options = new OllamaConnectorOptions();
+        var options = new GlobalOllamaOptions();
 
         // Act
         var result = Builder.IncludeOllamaConnector(options);
@@ -27,7 +27,7 @@ public class OllamaConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Include_OllamaConnector_With_Null_Options()
     {
         // Arrange
-        Options.Ollama = new OllamaConnectorOptions();
+        Options.Ollama = new GlobalOllamaOptions();
 
         // Act
         var result = Builder.IncludeOllamaConnector();
@@ -57,7 +57,7 @@ public class OllamaConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Throw_Exception_When_Include_OllamaConnector_With_Null_Options_Action()
     {
         // Act
-        var act = () => Builder.IncludeOllamaConnector((Action<OllamaConnectorOptions>)null!);
+        var act = () => Builder.IncludeOllamaConnector((Action<GlobalOllamaOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

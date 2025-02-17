@@ -58,14 +58,14 @@ public class ServiceBuilderServiceTests
     public void Should_Add_Connectors_With_Options()
     {
         // Arrange
-        var connectorOptions = new ConnectorOptions();
+        var connectorOptions = new GlobalConnectorOptions();
 
         // Act
         var result = _builderService.AddConnectors(connectorOptions);
 
         // Assert
         result.Should().NotBeNull();
-        _options.Connectors.Should().Be(connectorOptions);
+        _options.GlobalConnectors.Should().Be(connectorOptions);
     }
 
     [Fact]
@@ -76,26 +76,26 @@ public class ServiceBuilderServiceTests
 
         // Assert
         result.Should().NotBeNull();
-        _options.Connectors.Should().NotBeNull();
+        _options.GlobalConnectors.Should().NotBeNull();
     }
 
     [Fact]
     public void Should_Add_Connectors_With_Options_Action()
     {
         // Act
-        var result = _builderService.AddConnectors(options => options.AzureOpenAI = new AzureOpenAIConnectorOptions());
+        var result = _builderService.AddConnectors(options => options.AzureOpenAI = new GlobalAzureOpenAIOptions());
 
         // Assert
         result.Should().NotBeNull();
-        _options.Connectors.Should().NotBeNull();
-        _options.Connectors!.AzureOpenAI.Should().NotBeNull();
+        _options.GlobalConnectors.Should().NotBeNull();
+        _options.GlobalConnectors!.AzureOpenAI.Should().NotBeNull();
     }
 
     [Fact]
     public void Should_Throw_Exception_When_Add_Connectors_With_Null_Options_Action()
     {
         // Act
-        var act = () => _builderService.AddConnectors((Action<ConnectorOptions>)null!);
+        var act = () => _builderService.AddConnectors((Action<GlobalConnectorOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithParameterName("optionsAction");

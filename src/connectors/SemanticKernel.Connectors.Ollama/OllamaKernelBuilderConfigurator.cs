@@ -10,13 +10,13 @@ namespace AIToolbox.SemanticKernel;
 public sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurator
 {
     private readonly KernelOptions _kernelOptions;
-    private readonly OllamaConnectorOptions? _ollamaConnectorOptions;
+    private readonly GlobalOllamaOptions? _ollamaConnectorOptions;
     private readonly OllamaApiClient? _ollamaApiClient;
     private readonly IHttpClientFactory? _httpClientFactory;
 
     public OllamaKernelBuilderConfigurator(
         KernelOptions kernelOptions,
-        OllamaConnectorOptions? ollamaConnectorOptions = null,
+        GlobalOllamaOptions? ollamaConnectorOptions = null,
         OllamaApiClient? ollamaApiClient = null,
         IHttpClientFactory? httpClientFactory = null)
     {

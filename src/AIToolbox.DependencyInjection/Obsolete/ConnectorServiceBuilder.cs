@@ -6,13 +6,13 @@ namespace AIToolbox.DependencyInjection;
 
 internal sealed class ConnectorServiceBuilder : IConnectorServiceBuilder
 {
-    public ConnectorOptions Options { get; }
+    public GlobalConnectorOptions Options { get; }
     public IServiceCollection Services { get; }
 
     private readonly IServiceBuilderService _builderService;
 
     public ConnectorServiceBuilder(
-        ConnectorOptions options,
+        GlobalConnectorOptions options,
         IServiceCollection services,
         IServiceBuilderService builderService)
     {

@@ -9,12 +9,12 @@ namespace AIToolbox.SemanticKernel;
 public sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfigurator
 {
     private readonly KernelOptions _kernelOptions;
-    private readonly HuggingFaceConnectorOptions? _huggingFaceConnectorOptions;
+    private readonly GlobalHuggingFaceOptions? _huggingFaceConnectorOptions;
     private readonly IHttpClientFactory? _httpClientFactory;
 
     public HuggingFaceKernelBuilderConfigurator(
         KernelOptions kernelOptions,
-        HuggingFaceConnectorOptions? huggingFaceConnectorOptions = null,
+        GlobalHuggingFaceOptions? huggingFaceConnectorOptions = null,
         IHttpClientFactory? httpClientFactory = null)
     {
         ArgumentNullException.ThrowIfNull(kernelOptions, nameof(kernelOptions));

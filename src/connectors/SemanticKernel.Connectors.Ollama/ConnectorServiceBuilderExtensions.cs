@@ -9,7 +9,7 @@ public static class ConnectorServiceBuilderExtensions
 {
     public static IConnectorServiceBuilder IncludeOllamaConnector(
         this IConnectorServiceBuilder builder,
-        OllamaConnectorOptions? options = null)
+        GlobalOllamaOptions? options = null)
     {
         var opt = builder.Options;
 
@@ -33,11 +33,11 @@ public static class ConnectorServiceBuilderExtensions
 
     public static IConnectorServiceBuilder IncludeOllamaConnector(
         this IConnectorServiceBuilder builder,
-        Action<OllamaConnectorOptions> optionsAction)
+        Action<GlobalOllamaOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        var options = new OllamaConnectorOptions();
+        var options = new GlobalOllamaOptions();
         optionsAction(options);
 
         return builder.IncludeOllamaConnector(options);

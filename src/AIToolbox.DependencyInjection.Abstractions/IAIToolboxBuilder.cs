@@ -11,16 +11,16 @@ public interface IAIToolboxBuilder
     IBuilderFactory BuilderFactory { get; }
 
     /// <summary>
-    /// Add or replace the <see cref="ConnectorOptions"/> in the <see cref="AIToolboxOptions"/>.
+    /// Add or replace the <see cref="GlobalConnectorOptions"/> in the <see cref="AIToolboxOptions"/>.
     /// </summary>
-    /// <param name="options">The <see cref="ConnectorOptions"/>.</param>
+    /// <param name="options">The <see cref="GlobalConnectorOptions"/>.</param>
     /// <returns><see cref="IAIToolboxBuilder"/></returns>
-    IAIToolboxBuilder ConfigureConnectors(ConnectorOptions options);
+    IAIToolboxBuilder ConfigureConnectors(GlobalConnectorOptions options);
 
     /// <summary>
-    /// Adds a delegate for configuring the <see cref="ConnectorOptions"/> in the <see cref="AIToolboxOptions"/>.
+    /// Adds a delegate for configuring the <see cref="GlobalConnectorOptions"/> in the <see cref="AIToolboxOptions"/>.
     /// </summary>
-    /// <param name="optionsAction">>A delegate for configuring the <see cref="ConnectorOptions"/>.</param>
+    /// <param name="optionsAction">>A delegate for configuring the <see cref="GlobalConnectorOptions"/>.</param>
     /// <returns><see cref="IAIToolboxBuilder"/></returns>
-    IAIToolboxBuilder ConfigureConnectors(Action<ConnectorOptions> optionsAction);
+    IAIToolboxBuilder ConfigureConnectors(Action<GlobalConnectorOptions> optionsAction);
 }

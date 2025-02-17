@@ -9,7 +9,7 @@ public static class ConnectorServiceBuilderExtensions
 {
     public static IConnectorServiceBuilder IncludeMistralAIConnector(
         this IConnectorServiceBuilder builder,
-        MistralAIConnectorOptions? options = null)
+        GlobalMistralAIOptions? options = null)
     {
         var opt = builder.Options;
 
@@ -31,11 +31,11 @@ public static class ConnectorServiceBuilderExtensions
 
     public static IConnectorServiceBuilder IncludeMistralAIConnector(
         this IConnectorServiceBuilder builder,
-        Action<MistralAIConnectorOptions> optionsAction)
+        Action<GlobalMistralAIOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        var options = new MistralAIConnectorOptions();
+        var options = new GlobalMistralAIOptions();
         optionsAction(options);
 
         return builder.IncludeMistralAIConnector(options);

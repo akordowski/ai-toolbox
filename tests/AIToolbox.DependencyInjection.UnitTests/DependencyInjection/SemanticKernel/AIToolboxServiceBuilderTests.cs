@@ -38,7 +38,7 @@ public class AIToolboxServiceBuilderTests
     public void Should_Add_Connectors_With_Options()
     {
         // Arrange
-        var options = new ConnectorOptions();
+        var options = new GlobalConnectorOptions();
         var connectorsBuilder = Mock.Of<IConnectorServiceBuilder>();
         _builderServiceMock
             .Setup(o => o.AddConnectors(options))
@@ -56,7 +56,7 @@ public class AIToolboxServiceBuilderTests
     public void Should_Add_Connectors_With_Null_Options()
     {
         // Arrange
-        ConnectorOptions? options = null;
+        GlobalConnectorOptions? options = null;
         var connectorsBuilder = Mock.Of<IConnectorServiceBuilder>();
         _builderServiceMock
             .Setup(o => o.AddConnectors(options))
@@ -74,7 +74,7 @@ public class AIToolboxServiceBuilderTests
     public void Should_Add_Connectors_With_Options_Action()
     {
         // Arrange
-        Action<ConnectorOptions> optionsAction = _ => { };
+        Action<GlobalConnectorOptions> optionsAction = _ => { };
         var connectorsBuilder = Mock.Of<IConnectorServiceBuilder>();
         _builderServiceMock
             .Setup(o => o.AddConnectors(optionsAction))

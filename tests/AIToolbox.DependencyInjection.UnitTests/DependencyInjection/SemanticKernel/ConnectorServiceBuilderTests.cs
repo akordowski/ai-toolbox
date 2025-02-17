@@ -8,7 +8,7 @@ namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class ConnectorServiceBuilderTests
 {
-    private readonly ConnectorOptions _options = new();
+    private readonly GlobalConnectorOptions _options = new();
     private readonly ServiceCollection _services = [];
     private readonly Mock<IServiceBuilderService> _builderServiceMock = new();
     private readonly IKernelServiceBuilder _kernelBuilder = Mock.Of<IKernelServiceBuilder>();

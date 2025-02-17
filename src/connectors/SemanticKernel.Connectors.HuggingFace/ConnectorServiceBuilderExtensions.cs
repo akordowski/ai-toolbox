@@ -9,7 +9,7 @@ public static class ConnectorServiceBuilderExtensions
 {
     public static IConnectorServiceBuilder IncludeHuggingFaceConnector(
         this IConnectorServiceBuilder builder,
-        HuggingFaceConnectorOptions? options = null)
+        GlobalHuggingFaceOptions? options = null)
     {
         var opt = builder.Options;
 
@@ -31,11 +31,11 @@ public static class ConnectorServiceBuilderExtensions
 
     public static IConnectorServiceBuilder IncludeHuggingFaceConnector(
         this IConnectorServiceBuilder builder,
-        Action<HuggingFaceConnectorOptions> optionsAction)
+        Action<GlobalHuggingFaceOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        var options = new HuggingFaceConnectorOptions();
+        var options = new GlobalHuggingFaceOptions();
         optionsAction(options);
 
         return builder.IncludeHuggingFaceConnector(options);

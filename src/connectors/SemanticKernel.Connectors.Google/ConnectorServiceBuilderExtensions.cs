@@ -9,7 +9,7 @@ public static class ConnectorServiceBuilderExtensions
 {
     public static IConnectorServiceBuilder IncludeGoogleConnector(
         this IConnectorServiceBuilder builder,
-        GoogleConnectorOptions? options = null)
+        GlobalGoogleOptions? options = null)
     {
         var opt = builder.Options;
 
@@ -31,11 +31,11 @@ public static class ConnectorServiceBuilderExtensions
 
     public static IConnectorServiceBuilder IncludeGoogleConnector(
         this IConnectorServiceBuilder builder,
-        Action<GoogleConnectorOptions> optionsAction)
+        Action<GlobalGoogleOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        var options = new GoogleConnectorOptions();
+        var options = new GlobalGoogleOptions();
         optionsAction(options);
 
         return builder.IncludeGoogleConnector(options);

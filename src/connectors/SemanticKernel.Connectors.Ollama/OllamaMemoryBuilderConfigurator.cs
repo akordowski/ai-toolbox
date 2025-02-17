@@ -11,14 +11,14 @@ namespace AIToolbox.SemanticKernel;
 public sealed class OllamaMemoryBuilderConfigurator : IMemoryBuilderConfigurator
 {
     private readonly MemoryOptions _memoryOptions;
-    private readonly OllamaConnectorOptions? _ollamaConnectorOptions;
+    private readonly GlobalOllamaOptions? _ollamaConnectorOptions;
     private readonly OllamaApiClient? _ollamaApiClient;
     private readonly IHttpClientFactory? _httpClientFactory;
     private readonly ILoggerFactory? _loggerFactory;
 
     public OllamaMemoryBuilderConfigurator(
         MemoryOptions memoryOptions,
-        OllamaConnectorOptions? ollamaConnectorOptions = null,
+        GlobalOllamaOptions? ollamaConnectorOptions = null,
         OllamaApiClient? ollamaApiClient = null,
         IHttpClientFactory? httpClientFactory = null,
         ILoggerFactory? loggerFactory = null)

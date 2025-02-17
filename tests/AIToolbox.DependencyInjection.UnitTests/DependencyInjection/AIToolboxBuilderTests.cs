@@ -42,35 +42,35 @@ public class AIToolboxBuilderTests
     public void Should_Configure_Connectors_With_Null_Default_Options()
     {
         // Arrange
-        _options.Connectors = null;
-        var connectorOptions = new ConnectorOptions();
+        _options.GlobalConnectors = null;
+        var connectorOptions = new GlobalConnectorOptions();
 
         // Act
         _builder.ConfigureConnectors(connectorOptions);
 
         // Assert
-        _options.Connectors.Should().Be(connectorOptions);
+        _options.GlobalConnectors.Should().Be(connectorOptions);
     }
 
     [Fact]
     public void Should_Configure_Connectors_With_Default_Options()
     {
         // Arrange
-        _options.Connectors = new ConnectorOptions();
-        var connectorOptions = new ConnectorOptions();
+        _options.GlobalConnectors = new GlobalConnectorOptions();
+        var connectorOptions = new GlobalConnectorOptions();
 
         // Act
         _builder.ConfigureConnectors(connectorOptions);
 
         // Assert
-        _options.Connectors.Should().Be(connectorOptions);
+        _options.GlobalConnectors.Should().Be(connectorOptions);
     }
 
     [Fact]
     public void Should_Throw_Exception_When_Options_Action_Is_Null()
     {
         // Act
-        var act = () => _builder.ConfigureConnectors((Action<ConnectorOptions>)null!);
+        var act = () => _builder.ConfigureConnectors((Action<GlobalConnectorOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithParameterName("optionsAction");
@@ -83,10 +83,10 @@ public class AIToolboxBuilderTests
     {
         // Arrange
         var connectorOptions = hasConnectorOptions
-            ? new ConnectorOptions()
+            ? new GlobalConnectorOptions()
             : null;
-        var azureOpenAIOptions = new AzureOpenAIConnectorOptions { ApiKey = "test" };
-        _options.Connectors = connectorOptions;
+        var azureOpenAIOptions = new GlobalAzureOpenAIOptions { ApiKey = "test" };
+        _options.GlobalConnectors = connectorOptions;
 
         // Act
         _builder.ConfigureConnectors(opt => opt.AzureOpenAI = azureOpenAIOptions);
@@ -94,14 +94,14 @@ public class AIToolboxBuilderTests
         // Assert
         if (hasConnectorOptions)
         {
-            _options.Connectors.Should().Be(connectorOptions);
+            _options.GlobalConnectors.Should().Be(connectorOptions);
         }
         else
         {
-            _options.Connectors.Should().NotBeNull();
+            _options.GlobalConnectors.Should().NotBeNull();
         }
 
-        _options.Connectors!.AzureOpenAI.Should().NotBeNull();
-        _options.Connectors!.AzureOpenAI.Should().Be(azureOpenAIOptions);
+        _options.GlobalConnectors!.AzureOpenAI.Should().NotBeNull();
+        _options.GlobalConnectors!.AzureOpenAI.Should().Be(azureOpenAIOptions);
     }
 }

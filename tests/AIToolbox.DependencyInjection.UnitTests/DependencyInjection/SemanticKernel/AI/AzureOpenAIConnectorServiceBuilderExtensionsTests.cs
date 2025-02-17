@@ -11,7 +11,7 @@ public class AzureOpenAIConnectorServiceBuilderExtensionsTests : BaseConnectorSe
     public void Should_Include_AzureOpenAIConnector_With_Options()
     {
         // Arrange
-        var options = new AzureOpenAIConnectorOptions();
+        var options = new GlobalAzureOpenAIOptions();
 
         // Act
         var result = Builder.IncludeAzureOpenAIConnector(options);
@@ -27,7 +27,7 @@ public class AzureOpenAIConnectorServiceBuilderExtensionsTests : BaseConnectorSe
     public void Should_Include_AzureOpenAIConnector_With_Null_Options()
     {
         // Arrange
-        Options.AzureOpenAI = new AzureOpenAIConnectorOptions();
+        Options.AzureOpenAI = new GlobalAzureOpenAIOptions();
 
         // Act
         var result = Builder.IncludeAzureOpenAIConnector();
@@ -57,7 +57,7 @@ public class AzureOpenAIConnectorServiceBuilderExtensionsTests : BaseConnectorSe
     public void Should_Throw_Exception_When_Include_AzureOpenAIConnector_With_Null_Options_Action()
     {
         // Act
-        var act = () => Builder.IncludeAzureOpenAIConnector((Action<AzureOpenAIConnectorOptions>)null!);
+        var act = () => Builder.IncludeAzureOpenAIConnector((Action<GlobalAzureOpenAIOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

@@ -29,7 +29,7 @@ public class AIToolboxTests
             builder =>
             {
                 builder
-                    .ConfigureConnectors(new ConnectorOptions())
+                    .ConfigureConnectors(new GlobalConnectorOptions())
                     .UseSemanticKernel(skBuilder => { }, new SemanticKernelOptions());
             },
             new AIToolboxOptions());

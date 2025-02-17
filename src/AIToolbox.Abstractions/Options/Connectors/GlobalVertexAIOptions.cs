@@ -1,6 +1,6 @@
 namespace AIToolbox.Options.Connectors;
 
-public sealed class VertexAIConnectorOptions
+public sealed class GlobalVertexAIOptions
 {
     public string BearerKey { get; set; } = default!;
     public string Location { get; set; } = default!;

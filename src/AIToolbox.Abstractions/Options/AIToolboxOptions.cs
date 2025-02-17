@@ -5,6 +5,6 @@ namespace AIToolbox.Options;
 
 public sealed class AIToolboxOptions
 {
-    public ConnectorOptions? Connectors { get; set; }
+    public GlobalConnectorOptions? GlobalConnectors { get; set; }
     public SemanticKernelOptions? SemanticKernel { get; set; }
 }

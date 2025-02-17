@@ -15,22 +15,22 @@ internal sealed class AIToolboxBuilder : IAIToolboxBuilder
     }
 
     /// <inheritdoc />
-    public IAIToolboxBuilder ConfigureConnectors(ConnectorOptions options)
+    public IAIToolboxBuilder ConfigureConnectors(GlobalConnectorOptions options)
     {
         Verify.ThrowIfNull(options, nameof(options));
 
-        BuilderFactory.Options.Connectors = options;
+        BuilderFactory.Options.GlobalConnectors = options;
 
         return this;
     }
 
     /// <inheritdoc />
-    public IAIToolboxBuilder ConfigureConnectors(Action<ConnectorOptions> optionsAction)
+    public IAIToolboxBuilder ConfigureConnectors(Action<GlobalConnectorOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        BuilderFactory.Options.Connectors ??= new ConnectorOptions();
-        optionsAction(BuilderFactory.Options.Connectors);
+        BuilderFactory.Options.GlobalConnectors ??= new GlobalConnectorOptions();
+        optionsAction(BuilderFactory.Options.GlobalConnectors);
 
         return this;
     }

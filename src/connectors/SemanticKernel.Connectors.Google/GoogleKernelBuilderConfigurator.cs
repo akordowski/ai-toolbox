@@ -11,14 +11,14 @@ namespace AIToolbox.SemanticKernel;
 public sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurator
 {
     private readonly KernelOptions _kernelOptions;
-    private readonly GoogleConnectorOptions? _googleConnectorOptions;
-    private readonly VertexAIConnectorOptions? _vertexAIConnectorOptions;
+    private readonly GlobalGoogleOptions? _googleConnectorOptions;
+    private readonly GlobalVertexAIOptions? _vertexAIConnectorOptions;
     private readonly IHttpClientFactory? _httpClientFactory;
 
     public GoogleKernelBuilderConfigurator(
         KernelOptions kernelOptions,
-        GoogleConnectorOptions? googleConnectorOptions = null,
-        VertexAIConnectorOptions? vertexAIConnectorOptions = null,
+        GlobalGoogleOptions? googleConnectorOptions = null,
+        GlobalVertexAIOptions? vertexAIConnectorOptions = null,
         IHttpClientFactory? httpClientFactory = null)
     {
         ArgumentNullException.ThrowIfNull(kernelOptions, nameof(kernelOptions));

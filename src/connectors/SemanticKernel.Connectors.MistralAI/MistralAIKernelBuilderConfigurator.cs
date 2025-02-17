@@ -9,12 +9,12 @@ namespace AIToolbox.SemanticKernel;
 public sealed class MistralAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 {
     private readonly KernelOptions _kernelOptions;
-    private readonly MistralAIConnectorOptions? _mistralAIConnectorOptions;
+    private readonly GlobalMistralAIOptions? _mistralAIConnectorOptions;
     private readonly IHttpClientFactory? _httpClientFactory;
 
     public MistralAIKernelBuilderConfigurator(
         KernelOptions kernelOptions,
-        MistralAIConnectorOptions? mistralAIConnectorOptions = null,
+        GlobalMistralAIOptions? mistralAIConnectorOptions = null,
         IHttpClientFactory? httpClientFactory = null)
     {
         ArgumentNullException.ThrowIfNull(kernelOptions, nameof(kernelOptions));

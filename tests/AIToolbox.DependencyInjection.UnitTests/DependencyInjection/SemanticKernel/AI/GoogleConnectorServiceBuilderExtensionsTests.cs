@@ -11,7 +11,7 @@ public class GoogleConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Include_GoogleConnector_With_Options()
     {
         // Arrange
-        var options = new GoogleConnectorOptions();
+        var options = new GlobalGoogleOptions();
 
         // Act
         var result = Builder.IncludeGoogleConnector(options);
@@ -27,7 +27,7 @@ public class GoogleConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Include_GoogleConnector_With_Null_Options()
     {
         // Arrange
-        Options.Google = new GoogleConnectorOptions();
+        Options.Google = new GlobalGoogleOptions();
 
         // Act
         var result = Builder.IncludeGoogleConnector();
@@ -57,7 +57,7 @@ public class GoogleConnectorServiceBuilderExtensionsTests : BaseConnectorService
     public void Should_Throw_Exception_When_Include_GoogleConnector_With_Null_Options_Action()
     {
         // Act
-        var act = () => Builder.IncludeGoogleConnector((Action<GoogleConnectorOptions>)null!);
+        var act = () => Builder.IncludeGoogleConnector((Action<GlobalGoogleOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

@@ -9,12 +9,12 @@ namespace AIToolbox.SemanticKernel;
 public sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurator
 {
     private readonly KernelOptions _kernelOptions;
-    private readonly OpenAIConnectorOptions? _connectorOptions;
+    private readonly GlobalOpenAIOptions? _connectorOptions;
     private readonly IHttpClientFactory? _httpClientFactory;
 
     public OpenAIKernelBuilderConfigurator(
         KernelOptions kernelOptions,
-        OpenAIConnectorOptions? connectorOptions = null,
+        GlobalOpenAIOptions? connectorOptions = null,
         IHttpClientFactory? httpClientFactory = null)
     {
         ArgumentNullException.ThrowIfNull(kernelOptions, nameof(kernelOptions));

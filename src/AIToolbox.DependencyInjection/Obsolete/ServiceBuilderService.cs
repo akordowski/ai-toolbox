@@ -21,26 +21,26 @@ internal sealed class ServiceBuilderService : IServiceBuilderService
         _services = services;
     }
 
-    public IConnectorServiceBuilder AddConnectors(ConnectorOptions? options = null)
+    public IConnectorServiceBuilder AddConnectors(GlobalConnectorOptions? options = null)
     {
-        _options.Connectors ??= new ConnectorOptions();
+        _options.GlobalConnectors ??= new GlobalConnectorOptions();
 
         if (options is not null)
         {
-            _options.Connectors = options;
+            _options.GlobalConnectors = options;
         }
 
-        return new ConnectorServiceBuilder(_options.Connectors!, _services, this);
+        return new ConnectorServiceBuilder(_options.GlobalConnectors!, _services, this);
     }
 
-    public IConnectorServiceBuilder AddConnectors(Action<ConnectorOptions> optionsAction)
+    public IConnectorServiceBuilder AddConnectors(Action<GlobalConnectorOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        _options.Connectors ??= new ConnectorOptions();
-        optionsAction(_options.Connectors);
+        _options.GlobalConnectors ??= new GlobalConnectorOptions();
+        optionsAction(_options.GlobalConnectors);
 
-        return AddConnectors(_options.Connectors!);
+        return AddConnectors(_options.GlobalConnectors!);
     }
 
     public IKernelServiceBuilder AddKernel(KernelOptions? options = null)

@@ -6,7 +6,7 @@ namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public abstract class BaseConnectorServiceBuilderExtensionsTests
 {
-    protected ConnectorOptions Options { get; } = new();
+    protected GlobalConnectorOptions Options { get; } = new();
     protected ServiceCollection Services { get; } = [];
     protected Mock<IServiceBuilderService> BuilderServiceMock { get; } = new();
     protected IConnectorServiceBuilder Builder { get; }

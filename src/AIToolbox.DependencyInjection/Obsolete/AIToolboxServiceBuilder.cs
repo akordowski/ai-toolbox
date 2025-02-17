@@ -13,9 +13,9 @@ internal sealed class AIToolboxServiceBuilder : IAIToolboxServiceBuilder
         _builderService = builderService;
     }
 
-    public IConnectorServiceBuilder AddConnectors(ConnectorOptions? options = null) =>
+    public IConnectorServiceBuilder AddConnectors(GlobalConnectorOptions? options = null) =>
         _builderService.AddConnectors(options);
 
-    public IConnectorServiceBuilder AddConnectors(Action<ConnectorOptions> optionsAction) =>
+    public IConnectorServiceBuilder AddConnectors(Action<GlobalConnectorOptions> optionsAction) =>
         _builderService.AddConnectors(optionsAction);
 }

@@ -1,6 +1,6 @@
 namespace AIToolbox.Options.Connectors;
 
-public sealed class AzureOpenAIConnectorOptions
+public sealed class GlobalHuggingFaceOptions
 {
     public string Endpoint { get; set; } = default!;
     public string ApiKey { get; set; } = default!;

@@ -115,7 +115,7 @@ public class ServiceCollectionExtensionsAIToolboxTests
 
         // Assert
         BuilderActionMock.Verify(action => action(It.IsAny<IAIToolboxBuilder>()), Times.Once);
-        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options.Connectors != null)), Times.Once);
+        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options.GlobalConnectors != null)), Times.Once);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ public class ServiceCollectionExtensionsAIToolboxTests
 
         // Assert
         BuilderActionMock.Verify(action => action(It.IsAny<IAIToolboxBuilder>()), Times.Once);
-        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options.Connectors != null)), Times.Once);
+        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options.GlobalConnectors != null)), Times.Once);
     }
 
     private static IConfiguration GetConfiguration(string section) =>

@@ -11,7 +11,7 @@ public class HuggingFaceConnectorServiceBuilderExtensionsTests : BaseConnectorSe
     public void Should_Include_HuggingFaceConnector_With_Options()
     {
         // Arrange
-        var options = new HuggingFaceConnectorOptions();
+        var options = new GlobalHuggingFaceOptions();
 
         // Act
         var result = Builder.IncludeHuggingFaceConnector(options);
@@ -27,7 +27,7 @@ public class HuggingFaceConnectorServiceBuilderExtensionsTests : BaseConnectorSe
     public void Should_Include_HuggingFaceConnector_With_Null_Options()
     {
         // Arrange
-        Options.HuggingFace = new HuggingFaceConnectorOptions();
+        Options.HuggingFace = new GlobalHuggingFaceOptions();
 
         // Act
         var result = Builder.IncludeHuggingFaceConnector();
@@ -57,7 +57,7 @@ public class HuggingFaceConnectorServiceBuilderExtensionsTests : BaseConnectorSe
     public void Should_Throw_Exception_When_Include_HuggingFaceConnector_With_Null_Options_Action()
     {
         // Act
-        var act = () => Builder.IncludeHuggingFaceConnector((Action<HuggingFaceConnectorOptions>)null!);
+        var act = () => Builder.IncludeHuggingFaceConnector((Action<GlobalHuggingFaceOptions>)null!);
 
         // Assert
         act.Should().Throw<ArgumentNullException>().WithMessage("*optionsAction*");

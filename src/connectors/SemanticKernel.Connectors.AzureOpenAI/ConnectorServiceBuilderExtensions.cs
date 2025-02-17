@@ -9,7 +9,7 @@ public static class ConnectorServiceBuilderExtensions
 {
     public static IConnectorServiceBuilder IncludeAzureOpenAIConnector(
         this IConnectorServiceBuilder builder,
-        AzureOpenAIConnectorOptions? options = null)
+        GlobalAzureOpenAIOptions? options = null)
     {
         var opt = builder.Options;
 
@@ -33,11 +33,11 @@ public static class ConnectorServiceBuilderExtensions
 
     public static IConnectorServiceBuilder IncludeAzureOpenAIConnector(
         this IConnectorServiceBuilder builder,
-        Action<AzureOpenAIConnectorOptions> optionsAction)
+        Action<GlobalAzureOpenAIOptions> optionsAction)
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        var options = new AzureOpenAIConnectorOptions();
+        var options = new GlobalAzureOpenAIOptions();
         optionsAction(options);
 
         return builder.IncludeAzureOpenAIConnector(options);
