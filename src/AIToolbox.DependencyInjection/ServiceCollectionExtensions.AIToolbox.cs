@@ -25,8 +25,7 @@ public static partial class ServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(builderAction, nameof(builderAction));
         ArgumentNullException.ThrowIfNull(options, nameof(options));
 
-        var builderFactory = new BuilderFactory(options, services);
-        var builder = new AIToolboxBuilder(builderFactory);
+        var builder = new AIToolboxBuilder(options, services);
         builderAction.Invoke(builder);
 
         return services;

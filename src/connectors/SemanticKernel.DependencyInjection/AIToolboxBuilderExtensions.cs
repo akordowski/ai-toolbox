@@ -11,7 +11,7 @@ public static class AIToolboxBuilderExtensions
         Verify.ThrowIfNull(builder, nameof(builder));
         Verify.ThrowIfNull(builderAction, nameof(builderAction));
 
-        builder.BuilderFactory.Options.SemanticKernel ??= new SemanticKernelOptions();
+        builder.Options.SemanticKernel ??= new SemanticKernelOptions();
         builderAction.Invoke(GetSemanticKernelBuilder(builder));
 
         return builder;
@@ -26,7 +26,7 @@ public static class AIToolboxBuilderExtensions
         Verify.ThrowIfNull(builderAction, nameof(builderAction));
         Verify.ThrowIfNull(options, nameof(options));
 
-        builder.BuilderFactory.Options.SemanticKernel = options;
+        builder.Options.SemanticKernel = options;
         builderAction.Invoke(GetSemanticKernelBuilder(builder));
 
         return builder;
@@ -41,14 +41,14 @@ public static class AIToolboxBuilderExtensions
         Verify.ThrowIfNull(builderAction, nameof(builderAction));
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        builder.BuilderFactory.Options.SemanticKernel ??= new SemanticKernelOptions();
+        builder.Options.SemanticKernel ??= new SemanticKernelOptions();
 
-        optionsAction.Invoke(builder.BuilderFactory.Options.SemanticKernel);
+        optionsAction.Invoke(builder.Options.SemanticKernel);
         builderAction.Invoke(GetSemanticKernelBuilder(builder));
 
         return builder;
     }
 
     private static SemanticKernelBuilder GetSemanticKernelBuilder(IAIToolboxBuilder builder) =>
-        new(builder.BuilderFactory.Options.SemanticKernel!, builder.BuilderFactory.Services);
+        new(builder.Options.SemanticKernel!, builder.Services);
 }

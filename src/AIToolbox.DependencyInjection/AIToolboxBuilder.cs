@@ -1,17 +1,24 @@
+using AIToolbox.Options;
 using AIToolbox.Options.Connectors;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AIToolbox.DependencyInjection;
 
 internal sealed class AIToolboxBuilder : IAIToolboxBuilder
 {
     /// <inheritdoc />
-    public IBuilderFactory BuilderFactory { get; }
+    public AIToolboxOptions Options { get; }
 
-    public AIToolboxBuilder(IBuilderFactory builderFactory)
+    /// <inheritdoc />
+    public IServiceCollection Services { get; }
+
+    public AIToolboxBuilder(AIToolboxOptions options, IServiceCollection services)
     {
-        Verify.ThrowIfNull(builderFactory, nameof(builderFactory));
+        Verify.ThrowIfNull(options, nameof(options));
+        Verify.ThrowIfNull(services, nameof(services));
 
-        BuilderFactory = builderFactory;
+        Options = options;
+        Services = services;
     }
 
     /// <inheritdoc />
@@ -19,7 +26,7 @@ internal sealed class AIToolboxBuilder : IAIToolboxBuilder
     {
         Verify.ThrowIfNull(options, nameof(options));
 
-        BuilderFactory.Options.GlobalConnectors = options;
+        Options.GlobalConnectors = options;
 
         return this;
     }
@@ -29,8 +36,8 @@ internal sealed class AIToolboxBuilder : IAIToolboxBuilder
     {
         Verify.ThrowIfNull(optionsAction, nameof(optionsAction));
 
-        BuilderFactory.Options.GlobalConnectors ??= new GlobalConnectorOptions();
-        optionsAction(BuilderFactory.Options.GlobalConnectors);
+        Options.GlobalConnectors ??= new GlobalConnectorOptions();
+        optionsAction(Options.GlobalConnectors);
 
         return this;
     }

@@ -1,14 +1,20 @@
 using AIToolbox.Options;
 using AIToolbox.Options.Connectors;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AIToolbox.DependencyInjection;
 
 public interface IAIToolboxBuilder
 {
     /// <summary>
-    /// Gets the <see cref="IBuilderFactory"/>.
+    /// Gets the <see cref="AIToolboxOptions"/>.
     /// </summary>
-    IBuilderFactory BuilderFactory { get; }
+    AIToolboxOptions Options { get; }
+
+    /// <summary>
+    /// Gets the <see cref="IServiceCollection"/> where AIToolbox services are configured.
+    /// </summary>
+    IServiceCollection Services { get; }
 
     /// <summary>
     /// Add or replace the <see cref="GlobalConnectorOptions"/> in the <see cref="AIToolboxOptions"/>.

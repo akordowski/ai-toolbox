@@ -61,17 +61,14 @@ public class AIToolboxBuilderExtensionsSemanticKernelTests
     public void Should_Use_SemanticKernel_With_Default_Options()
     {
         // Arrange
-        var builderFactoryMock = new Mock<IBuilderFactory>();
-        builderFactoryMock.SetupGet(builderFactory => builderFactory.Options).Returns(new AIToolboxOptions());
-        builderFactoryMock.SetupGet(builderFactory => builderFactory.Services).Returns(new ServiceCollection());
-
-        BuilderMock.SetupGet(builder => builder.BuilderFactory).Returns(builderFactoryMock.Object);
+        BuilderMock.SetupGet(builder => builder.Options).Returns(new AIToolboxOptions());
+        BuilderMock.SetupGet(builder => builder.Services).Returns(new ServiceCollection());
 
         // Act
         BuilderMock.Object.UseSemanticKernel(BuilderActionMock.Object);
 
         // Assert
-        builderFactoryMock.Object.Options.SemanticKernel.Should().NotBeNull();
+        BuilderMock.Object.Options.SemanticKernel.Should().NotBeNull();
 
         BuilderActionMock.Verify(action => action(It.IsAny<ISemanticKernelBuilder>()), Times.Once);
     }
@@ -80,17 +77,14 @@ public class AIToolboxBuilderExtensionsSemanticKernelTests
     public void Should_Use_SemanticKernel_With_Custom_Options()
     {
         // Arrange
-        var builderFactoryMock = new Mock<IBuilderFactory>();
-        builderFactoryMock.SetupGet(builderFactory => builderFactory.Options).Returns(new AIToolboxOptions());
-        builderFactoryMock.SetupGet(builderFactory => builderFactory.Services).Returns(new ServiceCollection());
-
-        BuilderMock.SetupGet(builder => builder.BuilderFactory).Returns(builderFactoryMock.Object);
+        BuilderMock.SetupGet(builder => builder.Options).Returns(new AIToolboxOptions());
+        BuilderMock.SetupGet(builder => builder.Services).Returns(new ServiceCollection());
 
         // Act
         BuilderMock.Object.UseSemanticKernel(BuilderActionMock.Object, Options);
 
         // Assert
-        builderFactoryMock.Object.Options.SemanticKernel.Should().Be(Options);
+        BuilderMock.Object.Options.SemanticKernel.Should().Be(Options);
 
         BuilderActionMock.Verify(action => action(It.IsAny<ISemanticKernelBuilder>()), Times.Once);
     }
@@ -99,17 +93,14 @@ public class AIToolboxBuilderExtensionsSemanticKernelTests
     public void Should_Use_SemanticKernel_With_Options_Action()
     {
         // Arrange
-        var builderFactoryMock = new Mock<IBuilderFactory>();
-        builderFactoryMock.SetupGet(builderFactory => builderFactory.Options).Returns(new AIToolboxOptions());
-        builderFactoryMock.SetupGet(builderFactory => builderFactory.Services).Returns(new ServiceCollection());
-
-        BuilderMock.SetupGet(builder => builder.BuilderFactory).Returns(builderFactoryMock.Object);
+        BuilderMock.SetupGet(builder => builder.Options).Returns(new AIToolboxOptions());
+        BuilderMock.SetupGet(builder => builder.Services).Returns(new ServiceCollection());
 
         // Act
         BuilderMock.Object.UseSemanticKernel(BuilderActionMock.Object, OptionsActionMock.Object);
 
         // Assert
-        builderFactoryMock.Object.Options.SemanticKernel.Should().NotBeNull();
+        BuilderMock.Object.Options.SemanticKernel.Should().NotBeNull();
 
         BuilderActionMock.Verify(action => action(It.IsAny<ISemanticKernelBuilder>()), Times.Once);
         OptionsActionMock.Verify(action => action(It.IsAny<SemanticKernelOptions>()), Times.Once);

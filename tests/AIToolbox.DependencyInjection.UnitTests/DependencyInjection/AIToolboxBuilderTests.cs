@@ -13,29 +13,33 @@ public class AIToolboxBuilderTests
 
     public AIToolboxBuilderTests()
     {
-        var builderFactory = new BuilderFactory(_options, _services);
-        _builder = new AIToolboxBuilder(builderFactory);
+        _builder = new AIToolboxBuilder(_options, _services);
     }
 
-    [Fact]
-    public void Should_Throw_Exception_When_Constructed_With_Null_Builder_Factory()
-    {
-        // Act
-        var act = () => new AIToolboxBuilder(null!);
+    public static TheoryData<Action, string> ConstructWithInvalidParameters =>
+        new()
+        {
+            { () => _ = new AIToolboxBuilder(null!, null!), "options" },
+            { () => _ = new AIToolboxBuilder(new AIToolboxOptions(), null!), "services" }
+        };
 
+    [Theory]
+    [MemberData(nameof(ConstructWithInvalidParameters))]
+    public void Should_Throw_On_Construct_With_Invalid_Parameters(Action act, string parameterName)
+    {
         // Assert
-        act.Should().Throw<ArgumentNullException>().WithParameterName("builderFactory");
+        act.Should().Throw<ArgumentNullException>().WithParameterName(parameterName);
     }
 
     [Fact]
     public void Should_Construct_With_Valid_Parameters()
     {
         // Act
-        var builderFactory = new BuilderFactory(_options, _services);
-        var builder = new AIToolboxBuilder(builderFactory);
+        var builder = new AIToolboxBuilder(_options, _services);
 
         // Assert
-        builder.BuilderFactory.Should().Be(builderFactory);
+        builder.Options.Should().Be(_options);
+        builder.Services.Should().BeEquivalentTo(_services);
     }
 
     [Fact]

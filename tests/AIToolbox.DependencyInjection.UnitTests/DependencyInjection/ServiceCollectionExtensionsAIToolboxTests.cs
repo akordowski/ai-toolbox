@@ -90,7 +90,7 @@ public class ServiceCollectionExtensionsAIToolboxTests
 
         // Assert
         BuilderActionMock.Verify(action => action(It.IsAny<IAIToolboxBuilder>()), Times.Once);
-        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options == Options)), Times.Once);
+        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.Options == Options)), Times.Once);
     }
 
     [Fact]
@@ -115,7 +115,7 @@ public class ServiceCollectionExtensionsAIToolboxTests
 
         // Assert
         BuilderActionMock.Verify(action => action(It.IsAny<IAIToolboxBuilder>()), Times.Once);
-        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options.GlobalConnectors != null)), Times.Once);
+        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.Options.GlobalConnectors != null)), Times.Once);
     }
 
     [Fact]
@@ -130,14 +130,14 @@ public class ServiceCollectionExtensionsAIToolboxTests
 
         // Assert
         BuilderActionMock.Verify(action => action(It.IsAny<IAIToolboxBuilder>()), Times.Once);
-        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.BuilderFactory.Options.GlobalConnectors != null)), Times.Once);
+        BuilderActionMock.Verify(action => action(It.Is<IAIToolboxBuilder>(builder => builder.Options.GlobalConnectors != null)), Times.Once);
     }
 
     private static IConfiguration GetConfiguration(string section) =>
         new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string?>
             {
-                [$"{section}:Connectors:AzureOpenAI"] = null
+                [$"{section}:GlobalConnectors:AzureOpenAI"] = null
             }!)
             .Build();
 }
