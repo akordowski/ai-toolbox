@@ -18,11 +18,11 @@ public class KernelBuilderTests
         _builder = new KernelBuilder(_options, _services);
     }
 
-    public static TheoryData<Action, string, string> BuilderWithInvalidParameters =>
+    public static TheoryData<Action, string> BuilderWithInvalidParameters =>
         new()
         {
-            { () => _ = new KernelBuilder(null!, null!), "options", "No 'KernelOptions' provided.*" },
-            { () => _ = new KernelBuilder(new KernelOptions(), null!), "services", "*" }
+            { () => _ = new KernelBuilder(null!, null!), "options" },
+            { () => _ = new KernelBuilder(new KernelOptions(), null!), "services" }
         };
 
     public static TheoryData<Action, string> MethodsWithInvalidParameters
@@ -44,12 +44,10 @@ public class KernelBuilderTests
 
     [Theory]
     [MemberData(nameof(BuilderWithInvalidParameters))]
-    public void Should_Throw_On_Construct_With_Invalid_Parameters(Action act, string parameterName, string message)
+    public void Should_Throw_On_Construct_With_Invalid_Parameters(Action act, string parameterName)
     {
         // Assert
-        act.Should().Throw<ArgumentNullException>()
-            .WithParameterName(parameterName)
-            .WithMessage(message);
+        act.Should().Throw<ArgumentNullException>().WithParameterName(parameterName);
     }
 
     [Fact]

@@ -7,7 +7,11 @@ namespace AIToolbox.DependencyInjection;
 
 internal sealed class KernelBuilder : IKernelBuilder
 {
-    private readonly IServiceCollection _services;
+    /// <inheritdoc />
+    public KernelOptions Options { get; }
+
+    /// <inheritdoc />
+    public IServiceCollection Services { get; }
 
     public KernelBuilder(
         KernelOptions options,
@@ -16,9 +20,10 @@ internal sealed class KernelBuilder : IKernelBuilder
         Verify.ThrowIfNull(options, nameof(options), $"No '{nameof(KernelOptions)}' provided.");
         Verify.ThrowIfNull(services, nameof(services));
 
-        _services = services;
+        Options = options;
+        Services = services;
 
-        _services
+        Services
             .AddSingleton(options)
             .AddSingleton<IKernelProvider, KernelProvider>();
     }
@@ -27,7 +32,7 @@ internal sealed class KernelBuilder : IKernelBuilder
     {
         Verify.ThrowIfNull(factory, nameof(factory));
 
-        _services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IAIServiceSelector>(factory));
+        Services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IAIServiceSelector>(factory));
         return this;
     }
 
@@ -35,7 +40,7 @@ internal sealed class KernelBuilder : IKernelBuilder
     {
         Verify.ThrowIfNull(instance, nameof(instance));
 
-        _services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IAIServiceSelector>(instance));
+        Services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IAIServiceSelector>(instance));
         return this;
     }
 
@@ -43,7 +48,7 @@ internal sealed class KernelBuilder : IKernelBuilder
     {
         Verify.ThrowIfNull(factory, nameof(factory));
 
-        _services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IFunctionInvocationFilter>(factory));
+        Services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IFunctionInvocationFilter>(factory));
         return this;
     }
 
@@ -51,7 +56,7 @@ internal sealed class KernelBuilder : IKernelBuilder
     {
         Verify.ThrowIfNull(instance, nameof(instance));
 
-        _services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IFunctionInvocationFilter>(instance));
+        Services.AddSingleton<IKernelBuilderConfigurator>(new KernelBuilderConfigurator<IFunctionInvocationFilter>(instance));
         return this;
     }
 }
