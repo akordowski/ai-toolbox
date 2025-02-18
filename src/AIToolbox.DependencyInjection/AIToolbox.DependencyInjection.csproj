@@ -13,6 +13,10 @@
     <ProjectReference Include="..\AIToolbox\AIToolbox.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection.UnitTests" />
+  </ItemGroup>
+
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
 
   <PropertyGroup>
