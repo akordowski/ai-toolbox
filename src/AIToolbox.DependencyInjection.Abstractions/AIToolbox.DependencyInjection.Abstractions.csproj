@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>AIToolbox.DependencyInjection.Abstractions</AssemblyName>
-    <RootNamespace>AIToolbox</RootNamespace>
+    <RootNamespace>AIToolbox.DependencyInjection</RootNamespace>
     <TargetFrameworks>net8.0</TargetFrameworks>
     <NoWarn>$(NoWarn)</NoWarn>
     <EnablePackageValidation>false</EnablePackageValidation>

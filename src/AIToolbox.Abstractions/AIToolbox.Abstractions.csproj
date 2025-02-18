@@ -8,6 +8,10 @@
     <EnablePackageValidation>false</EnablePackageValidation>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection" />
+  </ItemGroup>
+
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
 
   <PropertyGroup>
