@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AIToolbox.DependencyInjection.Abstractions\AIToolbox.DependencyInjection.Abstractions.csproj" />
-    <ProjectReference Include="..\AIToolbox\AIToolbox.csproj" />
   </ItemGroup>
 
   <ItemGroup>

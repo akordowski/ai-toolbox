@@ -1,0 +1,42 @@
+{
+  "AIToolbox": {
+    "GlobalConnectors": {
+      "AzureOpenAI": {
+        "Endpoint": "GlobalAzureOpenAIOptionsEndpoint",
+        "ApiKey": "GlobalAzureOpenAIOptionsApiKey",
+        "ServiceId": "GlobalAzureOpenAIOptionsServiceId"
+      },
+      "Google": {
+        "ApiKey": "GlobalGoogleOptionsApiKey",
+        "ApiVersion": "V1",
+        "ServiceId": "GlobalGoogleOptionsServiceId"
+      },
+      "HuggingFace": {
+        "Endpoint": "GlobalHuggingFaceOptionsEndpoint",
+        "ApiKey": "GlobalHuggingFaceOptionsApiKey",
+        "ServiceId": "GlobalHuggingFaceOptionsServiceId"
+      },
+      "MistralAI": {
+        "Endpoint": "GlobalMistralAIOptionsEndpoint",
+        "ApiKey": "GlobalMistralAIOptionsApiKey",
+        "ServiceId": "GlobalMistralAIOptionsServiceId"
+      },
+      "Ollama": {
+        "Endpoint": "GlobalOllamaOptionsEndpoint",
+        "ServiceId": "GlobalOllamaOptionsServiceId"
+      },
+      "OpenAI": {
+        "ApiKey": "GlobalOpenAIOptionsApiKey",
+        "OrgId": "GlobalOpenAIOptionsOrgId",
+        "ServiceId": "GlobalOpenAIOptionsServiceId"
+      },
+      "VertexAI": {
+        "BearerKey": "GlobalVertexAIOptionsBearerKey",
+        "Location": "GlobalVertexAIOptionsLocation",
+        "ProjectId": "GlobalVertexAIOptionsProjectId",
+        "ApiVersion": "V1",
+        "ServiceId": "GlobalVertexAIOptionsServiceId"
+      }
+    }
+  }
+}
