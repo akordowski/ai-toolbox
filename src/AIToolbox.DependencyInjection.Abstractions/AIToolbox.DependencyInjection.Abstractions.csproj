@@ -12,31 +12,6 @@
     <ProjectReference Include="..\AIToolbox.Abstractions\AIToolbox.Abstractions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <InternalsVisibleTo Include="AIToolbox.DependencyInjection" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.AzureOpenAI" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Google" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.HuggingFace" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.MistralAI" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Ollama" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.OpenAI" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.AzureAISearch" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.AzureCosmosDBMongoDB" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.AzureCosmosDBNoSQL" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Chroma" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.DuckDB" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Kusto" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Milvus" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.MongoDB" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Pinecone" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Postgres" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Qdrant" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Redis" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Sqlite" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.SqlServer" />
-    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Memory.Weaviate" />
-  </ItemGroup>
-
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
 
   <PropertyGroup>

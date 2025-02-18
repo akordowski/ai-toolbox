@@ -4,18 +4,9 @@
     <AssemblyName>AIToolbox.Abstractions</AssemblyName>
     <RootNamespace>AIToolbox</RootNamespace>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <NoWarn>$(NoWarn);SKEXP0001</NoWarn>
+    <NoWarn>$(NoWarn)</NoWarn>
     <EnablePackageValidation>false</EnablePackageValidation>
   </PropertyGroup>
-
-  <ItemGroup>
-    <InternalsVisibleTo Include="AIToolbox" />
-    <InternalsVisibleTo Include="AIToolbox.DependencyInjection" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SemanticKernel.Plugins.Memory" />
-  </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
 
