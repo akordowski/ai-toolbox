@@ -2,7 +2,7 @@ using AIToolbox.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AIToolbox;
+namespace AIToolbox.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions
 {

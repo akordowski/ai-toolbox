@@ -1,7 +1,7 @@
 using AIToolbox.Options;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AIToolbox;
+namespace AIToolbox.DependencyInjection;
 
 internal sealed class AIToolboxBuilder : IAIToolboxBuilder
 {
