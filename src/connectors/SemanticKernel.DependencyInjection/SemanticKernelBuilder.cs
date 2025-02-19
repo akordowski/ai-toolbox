@@ -16,4 +16,42 @@ internal sealed class SemanticKernelBuilder : ISemanticKernelBuilder
         _options = options;
         _services = services;
     }
+
+    /// <inheritdoc />
+    /// <exception cref="InvalidOperationException">No <see cref="KernelOptions"/> are provided.</exception>
+    public IAddKernel AddKernel()
+    {
+        Verify.ThrowIfOptionsNull(_options.Kernel);
+
+        _ = new KernelBuilder(_options.Kernel!, _services);
+
+        return this;
+    }
+
+    /// <inheritdoc />
+    /// <exception cref="ArgumentNullException">Any of the arguments is <see langword="null"/>.</exception>
+    public IAddKernel AddKernel(Action<KernelOptions> optionsAction)
+    {
+        ArgumentNullException.ThrowIfNull(optionsAction, nameof(optionsAction));
+
+        return AddKernel(_ => { }, optionsAction);
+    }
+
+    /// <inheritdoc />
+    /// <exception cref="ArgumentNullException">Any of the arguments is <see langword="null"/>.</exception>
+    public IAddKernel AddKernel(Action<IKernelBuilder> builderAction, Action<KernelOptions> optionsAction)
+    {
+        ArgumentNullException.ThrowIfNull(builderAction, nameof(builderAction));
+        ArgumentNullException.ThrowIfNull(optionsAction, nameof(optionsAction));
+
+        _options.Kernel ??= new KernelOptions();
+
+        var options = _options.Kernel;
+        optionsAction.Invoke(options);
+
+        var kernelBuilder = new KernelBuilder(options, _services);
+        builderAction.Invoke(kernelBuilder);
+
+        return this;
+    }
 }

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="AIToolbox.DependencyInjection" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.DependencyInjection" />
   </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />

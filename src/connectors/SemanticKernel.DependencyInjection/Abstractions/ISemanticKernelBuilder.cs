@@ -1,3 +1,3 @@
 namespace AIToolbox.DependencyInjection;
 
-public interface ISemanticKernelBuilder;
+public interface ISemanticKernelBuilder : IAddKernel;
