@@ -1,7 +1,9 @@
 {
   "AIToolbox": {
     "SemanticKernel": {
-      "KernelOptions": {
+      "Kernel": {
+        "Plugins": {
+        }
       }
     }
   }

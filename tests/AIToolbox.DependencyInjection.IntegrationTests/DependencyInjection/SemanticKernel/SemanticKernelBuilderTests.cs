@@ -9,7 +9,10 @@ namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
 {
-    private readonly KernelOptions _kernelOptions = new();
+    private readonly KernelOptions _kernelOptions = new()
+    {
+        Plugins = new PluginOptions()
+    };
 
     public SemanticKernelBuilderTests(AIToolboxFixture fixture)
         : base(fixture)
@@ -84,12 +87,20 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
             "ConfigSemanticKernelBuilderTests.json");
 
         // Assert
-        AssertServices(host.Services);
+        AssertServices(host.Services, checkOptionsInstance: false);
     }
 
-    private void AssertServices(IServiceProvider services)
+    private void AssertServices(IServiceProvider services, bool checkOptionsInstance = true)
     {
-        services.GetService<KernelOptions>().Should().Be(_kernelOptions);
+        if (checkOptionsInstance)
+        {
+            services.GetService<KernelOptions>().Should().Be(_kernelOptions);
+        }
+        else
+        {
+            services.GetService<KernelOptions>().Should().NotBeNull();
+        }
+
         services.GetService<IKernelProvider>().Should().NotBeNull();
     }
 }

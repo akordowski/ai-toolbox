@@ -20,6 +20,20 @@ internal sealed class KernelProvider : IKernelProvider
         var builder = Kernel.CreateBuilder();
         var kernel = builder.Build();
 
+        ImportPlugins(kernel);
+
         return kernel;
+    }
+
+    private void ImportPlugins(Kernel kernel)
+    {
+        var options = _options.Plugins;
+
+        if (options is null)
+        {
+            return;
+        }
+
+        kernel.ImportPluginsFromOptions(options);
     }
 }
