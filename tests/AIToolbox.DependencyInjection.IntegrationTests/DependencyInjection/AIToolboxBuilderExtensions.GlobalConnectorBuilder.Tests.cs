@@ -63,34 +63,34 @@ public class AIToolboxBuilderExtensionsGlobalConnectorBuilderTests : BaseTestWit
     {
         var host = Fixture.GetHost((_, services) =>
         {
-            services
-                .AddAIToolbox(
-                    builder =>
+            services.AddAIToolbox(
+                aiToolbox =>
+                {
+                    aiToolbox.ConfigureGlobalConnectorOptions(globalConnectors =>
                     {
-                        builder.ConfigureGlobalConnectorOptions(bldr =>
-                        {
-                            bldr.AddGlobalAzureOpenAIOptions()
-                                .AddGlobalGoogleOptions()
-                                .AddGlobalHuggingFaceOptions()
-                                .AddGlobalMistralAIOptions()
-                                .AddGlobalOllamaOptions()
-                                .AddGlobalOpenAIOptions()
-                                .AddGlobalVertexAIOptions();
-                        });
-                    },
-                    options =>
-                    {
-                        options.GlobalConnectors = new GlobalConnectorOptions
-                        {
-                            AzureOpenAI = _azureOpenAIOptions,
-                            Google = _googleOptions,
-                            HuggingFace = _huggingFaceOptions,
-                            MistralAI = _mistralAIOptions,
-                            Ollama = _ollamaOptions,
-                            OpenAI = _openAIOptions,
-                            VertexAI = _vertexAIOptions
-                        };
+                        globalConnectors
+                            .AddGlobalAzureOpenAIOptions()
+                            .AddGlobalGoogleOptions()
+                            .AddGlobalHuggingFaceOptions()
+                            .AddGlobalMistralAIOptions()
+                            .AddGlobalOllamaOptions()
+                            .AddGlobalOpenAIOptions()
+                            .AddGlobalVertexAIOptions();
                     });
+                },
+                options =>
+                {
+                    options.GlobalConnectors = new GlobalConnectorOptions
+                    {
+                        AzureOpenAI = _azureOpenAIOptions,
+                        Google = _googleOptions,
+                        HuggingFace = _huggingFaceOptions,
+                        MistralAI = _mistralAIOptions,
+                        Ollama = _ollamaOptions,
+                        OpenAI = _openAIOptions,
+                        VertexAI = _vertexAIOptions
+                    };
+                });
         });
 
         // Assert
@@ -110,56 +110,56 @@ public class AIToolboxBuilderExtensionsGlobalConnectorBuilderTests : BaseTestWit
     {
         var host = Fixture.GetHost((_, services) =>
         {
-            services
-                .AddAIToolbox(builder =>
+            services.AddAIToolbox(aiToolbox =>
+            {
+                aiToolbox.ConfigureGlobalConnectorOptions(globalConnectors =>
                 {
-                    builder.ConfigureGlobalConnectorOptions(bldr =>
-                    {
-                        bldr.AddGlobalAzureOpenAIOptions(options =>
-                            {
-                                options.Endpoint = _azureOpenAIOptions.Endpoint;
-                                options.ApiKey = _azureOpenAIOptions.ApiKey;
-                                options.ServiceId = _azureOpenAIOptions.ServiceId;
-                            })
-                            .AddGlobalGoogleOptions(options =>
-                            {
-                                options.ApiKey = _googleOptions.ApiKey;
-                                options.ApiVersion = _googleOptions.ApiVersion;
-                                options.ServiceId = _googleOptions.ServiceId;
-                            })
-                            .AddGlobalHuggingFaceOptions(options =>
-                            {
-                                options.Endpoint = _huggingFaceOptions.Endpoint;
-                                options.ApiKey = _huggingFaceOptions.ApiKey;
-                                options.ServiceId = _huggingFaceOptions.ServiceId;
-                            })
-                            .AddGlobalMistralAIOptions(options =>
-                            {
-                                options.Endpoint = _mistralAIOptions.Endpoint;
-                                options.ApiKey = _mistralAIOptions.ApiKey;
-                                options.ServiceId = _mistralAIOptions.ServiceId;
-                            })
-                            .AddGlobalOllamaOptions(options =>
-                            {
-                                options.Endpoint = _ollamaOptions.Endpoint;
-                                options.ServiceId = _ollamaOptions.ServiceId;
-                            })
-                            .AddGlobalOpenAIOptions(options =>
-                            {
-                                options.ApiKey = _openAIOptions.ApiKey;
-                                options.OrgId = _openAIOptions.OrgId;
-                                options.ServiceId = _openAIOptions.ServiceId;
-                            })
-                            .AddGlobalVertexAIOptions(options =>
-                            {
-                                options.BearerKey = _vertexAIOptions.BearerKey;
-                                options.Location = _vertexAIOptions.Location;
-                                options.ProjectId = _vertexAIOptions.ProjectId;
-                                options.ApiVersion = _vertexAIOptions.ApiVersion;
-                                options.ServiceId = _vertexAIOptions.ServiceId;
-                            });
-                    });
+                    globalConnectors
+                        .AddGlobalAzureOpenAIOptions(options =>
+                        {
+                            options.Endpoint = _azureOpenAIOptions.Endpoint;
+                            options.ApiKey = _azureOpenAIOptions.ApiKey;
+                            options.ServiceId = _azureOpenAIOptions.ServiceId;
+                        })
+                        .AddGlobalGoogleOptions(options =>
+                        {
+                            options.ApiKey = _googleOptions.ApiKey;
+                            options.ApiVersion = _googleOptions.ApiVersion;
+                            options.ServiceId = _googleOptions.ServiceId;
+                        })
+                        .AddGlobalHuggingFaceOptions(options =>
+                        {
+                            options.Endpoint = _huggingFaceOptions.Endpoint;
+                            options.ApiKey = _huggingFaceOptions.ApiKey;
+                            options.ServiceId = _huggingFaceOptions.ServiceId;
+                        })
+                        .AddGlobalMistralAIOptions(options =>
+                        {
+                            options.Endpoint = _mistralAIOptions.Endpoint;
+                            options.ApiKey = _mistralAIOptions.ApiKey;
+                            options.ServiceId = _mistralAIOptions.ServiceId;
+                        })
+                        .AddGlobalOllamaOptions(options =>
+                        {
+                            options.Endpoint = _ollamaOptions.Endpoint;
+                            options.ServiceId = _ollamaOptions.ServiceId;
+                        })
+                        .AddGlobalOpenAIOptions(options =>
+                        {
+                            options.ApiKey = _openAIOptions.ApiKey;
+                            options.OrgId = _openAIOptions.OrgId;
+                            options.ServiceId = _openAIOptions.ServiceId;
+                        })
+                        .AddGlobalVertexAIOptions(options =>
+                        {
+                            options.BearerKey = _vertexAIOptions.BearerKey;
+                            options.Location = _vertexAIOptions.Location;
+                            options.ProjectId = _vertexAIOptions.ProjectId;
+                            options.ApiVersion = _vertexAIOptions.ApiVersion;
+                            options.ServiceId = _vertexAIOptions.ServiceId;
+                        });
                 });
+            });
         });
 
         // Assert
@@ -172,22 +172,22 @@ public class AIToolboxBuilderExtensionsGlobalConnectorBuilderTests : BaseTestWit
         var host = Fixture.GetHost(
             (context, services) =>
             {
-                services
-                    .AddAIToolbox(
-                        builder =>
+                services.AddAIToolbox(
+                    aiToolbox =>
+                    {
+                        aiToolbox.ConfigureGlobalConnectorOptions(globalConnectors =>
                         {
-                            builder.ConfigureGlobalConnectorOptions(bldr =>
-                            {
-                                bldr.AddGlobalAzureOpenAIOptions()
-                                    .AddGlobalGoogleOptions()
-                                    .AddGlobalHuggingFaceOptions()
-                                    .AddGlobalMistralAIOptions()
-                                    .AddGlobalOllamaOptions()
-                                    .AddGlobalOpenAIOptions()
-                                    .AddGlobalVertexAIOptions();
-                            });
-                        },
-                        context.Configuration);
+                            globalConnectors
+                                .AddGlobalAzureOpenAIOptions()
+                                .AddGlobalGoogleOptions()
+                                .AddGlobalHuggingFaceOptions()
+                                .AddGlobalMistralAIOptions()
+                                .AddGlobalOllamaOptions()
+                                .AddGlobalOpenAIOptions()
+                                .AddGlobalVertexAIOptions();
+                        });
+                    },
+                    context.Configuration);
             },
             "ConfigAIToolboxBuilderExtensionsGlobalConnectorBuilderTests.json");
 
