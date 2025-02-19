@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AIToolbox.DependencyInjection.Abstractions\AIToolbox.DependencyInjection.Abstractions.csproj" />
+    <ProjectReference Include="..\SemanticKernel\SemanticKernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
