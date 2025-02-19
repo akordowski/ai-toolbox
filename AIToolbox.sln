@@ -31,6 +31,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIToolbox.DependencyInjecti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIToolbox.DependencyInjection.IntegrationTests", "tests\AIToolbox.DependencyInjection.IntegrationTests\AIToolbox.DependencyInjection.IntegrationTests.csproj", "{6B9B3A8D-186F-41EE-BA2A-720D73520D53}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "connectors", "connectors", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SemanticKernel", "SemanticKernel", "{386F649C-E30E-4608-9F08-85ECF994756F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.DependencyInjection", "src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj", "{A2ABAB4A-49F6-45BB-B552-9841136082B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +71,10 @@ Global
 		{6B9B3A8D-186F-41EE-BA2A-720D73520D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B9B3A8D-186F-41EE-BA2A-720D73520D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B9B3A8D-186F-41EE-BA2A-720D73520D53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +87,9 @@ Global
 		{98DA527A-AC26-47B5-BF80-92FAA62D3988} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 		{14513348-A938-4CF8-9FC4-06780BF07C72} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 		{6B9B3A8D-186F-41EE-BA2A-720D73520D53} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {0B0B6534-7C18-4DCC-A417-E9EB3CB1C218}
+		{386F649C-E30E-4608-9F08-85ECF994756F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A2ABAB4A-49F6-45BB-B552-9841136082B1} = {386F649C-E30E-4608-9F08-85ECF994756F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF730793-C36F-463C-B7C4-8A2A7A5CF158}

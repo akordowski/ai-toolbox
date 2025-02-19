@@ -93,6 +93,6 @@ public class AIToolboxBuilderExtensionsGlobalConnectorBuilderTests
         _optionsActionMock.Verify(action => action(It.IsAny<GlobalConnectorOptions>()), Times.Once);
     }
 
-    private static IAIToolboxBuilder CreateBuilder(AIToolboxOptions options) =>
-        new AIToolboxBuilder(options, new ServiceCollection());
+    private static AIToolboxBuilder CreateBuilder(AIToolboxOptions options) =>
+        new(options, new ServiceCollection());
 }
