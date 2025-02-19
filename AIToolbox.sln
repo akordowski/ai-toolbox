@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SemanticKernel", "SemanticK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.DependencyInjection", "src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj", "{A2ABAB4A-49F6-45BB-B552-9841136082B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel", "src\connectors\SemanticKernel\SemanticKernel.csproj", "{2A891952-E149-4EBB-8D7E-675D7FD20BB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.UnitTests", "tests\SemanticKernel.UnitTests\SemanticKernel.UnitTests.csproj", "{701C595F-4487-42E4-8E80-8B37AB56488E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2ABAB4A-49F6-45BB-B552-9841136082B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A891952-E149-4EBB-8D7E-675D7FD20BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A891952-E149-4EBB-8D7E-675D7FD20BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A891952-E149-4EBB-8D7E-675D7FD20BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A891952-E149-4EBB-8D7E-675D7FD20BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701C595F-4487-42E4-8E80-8B37AB56488E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701C595F-4487-42E4-8E80-8B37AB56488E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701C595F-4487-42E4-8E80-8B37AB56488E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701C595F-4487-42E4-8E80-8B37AB56488E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +102,8 @@ Global
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {0B0B6534-7C18-4DCC-A417-E9EB3CB1C218}
 		{386F649C-E30E-4608-9F08-85ECF994756F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{A2ABAB4A-49F6-45BB-B552-9841136082B1} = {386F649C-E30E-4608-9F08-85ECF994756F}
+		{2A891952-E149-4EBB-8D7E-675D7FD20BB2} = {386F649C-E30E-4608-9F08-85ECF994756F}
+		{701C595F-4487-42E4-8E80-8B37AB56488E} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF730793-C36F-463C-B7C4-8A2A7A5CF158}
