@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
-namespace AIToolbox.DependencyInjection;
+namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class AIToolboxBuilderExtensionsSemanticKernelBuilderTests
 {

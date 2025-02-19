@@ -2,7 +2,7 @@ using AIToolbox.Options.SemanticKernel;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AIToolbox.DependencyInjection;
+namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class SemanticKernelBuilderTests
 {
