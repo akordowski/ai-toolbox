@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
     <ProjectReference Include="..\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
   </ItemGroup>
 
@@ -40,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Config\ConfigSemanticKernelBuilderTests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Config\ConfigAIToolboxBuilderExtensionsGlobalConnectorBuilderTests.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
