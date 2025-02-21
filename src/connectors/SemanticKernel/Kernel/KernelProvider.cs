@@ -6,23 +6,39 @@ namespace AIToolbox.SemanticKernel;
 internal sealed class KernelProvider : IKernelProvider
 {
     private readonly KernelOptions _options;
+    private readonly IEnumerable<IKernelBuilderConfigurator> _configurators;
 
-    public KernelProvider(KernelOptions options)
+    public KernelProvider(
+        KernelOptions options,
+        IEnumerable<IKernelBuilderConfigurator> configurators)
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
+        ArgumentNullException.ThrowIfNull(configurators, nameof(configurators));
 
         _options = options;
+        _configurators = configurators;
     }
 
     /// <inheritdoc />
     public Kernel GetKernel()
     {
         var builder = Kernel.CreateBuilder();
+
+        RunConfigurator(builder);
+
         var kernel = builder.Build();
 
         ImportPlugins(kernel);
 
         return kernel;
+    }
+
+    private void RunConfigurator(IKernelBuilder builder)
+    {
+        foreach (var configurator in _configurators)
+        {
+            configurator.Configure(builder);
+        }
     }
 
     private void ImportPlugins(Kernel kernel)

@@ -12,7 +12,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.MistralAI);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.MistralAI!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.MistralAI!)
+            .AddSingleton<IKernelBuilderConfigurator, MistralAIKernelBuilderConfigurator>();
 
         return builder;
     }

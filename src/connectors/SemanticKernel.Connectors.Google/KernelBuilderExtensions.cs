@@ -12,7 +12,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.Google);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.Google!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.Google!)
+            .AddSingleton<IKernelBuilderConfigurator, GoogleKernelBuilderConfigurator>();
 
         return builder;
     }
@@ -38,7 +40,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.VertexAI);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.VertexAI!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.VertexAI!)
+            .AddSingleton<IKernelBuilderConfigurator, VertexAIKernelBuilderConfigurator>();
 
         return builder;
     }

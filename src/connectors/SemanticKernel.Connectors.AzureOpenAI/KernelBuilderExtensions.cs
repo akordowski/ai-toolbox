@@ -12,7 +12,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.AzureOpenAI);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.AzureOpenAI!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.AzureOpenAI!)
+            .AddSingleton<IKernelBuilderConfigurator, AzureOpenAIKernelBuilderConfigurator>();
 
         return builder;
     }

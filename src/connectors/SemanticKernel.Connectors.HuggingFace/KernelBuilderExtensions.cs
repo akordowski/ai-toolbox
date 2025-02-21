@@ -12,7 +12,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.HuggingFace);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.HuggingFace!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.HuggingFace!)
+            .AddSingleton<IKernelBuilderConfigurator, HuggingFaceKernelBuilderConfigurator>();
 
         return builder;
     }

@@ -12,7 +12,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.Ollama);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.Ollama!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.Ollama!)
+            .AddSingleton<IKernelBuilderConfigurator, OllamaKernelBuilderConfigurator>();
 
         return builder;
     }

@@ -75,5 +75,14 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         services.GetService<OllamaOptions>().Should().BeEquivalentTo(connectors.Ollama);
         services.GetService<OpenAIOptions>().Should().BeEquivalentTo(connectors.OpenAI);
         services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectors.VertexAI);
+
+        var kernelBuilderConfigurators = services.GetServices<IKernelBuilderConfigurator>().ToList();
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is AzureOpenAIKernelBuilderConfigurator);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is GoogleKernelBuilderConfigurator);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is HuggingFaceKernelBuilderConfigurator);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is MistralAIKernelBuilderConfigurator);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OllamaKernelBuilderConfigurator);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OpenAIKernelBuilderConfigurator);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is VertexAIKernelBuilderConfigurator);
     }
 }

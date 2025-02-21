@@ -4,12 +4,21 @@
     <AssemblyName>AIToolbox.SemanticKernel.Connectors.AzureOpenAI</AssemblyName>
     <RootNamespace>AIToolbox.SemanticKernel</RootNamespace>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <NoWarn>$(NoWarn)</NoWarn>
+    <NoWarn>$(NoWarn);CA2000;SKEXP0010</NoWarn>
     <EnablePackageValidation>false</EnablePackageValidation>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureOpenAI" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection.IntegrationTests" />
   </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />

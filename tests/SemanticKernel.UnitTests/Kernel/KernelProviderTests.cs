@@ -8,7 +8,8 @@ public class KernelProviderTests
     public static TheoryData<Action, string> ConstructWithNullParameters =>
         new()
         {
-            { () => _ = new KernelProvider(null!), "options" }
+            { () => _ = new KernelProvider(null!, null!), "options" },
+            { () => _ = new KernelProvider(new KernelOptions(), null!), "configurators" }
         };
 
     [Theory]
@@ -24,9 +25,10 @@ public class KernelProviderTests
     {
         // Arrange
         var options = new KernelOptions();
+        var configurators = Enumerable.Empty<IKernelBuilderConfigurator>();
 
         // Act
-        _ = new KernelProvider(options);
+        _ = new KernelProvider(options, configurators);
     }
 
     [Fact]
@@ -34,7 +36,8 @@ public class KernelProviderTests
     {
         // Arrange
         var options = new KernelOptions();
-        var kernelProvider = new KernelProvider(options);
+        var configurators = Enumerable.Empty<IKernelBuilderConfigurator>();
+        var kernelProvider = new KernelProvider(options, configurators);
 
         // Act
         var kernel = kernelProvider.GetKernel();

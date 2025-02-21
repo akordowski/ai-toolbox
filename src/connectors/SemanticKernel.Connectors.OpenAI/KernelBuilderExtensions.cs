@@ -12,7 +12,9 @@ public static class KernelBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Connectors?.OpenAI);
 
-        builder.Services.AddSingleton(builder.Options.Connectors!.OpenAI!);
+        builder.Services
+            .AddSingleton(builder.Options.Connectors!.OpenAI!)
+            .AddSingleton<IKernelBuilderConfigurator, OpenAIKernelBuilderConfigurator>();
 
         return builder;
     }
