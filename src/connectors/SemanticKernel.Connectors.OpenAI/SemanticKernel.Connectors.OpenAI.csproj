@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AIToolbox.SemanticKernel.Connectors.OpenAI</AssemblyName>
+    <RootNamespace>AIToolbox.SemanticKernel</RootNamespace>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <NoWarn>$(NoWarn)</NoWarn>
+    <EnablePackageValidation>false</EnablePackageValidation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
+
+  <PropertyGroup>
+    <!-- NuGet Package Settings -->
+    <Title>AI Toolbox - Semantic Kernel's OpenAI connector</Title>
+    <Description>Semantic Kernel's OpenAI connector for AI Toolbox.</Description>
+  </PropertyGroup>
+
+</Project>

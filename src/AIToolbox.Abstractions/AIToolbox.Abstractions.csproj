@@ -10,6 +10,12 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="AIToolbox.DependencyInjection" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.AzureOpenAI" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Google" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.HuggingFace" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.MistralAI" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Ollama" />
+    <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.OpenAI" />
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.DependencyInjection" />
   </ItemGroup>
 
