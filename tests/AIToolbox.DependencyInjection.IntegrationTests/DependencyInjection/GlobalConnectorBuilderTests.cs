@@ -83,7 +83,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
                     },
                     context.Configuration);
             },
-            "ConfigGlobalConnectorBuilder.json");
+            true);
 
         // Assert
         AssertServices(host.Services);

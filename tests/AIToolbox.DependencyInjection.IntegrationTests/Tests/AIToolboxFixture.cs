@@ -5,6 +5,9 @@ using AIToolbox.Options.SemanticKernel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Xunit.DependencyInjection;
 
 namespace AIToolbox.Tests;
@@ -13,17 +16,26 @@ public class AIToolboxFixture : BaseDisposable
 {
     public IHost GetHost(
         Action<HostBuilderContext, IServiceCollection> configureServices,
-        string? configFileName = null) =>
+        bool useAppConfiguration = false) =>
         Host.CreateDefaultBuilder()
             .ConfigureAppConfiguration(config =>
             {
-                if (!string.IsNullOrWhiteSpace(configFileName))
+                if (useAppConfiguration)
                 {
-                    config.AddJsonFile("Config/" + configFileName, false);
+                    config.AddJsonStream(GetJsonMemoryStream());
                 }
             })
             .ConfigureServices(configureServices)
             .Build();
+
+    private MemoryStream GetJsonMemoryStream()
+    {
+        var config = new ConfigAIToolbox { AIToolbox = Options };
+        var options = new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } };
+        var json = JsonSerializer.Serialize(config, options);
+
+        return new MemoryStream(Encoding.UTF8.GetBytes(json));
+    }
 
     public AIToolboxOptions Options { get; } = new()
     {
@@ -294,4 +306,9 @@ public class AIToolboxFixture : BaseDisposable
             }
         }
     };
+
+    private class ConfigAIToolbox
+    {
+        public AIToolboxOptions AIToolbox { get; set; } = default!;
+    }
 }

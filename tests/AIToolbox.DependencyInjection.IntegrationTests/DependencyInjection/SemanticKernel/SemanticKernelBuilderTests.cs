@@ -54,7 +54,7 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
                     aiToolbox => aiToolbox.AddSemanticKernel(semanticKernel =>
                         semanticKernel.AddKernel(BuilderHelper.RegisterKernelMethods)),
                     context.Configuration),
-            "ConfigSemanticKernelBuilderTests.json");
+            true);
 
         // Assert
         AssertServices(host.Services);

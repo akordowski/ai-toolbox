@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>AIToolbox</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>$(NoWarn);CA1869</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -44,15 +45,6 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Config\ConfigSemanticKernelBuilderTests.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Config\ConfigGlobalConnectorBuilder.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
