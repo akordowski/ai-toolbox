@@ -1,8 +1,9 @@
-using AIToolbox.DependencyInjection;
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AIToolbox.SemanticKernel;
+// ReSharper disable once CheckNamespace
+namespace AIToolbox.DependencyInjection;
 
 public static class KernelBuilderExtensions
 {
