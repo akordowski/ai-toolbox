@@ -30,11 +30,11 @@ internal sealed class SemanticKernelBuilder : ISemanticKernelBuilder
 
     /// <inheritdoc />
     /// <exception cref="ArgumentNullException">Any of the arguments is <see langword="null"/>.</exception>
-    public IAddKernel AddKernel(Action<KernelOptions> optionsAction)
+    public IAddKernel AddKernel(Action<IKernelBuilder> builderAction)
     {
-        ArgumentNullException.ThrowIfNull(optionsAction, nameof(optionsAction));
+        ArgumentNullException.ThrowIfNull(builderAction, nameof(builderAction));
 
-        return AddKernel(_ => { }, optionsAction);
+        return AddKernel(builderAction, _ => { });
     }
 
     /// <inheritdoc />

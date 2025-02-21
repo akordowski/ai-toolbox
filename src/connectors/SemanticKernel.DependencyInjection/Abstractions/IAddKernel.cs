@@ -13,9 +13,9 @@ public interface IAddKernel
     /// <summary>
     /// Adds the Kernel to Semantic Kernel.
     /// </summary>
-    /// <param name="optionsAction">A delegate that is used to configure the <see cref="KernelOptions"/>.</param>
+    /// <param name="builderAction">>A delegate that is used to configure an <see cref="IKernelBuilder"/>.</param>
     /// <returns>The instance of <see cref="IAddKernel"/>.</returns>
-    IAddKernel AddKernel(Action<KernelOptions> optionsAction);
+    IAddKernel AddKernel(Action<IKernelBuilder> builderAction);
 
     /// <summary>
     /// Adds the Kernel to Semantic Kernel.

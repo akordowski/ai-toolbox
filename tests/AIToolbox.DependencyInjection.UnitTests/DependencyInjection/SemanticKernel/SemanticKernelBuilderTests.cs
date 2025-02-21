@@ -31,7 +31,7 @@ public class SemanticKernelBuilderTests
 
             return new TheoryData<Action, string>
             {
-                { () => builder.AddKernel(null!), "optionsAction" },
+                { () => builder.AddKernel(null!), "builderAction" },
                 { () => builder.AddKernel(null!, _ => { }), "builderAction" },
                 { () => builder.AddKernel(_ => { }, null!), "optionsAction" }
             };
@@ -101,13 +101,13 @@ public class SemanticKernelBuilderTests
     }
 
     [Fact]
-    public void Should_Add_Kernel_With_Options_Action()
+    public void Should_Add_Kernel_With_Builder_Action()
     {
         // Arrange
-        var kernelOptionsActionMock = new Mock<Action<KernelOptions>>();
+        var kernelBuilderActionMock = new Mock<Action<IKernelBuilder>>();
 
         // Act
-        var result = _builder.AddKernel(kernelOptionsActionMock.Object);
+        var result = _builder.AddKernel(kernelBuilderActionMock.Object);
 
         // Assert
         result.Should().Be(_builder);
@@ -115,7 +115,7 @@ public class SemanticKernelBuilderTests
 
         AssertAddKernel();
 
-        kernelOptionsActionMock.Verify(action => action(It.IsAny<KernelOptions>()), Times.Once);
+        kernelBuilderActionMock.Verify(action => action(It.IsAny<IKernelBuilder>()), Times.Once);
     }
 
     [Fact]

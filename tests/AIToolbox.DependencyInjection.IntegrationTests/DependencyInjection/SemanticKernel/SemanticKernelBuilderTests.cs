@@ -1,3 +1,4 @@
+using AIToolbox.Data;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.Tests;
@@ -9,98 +10,70 @@ namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
 {
-    private readonly KernelOptions _kernelOptions = new()
-    {
-        Plugins = new PluginOptions()
-    };
+    private readonly KernelOptions _kernelOptions;
 
     public SemanticKernelBuilderTests(AIToolboxFixture fixture)
         : base(fixture)
     {
+        _kernelOptions = fixture.Options.SemanticKernel!.Kernel!;
     }
 
     [Fact]
-    public void Should_Get_Services_Configured_By_Default_Options()
+    public void Should_Get_Services_By_Default_Options()
     {
         var host = Fixture.GetHost((_, services) =>
         {
             services.AddAIToolbox(
-                aiToolbox =>
-                {
-                    aiToolbox.AddSemanticKernel(semanticKernel =>
-                    {
-                        semanticKernel.AddKernel();
-                    });
-                },
-                options =>
-                {
-                    options.SemanticKernel = new SemanticKernelOptions
-                    {
-                        Kernel = _kernelOptions
-                    };
-                });
+                aiToolbox => aiToolbox.AddSemanticKernel(semanticKernel =>
+                    semanticKernel.AddKernel(BuilderHelper.RegisterKernelMethods)),
+                options => options.SemanticKernel = Fixture.Options.SemanticKernel);
         });
 
         // Assert
         AssertServices(host.Services);
     }
 
-    [Fact]
-    public void Should_Get_Services_Configured_By_Options_Action()
+    [Theory]
+    [MemberData(nameof(SemanticKernelBuilderTestData.ConfigureByOptionsAction), MemberType = typeof(SemanticKernelBuilderTestData))]
+    public void Should_Configure_By_Options_Action(Action<IAIToolboxBuilder, SemanticKernelOptions> act)
     {
+        // Arrange
         var host = Fixture.GetHost((_, services) =>
-        {
-            services.AddAIToolbox(aiToolbox =>
-            {
-                aiToolbox.AddSemanticKernel(
-                    semanticKernel =>
-                    {
-                        semanticKernel.AddKernel();
-                    },
-                    options =>
-                    {
-                        options.Kernel = _kernelOptions;
-                    });
-            });
-        });
+            services.AddAIToolbox(aiToolbox => act(aiToolbox, Fixture.Options.SemanticKernel!)));
 
         // Assert
         AssertServices(host.Services);
     }
 
     [Fact]
-    public void Should_Get_Services_Configured_By_Config_File()
+    public void Should_Get_Services_By_Config_File()
     {
         var host = Fixture.GetHost(
             (context, services) =>
-            {
                 services.AddAIToolbox(
-                    aiToolbox =>
-                    {
-                        aiToolbox.AddSemanticKernel(semanticKernel =>
-                        {
-                            semanticKernel.AddKernel();
-                        });
-                    },
-                    context.Configuration);
-            },
+                    aiToolbox => aiToolbox.AddSemanticKernel(semanticKernel =>
+                        semanticKernel.AddKernel(BuilderHelper.RegisterKernelMethods)),
+                    context.Configuration),
             "ConfigSemanticKernelBuilderTests.json");
 
         // Assert
-        AssertServices(host.Services, checkOptionsInstance: false);
+        AssertServices(host.Services);
     }
 
-    private void AssertServices(IServiceProvider services, bool checkOptionsInstance = true)
+    private void AssertServices(IServiceProvider services)
     {
-        if (checkOptionsInstance)
-        {
-            services.GetService<KernelOptions>().Should().Be(_kernelOptions);
-        }
-        else
-        {
-            services.GetService<KernelOptions>().Should().NotBeNull();
-        }
+        var options = Fixture.Options.SemanticKernel!;
+        var connectors = options.Kernel!.Connectors!;
 
+        services.GetService<KernelOptions>().Should().BeEquivalentTo(options.Kernel);
         services.GetService<IKernelProvider>().Should().NotBeNull();
+
+        services.GetService<AzureOpenAIOptions>().Should().BeEquivalentTo(connectors.AzureOpenAI);
+        services.GetService<GoogleOptions>().Should().BeEquivalentTo(connectors.Google);
+        services.GetService<HuggingFaceOptions>().Should().BeEquivalentTo(connectors.HuggingFace);
+        services.GetService<MistralAIOptions>().Should().BeEquivalentTo(connectors.MistralAI);
+        services.GetService<OllamaOptions>().Should().BeEquivalentTo(connectors.Ollama);
+        services.GetService<OpenAIOptions>().Should().BeEquivalentTo(connectors.OpenAI);
+        services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectors.VertexAI);
     }
 }
