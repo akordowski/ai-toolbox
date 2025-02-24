@@ -25,7 +25,7 @@ public class AIToolboxBuilderExtensionsSemanticKernelBuilderTests
         }
     }
 
-    public static TheoryData<Action, string> AddSemanticKernelWithInvalidParameters
+    public static TheoryData<Action, string> AddSemanticKernelWithNullParameters
     {
         get
         {
@@ -53,8 +53,8 @@ public class AIToolboxBuilderExtensionsSemanticKernelBuilderTests
     }
 
     [Theory]
-    [MemberData(nameof(AddSemanticKernelWithInvalidParameters))]
-    public void Should_Throw_On_Add_SemanticKernel_With_Invalid_Parameters(Action act, string parameterName)
+    [MemberData(nameof(AddSemanticKernelWithNullParameters))]
+    public void Should_Throw_On_Add_SemanticKernel_With_Null_Parameters(Action act, string parameterName)
     {
         // Assert
         act.Should().Throw<ArgumentNullException>().WithParameterName(parameterName);

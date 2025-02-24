@@ -25,7 +25,7 @@ public class AIToolboxBuilderExtensionsGlobalConnectorBuilderTests
         }
     }
 
-    public static TheoryData<Action, string> ConfigureOptionsWithInvalidParameters
+    public static TheoryData<Action, string> ConfigureOptionsWithNullParameters
     {
         get
         {
@@ -53,8 +53,8 @@ public class AIToolboxBuilderExtensionsGlobalConnectorBuilderTests
     }
 
     [Theory]
-    [MemberData(nameof(ConfigureOptionsWithInvalidParameters))]
-    public void Should_Throw_On_Configure_Options_With_Invalid_Parameters(Action act, string parameterName)
+    [MemberData(nameof(ConfigureOptionsWithNullParameters))]
+    public void Should_Throw_On_Configure_Options_With_Null_Parameters(Action act, string parameterName)
     {
         // Assert
         act.Should().Throw<ArgumentNullException>().WithParameterName(parameterName);

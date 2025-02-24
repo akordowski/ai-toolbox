@@ -1,6 +1,5 @@
 using AIToolbox.DependencyInjection;
 using AIToolbox.Options.SemanticKernel;
-using AIToolbox.SemanticKernel;
 
 namespace AIToolbox.Data;
 

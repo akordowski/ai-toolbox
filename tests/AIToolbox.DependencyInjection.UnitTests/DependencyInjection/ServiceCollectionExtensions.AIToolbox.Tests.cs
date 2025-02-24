@@ -32,7 +32,7 @@ public class ServiceCollectionExtensionsAIToolboxTests
         }
     }
 
-    public static TheoryData<Action, string, Type> AddAIToolboxWithInvalidParameters
+    public static TheoryData<Action, string, Type> AddAIToolboxWithNullParameters
     {
         get
         {
@@ -68,8 +68,8 @@ public class ServiceCollectionExtensionsAIToolboxTests
     }
 
     [Theory]
-    [MemberData(nameof(AddAIToolboxWithInvalidParameters))]
-    public void Should_Throw_On_Add_AIToolbox_With_Invalid_Parameters(Action act, string parameterName, Type exceptionType)
+    [MemberData(nameof(AddAIToolboxWithNullParameters))]
+    public void Should_Throw_On_Add_AIToolbox_With_Null_Parameters(Action act, string parameterName, Type exceptionType)
     {
         // Assert
         if (exceptionType == TypeArgumentException)
