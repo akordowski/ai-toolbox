@@ -1,4 +1,3 @@
-using AIToolbox.Data;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.Tests;

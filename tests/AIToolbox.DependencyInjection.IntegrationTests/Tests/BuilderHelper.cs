@@ -1,7 +1,6 @@
 using AIToolbox.DependencyInjection;
-using AIToolbox.SemanticKernel;
 
-namespace AIToolbox.Data;
+namespace AIToolbox.Tests;
 
 public static class BuilderHelper
 {

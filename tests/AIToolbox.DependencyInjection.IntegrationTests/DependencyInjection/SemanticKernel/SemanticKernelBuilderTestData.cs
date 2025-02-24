@@ -1,7 +1,7 @@
-using AIToolbox.DependencyInjection;
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.Tests;
 
-namespace AIToolbox.Data;
+namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class SemanticKernelBuilderTestData
 {

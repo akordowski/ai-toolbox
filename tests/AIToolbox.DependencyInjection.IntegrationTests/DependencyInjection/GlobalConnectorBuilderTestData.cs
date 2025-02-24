@@ -1,7 +1,6 @@
-using AIToolbox.DependencyInjection;
 using AIToolbox.Options.Connectors;
 
-namespace AIToolbox.Data;
+namespace AIToolbox.DependencyInjection;
 
 public class GlobalConnectorBuilderTestData
 {
