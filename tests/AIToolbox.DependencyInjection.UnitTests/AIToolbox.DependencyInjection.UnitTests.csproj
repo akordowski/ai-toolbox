@@ -31,6 +31,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureOpenAI\SemanticKernel.Connectors.AzureOpenAI.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Google\SemanticKernel.Connectors.Google.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.HuggingFace\SemanticKernel.Connectors.HuggingFace.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.MistralAI\SemanticKernel.Connectors.MistralAI.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Ollama\SemanticKernel.Connectors.Ollama.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.OpenAI\SemanticKernel.Connectors.OpenAI.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
     <ProjectReference Include="..\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
   </ItemGroup>

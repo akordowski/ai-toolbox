@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="AIToolbox.DependencyInjection.IntegrationTests" />
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection.UnitTests" />
   </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
