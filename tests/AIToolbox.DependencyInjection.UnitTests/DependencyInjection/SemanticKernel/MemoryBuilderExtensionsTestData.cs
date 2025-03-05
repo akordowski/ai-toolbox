@@ -1,5 +1,7 @@
 using AIToolbox.Options.Enums;
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.SemanticKernel;
+using AIToolbox.SemanticKernel.Memory;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -1185,106 +1187,106 @@ public class MemoryBuilderExtensionsTestData
 
     private static void AssertAzureAISearchServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(AzureAISearchMemoryStoreFactory));
     }
 
     private static void AssertAzureCosmosDBMongoDBServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(AzureCosmosDBMongoDBMemoryStoreFactory));
     }
 
     private static void AssertAzureCosmosDBNoSQLServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(AzureCosmosDBNoSQLMemoryStoreFactory));
     }
 
     private static void AssertChromaServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(ChromaMemoryStoreFactory));
     }
 
     private static void AssertDuckDBServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(DuckDBMemoryStoreFactory));
     }
 
     private static void AssertKustoServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(KustoMemoryStoreFactory));
     }
 
     private static void AssertMilvusServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(MilvusMemoryStoreFactory));
     }
 
     private static void AssertMongoDBServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(MongoDBMemoryStoreFactory));
     }
 
     private static void AssertPineconeServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(PineconeMemoryStoreFactory));
     }
 
     private static void AssertPostgresServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(PostgresMemoryStoreFactory));
     }
 
     private static void AssertQdrantServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(QdrantMemoryStoreFactory));
     }
 
     private static void AssertRedisServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(RedisMemoryStoreFactory));
     }
 
     private static void AssertSqliteServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(SqliteMemoryStoreFactory));
     }
 
     private static void AssertSqlServerServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(SqlServerMemoryStoreFactory));
     }
 
     private static void AssertWeaviateServices(IServiceCollection services)
     {
-        //services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
-        //                                              descriptor.ServiceType == typeof(ServiceType) &&
-        //                                              descriptor.ImplementationType == typeof(ImplementationType));
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryStoreFactory) &&
+                                                      descriptor.ImplementationType == typeof(WeaviateMemoryStoreFactory));
     }
 }

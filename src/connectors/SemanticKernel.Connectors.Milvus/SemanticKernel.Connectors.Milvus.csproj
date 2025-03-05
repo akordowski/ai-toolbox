@@ -4,7 +4,7 @@
     <AssemblyName>AIToolbox.SemanticKernel.Connectors.Memory.Milvus</AssemblyName>
     <RootNamespace>AIToolbox.SemanticKernel.Memory</RootNamespace>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <NoWarn>$(NoWarn)</NoWarn>
+    <NoWarn>$(NoWarn);SKEXP0001;SKEXP0020</NoWarn>
     <EnablePackageValidation>false</EnablePackageValidation>
   </PropertyGroup>
 
@@ -14,6 +14,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection.UnitTests" />
   </ItemGroup>
 
   <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />

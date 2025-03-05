@@ -1,4 +1,6 @@
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.SemanticKernel;
+using AIToolbox.SemanticKernel.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
 // ReSharper disable once CheckNamespace
@@ -12,7 +14,9 @@ public static class MemoryBuilderExtensions
 
         Verify.ThrowIfOptionsNull(builder.Options.Store?.Chroma);
 
-        builder.Services.AddSingleton(builder.Options.Store!.Chroma!);
+        builder.Services
+            .AddSingleton(builder.Options.Store!.Chroma!)
+            .AddSingleton<IMemoryStoreFactory, ChromaMemoryStoreFactory>();
 
         return builder;
     }
