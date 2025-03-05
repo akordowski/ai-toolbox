@@ -622,6 +622,10 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(AzureOpenAIKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryBuilderConfigurator) &&
+                                                      descriptor.ImplementationType == typeof(AzureOpenAIMemoryBuilderConfigurator));
     }
 
     private static void AssertGoogleServices(IServiceCollection services)
@@ -650,6 +654,10 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(OllamaKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryBuilderConfigurator) &&
+                                                      descriptor.ImplementationType == typeof(OllamaMemoryBuilderConfigurator));
     }
 
     private static void AssertOpenAIServices(IServiceCollection services)
@@ -657,6 +665,10 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(OpenAIKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IMemoryBuilderConfigurator) &&
+                                                      descriptor.ImplementationType == typeof(OpenAIMemoryBuilderConfigurator));
     }
 
     private static void AssertVertexAIServices(IServiceCollection services)

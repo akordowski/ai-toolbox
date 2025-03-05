@@ -15,7 +15,8 @@ public static class KernelBuilderExtensions
 
         builder.Services
             .AddSingleton(builder.Options.Connectors!.AzureOpenAI!)
-            .AddSingleton<IKernelBuilderConfigurator, AzureOpenAIKernelBuilderConfigurator>();
+            .AddSingleton<IKernelBuilderConfigurator, AzureOpenAIKernelBuilderConfigurator>()
+            .AddSingleton<IMemoryBuilderConfigurator, AzureOpenAIMemoryBuilderConfigurator>();
 
         return builder;
     }

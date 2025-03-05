@@ -15,7 +15,8 @@ public static class KernelBuilderExtensions
 
         builder.Services
             .AddSingleton(builder.Options.Connectors!.Ollama!)
-            .AddSingleton<IKernelBuilderConfigurator, OllamaKernelBuilderConfigurator>();
+            .AddSingleton<IKernelBuilderConfigurator, OllamaKernelBuilderConfigurator>()
+            .AddSingleton<IMemoryBuilderConfigurator, OllamaMemoryBuilderConfigurator>();
 
         return builder;
     }

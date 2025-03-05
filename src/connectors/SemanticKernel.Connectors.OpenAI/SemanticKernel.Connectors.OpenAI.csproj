@@ -4,7 +4,7 @@
     <AssemblyName>AIToolbox.SemanticKernel.Connectors.OpenAI</AssemblyName>
     <RootNamespace>AIToolbox.SemanticKernel</RootNamespace>
     <TargetFrameworks>net8.0</TargetFrameworks>
-    <NoWarn>$(NoWarn);CA2000;SKEXP0010</NoWarn>
+    <NoWarn>$(NoWarn);CA2000;SKEXP0001;SKEXP0010</NoWarn>
     <EnablePackageValidation>false</EnablePackageValidation>
   </PropertyGroup>
 
