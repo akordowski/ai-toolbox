@@ -1,4 +1,5 @@
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.SemanticKernel;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -38,5 +39,9 @@ public class KernelBuilderTests
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(KernelOptions) &&
                                                       descriptor.ImplementationInstance == options);
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.ServiceType == typeof(IKernelProvider) &&
+                                                      descriptor.ImplementationType == typeof(KernelProvider));
     }
 }

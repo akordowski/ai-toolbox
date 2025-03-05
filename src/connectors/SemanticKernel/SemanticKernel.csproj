@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox.DependencyInjection.UnitTests" />
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.DependencyInjection" />
     <InternalsVisibleTo Include="SemanticKernel.UnitTests" />
   </ItemGroup>
