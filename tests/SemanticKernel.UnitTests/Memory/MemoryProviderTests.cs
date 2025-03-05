@@ -12,7 +12,8 @@ public class MemoryProviderTests
     public static TheoryData<Action, string> ConstructWithNullParameters =>
         new()
         {
-            { () => _ = new MemoryProvider(null!), "options" }
+            { () => _ = new MemoryProvider(null!, null!), "options" },
+            { () => _ = new MemoryProvider(new MemoryOptions(), null!), "configurators" }
         };
 
     [Theory]
@@ -28,9 +29,10 @@ public class MemoryProviderTests
     {
         // Arrange
         var options = new MemoryOptions();
+        var configurators = Enumerable.Empty<IMemoryBuilderConfigurator>();
 
         // Act
-        _ = new MemoryProvider(options);
+        _ = new MemoryProvider(options, configurators);
     }
 
     [Fact]
@@ -45,8 +47,10 @@ public class MemoryProviderTests
         var textEmbeddingGenerationServiceMock = new Mock<ITextEmbeddingGenerationService>();
 
         var options = new MemoryOptions();
+        var configurators = Enumerable.Empty<IMemoryBuilderConfigurator>();
         var kernelProvider = new MemoryProvider(
             options,
+            configurators,
             memoryStoreFactoryMock.Object,
             textEmbeddingGenerationServiceMock.Object);
 

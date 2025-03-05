@@ -24,7 +24,7 @@ internal sealed class KernelProvider : IKernelProvider
     {
         var builder = Kernel.CreateBuilder();
 
-        RunConfigurator(builder);
+        InvokeConfigurators(builder);
 
         var kernel = builder.Build();
 
@@ -33,7 +33,7 @@ internal sealed class KernelProvider : IKernelProvider
         return kernel;
     }
 
-    private void RunConfigurator(IKernelBuilder builder)
+    private void InvokeConfigurators(IKernelBuilder builder)
     {
         foreach (var configurator in _configurators)
         {

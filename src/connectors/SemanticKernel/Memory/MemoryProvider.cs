@@ -8,19 +8,23 @@ namespace AIToolbox.SemanticKernel;
 internal sealed class MemoryProvider : IMemoryProvider
 {
     private readonly MemoryOptions _options;
+    private readonly IEnumerable<IMemoryBuilderConfigurator> _configurators;
     private readonly IMemoryStoreFactory? _memoryStoreFactory;
     private readonly ITextEmbeddingGenerationService? _textEmbeddingGeneration;
     private readonly ILoggerFactory? _loggerFactory;
 
     public MemoryProvider(
         MemoryOptions options,
+        IEnumerable<IMemoryBuilderConfigurator> configurators,
         IMemoryStoreFactory? memoryStoreFactory = null,
         ITextEmbeddingGenerationService? textEmbeddingGeneration = null,
         ILoggerFactory? loggerFactory = null)
     {
         ArgumentNullException.ThrowIfNull(options, nameof(options));
+        ArgumentNullException.ThrowIfNull(configurators, nameof(configurators));
 
         _options = options;
+        _configurators = configurators;
         _memoryStoreFactory = memoryStoreFactory;
         _textEmbeddingGeneration = textEmbeddingGeneration;
         _loggerFactory = loggerFactory;
@@ -31,11 +35,20 @@ internal sealed class MemoryProvider : IMemoryProvider
     {
         var builder = new MemoryBuilder();
 
+        InvokeConfigurators(builder);
         ConfigureLogging(builder);
         ConfigureMemoryStore(builder);
         ConfigureTextEmbeddingGeneration(builder);
 
         return builder.Build();
+    }
+
+    private void InvokeConfigurators(MemoryBuilder builder)
+    {
+        foreach (var configurator in _configurators)
+        {
+            configurator.Configure(builder);
+        }
     }
 
     private void ConfigureLogging(MemoryBuilder builder)
