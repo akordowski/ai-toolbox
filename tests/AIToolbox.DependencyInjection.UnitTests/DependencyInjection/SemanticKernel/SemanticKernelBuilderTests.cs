@@ -33,7 +33,11 @@ public class SemanticKernelBuilderTests
             {
                 { () => builder.AddKernel(null!), "builderAction" },
                 { () => builder.AddKernel(null!, _ => { }), "builderAction" },
-                { () => builder.AddKernel(_ => { }, null!), "optionsAction" }
+                { () => builder.AddKernel(_ => { }, null!), "optionsAction" },
+
+                { () => builder.AddMemory(null!), "builderAction" },
+                { () => builder.AddMemory(null!, _ => { }), "builderAction" },
+                { () => builder.AddMemory(_ => { }, null!), "optionsAction" }
             };
         }
     }
@@ -99,6 +103,44 @@ public class SemanticKernelBuilderTests
         kernelOptionsActionMock.Verify(action => action(It.IsAny<KernelOptions>()), Times.Once);
     }
 
+    [Fact]
+    public void Should_Add_Memory_With_Builder_Action()
+    {
+        // Arrange
+        var kernelBuilderActionMock = new Mock<Action<IMemoryBuilder>>();
+
+        // Act
+        var result = _builder.AddMemory(kernelBuilderActionMock.Object);
+
+        // Assert
+        result.Should().Be(_builder);
+        _options.Memory.Should().NotBeNull();
+
+        AssertAddMemory();
+
+        kernelBuilderActionMock.Verify(action => action(It.IsAny<IMemoryBuilder>()), Times.Once);
+    }
+
+    [Fact]
+    public void Should_Add_Memory_With_Builder_And_Options_Action()
+    {
+        // Arrange
+        var kernelBuilderActionMock = new Mock<Action<IMemoryBuilder>>();
+        var kernelOptionsActionMock = new Mock<Action<MemoryOptions>>();
+
+        // Act
+        var result = _builder.AddMemory(kernelBuilderActionMock.Object, kernelOptionsActionMock.Object);
+
+        // Assert
+        result.Should().Be(_builder);
+        _options.Memory.Should().NotBeNull();
+
+        AssertAddMemory();
+
+        kernelBuilderActionMock.Verify(action => action(It.IsAny<IMemoryBuilder>()), Times.Once);
+        kernelOptionsActionMock.Verify(action => action(It.IsAny<MemoryOptions>()), Times.Once);
+    }
+
     private void AssertAddKernel(KernelOptions? options = null)
     {
         if (options is null)
@@ -111,6 +153,22 @@ public class SemanticKernelBuilderTests
         {
             _services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                            descriptor.ServiceType == typeof(KernelOptions) &&
+                                                           descriptor.ImplementationInstance == options);
+        }
+    }
+
+    private void AssertAddMemory(MemoryOptions? options = null)
+    {
+        if (options is null)
+        {
+            _services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                           descriptor.ServiceType == typeof(MemoryOptions) &&
+                                                           descriptor.ImplementationInstance != null);
+        }
+        else
+        {
+            _services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                           descriptor.ServiceType == typeof(MemoryOptions) &&
                                                            descriptor.ImplementationInstance == options);
         }
     }

@@ -38,8 +38,35 @@ internal sealed class SemanticKernelBuilder : ISemanticKernelBuilder
         var options = _options.Kernel;
         optionsAction.Invoke(options);
 
-        var kernelBuilder = new KernelBuilder(options, _services);
-        builderAction.Invoke(kernelBuilder);
+        var builder = new KernelBuilder(options, _services);
+        builderAction.Invoke(builder);
+
+        return this;
+    }
+
+    /// <inheritdoc />
+    /// <exception cref="ArgumentNullException">Any of the arguments is <see langword="null"/>.</exception>
+    public IAddMemory AddMemory(Action<IMemoryBuilder> builderAction)
+    {
+        ArgumentNullException.ThrowIfNull(builderAction, nameof(builderAction));
+
+        return AddMemory(builderAction, _ => { });
+    }
+
+    /// <inheritdoc />
+    /// <exception cref="ArgumentNullException">Any of the arguments is <see langword="null"/>.</exception>
+    public IAddMemory AddMemory(Action<IMemoryBuilder> builderAction, Action<MemoryOptions> optionsAction)
+    {
+        ArgumentNullException.ThrowIfNull(builderAction, nameof(builderAction));
+        ArgumentNullException.ThrowIfNull(optionsAction, nameof(optionsAction));
+
+        _options.Memory ??= new MemoryOptions();
+
+        var options = _options.Memory;
+        optionsAction.Invoke(options);
+
+        var builder = new MemoryBuilder(options, _services);
+        builderAction.Invoke(builder);
 
         return this;
     }

@@ -2,7 +2,7 @@ using AIToolbox.Options.SemanticKernel;
 
 namespace AIToolbox.DependencyInjection;
 
-public interface IAddKernel
+public interface IAddKernel : IAddMemory
 {
     /// <summary>
     /// Adds the Kernel to Semantic Kernel.
