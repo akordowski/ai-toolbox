@@ -38,20 +38,6 @@ public class SemanticKernelBuilderTests
         }
     }
 
-    public static TheoryData<Action, string> AddWithoutDefaultOptions
-    {
-        get
-        {
-            var builder = new SemanticKernelBuilder(new SemanticKernelOptions(), new ServiceCollection());
-            const string kernelOptionsMessage = "No 'KernelOptions' provided.*";
-
-            return new TheoryData<Action, string>
-            {
-                { () => builder.AddKernel(), kernelOptionsMessage }
-            };
-        }
-    }
-
     [Theory]
     [MemberData(nameof(ConstructWithNullParameters))]
     public void Should_Throw_On_Construct_With_Null_Parameters(Action act, string parameterName)
@@ -73,31 +59,6 @@ public class SemanticKernelBuilderTests
     {
         // Assert
         act.Should().Throw<ArgumentNullException>().WithParameterName(parameterName);
-    }
-
-    [Theory]
-    [MemberData(nameof(AddWithoutDefaultOptions))]
-    public void Should_Throw_On_Add_Without_Default_Options(Action act, string message)
-    {
-        // Assert
-        act.Should().Throw<InvalidOperationException>().WithMessage(message);
-    }
-
-    [Fact]
-    public void Should_Add_Kernel_With_Default_Options()
-    {
-        // Arrange
-        var kernelOptions = new KernelOptions();
-        _options.Kernel = kernelOptions;
-
-        // Act
-        var result = _builder.AddKernel();
-
-        // Assert
-        result.Should().Be(_builder);
-        _options.Kernel.Should().Be(kernelOptions);
-
-        AssertAddKernel(kernelOptions);
     }
 
     [Fact]

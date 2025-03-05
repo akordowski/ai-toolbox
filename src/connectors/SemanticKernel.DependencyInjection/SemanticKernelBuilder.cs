@@ -18,17 +18,6 @@ internal sealed class SemanticKernelBuilder : ISemanticKernelBuilder
     }
 
     /// <inheritdoc />
-    /// <exception cref="InvalidOperationException">No <see cref="KernelOptions"/> are provided.</exception>
-    public IAddKernel AddKernel()
-    {
-        Verify.ThrowIfOptionsNull(_options.Kernel);
-
-        _ = new KernelBuilder(_options.Kernel!, _services);
-
-        return this;
-    }
-
-    /// <inheritdoc />
     /// <exception cref="ArgumentNullException">Any of the arguments is <see langword="null"/>.</exception>
     public IAddKernel AddKernel(Action<IKernelBuilder> builderAction)
     {
