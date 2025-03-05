@@ -31,12 +31,27 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureAISearch\SemanticKernel.Connectors.AzureAISearch.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureCosmosDBMongoDB\SemanticKernel.Connectors.AzureCosmosDBMongoDB.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureCosmosDBNoSQL\SemanticKernel.Connectors.AzureCosmosDBNoSQL.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureOpenAI\SemanticKernel.Connectors.AzureOpenAI.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Chroma\SemanticKernel.Connectors.Chroma.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.DuckDB\SemanticKernel.Connectors.DuckDB.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Google\SemanticKernel.Connectors.Google.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.HuggingFace\SemanticKernel.Connectors.HuggingFace.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Kusto\SemanticKernel.Connectors.Kusto.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Milvus\SemanticKernel.Connectors.Milvus.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.MistralAI\SemanticKernel.Connectors.MistralAI.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.MongoDB\SemanticKernel.Connectors.MongoDB.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Ollama\SemanticKernel.Connectors.Ollama.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.OpenAI\SemanticKernel.Connectors.OpenAI.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Pinecone\SemanticKernel.Connectors.Pinecone.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Postgres\SemanticKernel.Connectors.Postgres.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Qdrant\SemanticKernel.Connectors.Qdrant.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Redis\SemanticKernel.Connectors.Redis.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Sqlite\SemanticKernel.Connectors.Sqlite.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.SqlServer\SemanticKernel.Connectors.SqlServer.csproj" />
+    <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Weaviate\SemanticKernel.Connectors.Weaviate.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
     <ProjectReference Include="..\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
   </ItemGroup>
