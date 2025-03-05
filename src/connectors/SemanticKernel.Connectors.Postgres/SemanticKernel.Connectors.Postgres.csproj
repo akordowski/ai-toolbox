@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AIToolbox.SemanticKernel.Connectors.Memory.Postgres</AssemblyName>
+    <RootNamespace>AIToolbox.SemanticKernel.Memory</RootNamespace>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <NoWarn>$(NoWarn)</NoWarn>
+    <EnablePackageValidation>false</EnablePackageValidation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.Postgres" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
+
+  <PropertyGroup>
+    <!-- NuGet Package Settings -->
+    <Title>AI Toolbox - Semantic Kernel's Postgres connector</Title>
+    <Description>Semantic Kernel's Postgres connector for AI Toolbox.</Description>
+  </PropertyGroup>
+
+</Project>
