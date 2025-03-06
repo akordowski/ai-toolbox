@@ -1,7 +1,7 @@
-using AIToolbox.Options.Enums;
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using AIToolbox.SemanticKernel.Memory;
+using AIToolbox.TestHelper;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -727,95 +727,22 @@ public class MemoryBuilderExtensionsTestData
     {
         get
         {
-            var azureAISearch = new AzureAISearchMemoryStoreOptions
-            {
-                Endpoint = "AzureAISearchMemoryStoreOptionsEndpoint",
-                ApiKey = "AzureAISearchMemoryStoreOptionsApiKey"
-            };
-            var azureCosmosDBMongoDB = new AzureCosmosDBMongoDBMemoryStoreOptions
-            {
-                ConnectionString = "AzureCosmosDBMongoDBMemoryStoreOptionsConnectionString",
-                DatabaseName = "AzureCosmosDBMongoDBMemoryStoreOptionsDatabaseName",
-                Dimensions = 1024
-            };
-            var azureCosmosDBNoSQL = new AzureCosmosDBNoSQLMemoryStoreOptions
-            {
-                ConnectionString = "AzureCosmosDBNoSQLMemoryStoreOptionsConnectionString",
-                DatabaseName = "AzureCosmosDBNoSQLMemoryStoreOptionsDatabaseName",
-                Dimensions = 1024,
-                VectorDataType = VectorDataType.Int8,
-                VectorIndexType = VectorIndexType.QuantizedFlat,
-                ApplicationName = "AzureCosmosDBNoSQLMemoryStoreOptionsApplicationName"
-            };
-            var chroma = new ChromaMemoryStoreOptions
-            {
-                Endpoint = "ChromaMemoryStoreOptionsEndpoint"
-            };
-            var duckDB = new DuckDBMemoryStoreOptions
-            {
-                Filename = "DuckDBMemoryStoreOptionsFilename",
-                VectorSize = 1024
-            };
-            var kusto = new KustoMemoryStoreOptions
-            {
-                Database = "KustoMemoryStoreOptionsDatabase"
-            };
-            var milvus = new MilvusMemoryStoreOptions
-            {
-                Host = "MilvusMemoryStoreOptionsHost",
-                Port = 1024,
-                Ssl = true,
-                Database = "MilvusMemoryStoreOptionsDatabase",
-                IndexName = "MilvusMemoryStoreOptionsIndexName",
-                VectorSize = 1024,
-                MetricType = SimilarityMetricType.Substructure,
-                ConsistencyLevel = ConsistencyLevel.Customized
-            };
-            var mongoDB = new MongoDBMemoryStoreOptions
-            {
-                ConnectionString = "MongoDBMemoryStoreOptionsConnectionString",
-                DatabaseName = "MongoDBMemoryStoreOptionsDatabaseName",
-                IndexName = "MongoDBMemoryStoreOptionsIndexName"
-            };
-            var pinecone = new PineconeMemoryStoreOptions
-            {
-                PineconeEnvironment = "PineconeMemoryStoreOptionsPineconeEnvironment",
-                ApiKey = "PineconeMemoryStoreOptionsApiKey"
-            };
-            var postgres = new PostgresMemoryStoreOptions
-            {
-                ConnectionString = "PostgresMemoryStoreOptionsConnectionString",
-                VectorSize = 1024,
-                Schema = "PostgresMemoryStoreOptionsSchema"
-            };
-            var qdrant = new QdrantMemoryStoreOptions
-            {
-                Endpoint = "QdrantMemoryStoreOptionsEndpoint",
-                VectorSize = 1024
-            };
-            var redis = new RedisMemoryStoreOptions
-            {
-                ConnectionString = "RedisMemoryStoreOptionsConnectionString",
-                VectorSize = 1024,
-                VectorIndexAlgorithm = VectorIndexAlgorithm.HNSW,
-                VectorDistanceMetric = VectorDistanceMetric.COSINE,
-                QueryDialect = 1
-            };
-            var sqlite = new SqliteMemoryStoreOptions
-            {
-                Filename = "SqliteMemoryStoreOptionsFilename"
-            };
-            var sqlServer = new SqlServerMemoryStoreOptions
-            {
-                ConnectionString = "SqlServerMemoryStoreOptionsConnectionString",
-                Schema = "SqlServerMemoryStoreOptionsSchema"
-            };
-            var weaviate = new WeaviateMemoryStoreOptions
-            {
-                Endpoint = "WeaviateMemoryStoreOptionsEndpoint",
-                ApiKey = "WeaviateMemoryStoreOptionsApiKey",
-                ApiVersion = "WeaviateMemoryStoreOptionsApiVersion"
-            };
+            var storeOptions = TestOptions.AIToolbox.SemanticKernel!.Memory!.Store!;
+            var azureAISearch = storeOptions.AzureAISearch!;
+            var azureCosmosDBMongoDB = storeOptions.AzureCosmosDBMongoDB!;
+            var azureCosmosDBNoSQL = storeOptions.AzureCosmosDBNoSQL!;
+            var chroma = storeOptions.Chroma!;
+            var duckDB = storeOptions.DuckDB!;
+            var kusto = storeOptions.Kusto!;
+            var milvus = storeOptions.Milvus!;
+            var mongoDB = storeOptions.MongoDB!;
+            var pinecone = storeOptions.Pinecone!;
+            var postgres = storeOptions.Postgres!;
+            var qdrant = storeOptions.Qdrant!;
+            var redis = storeOptions.Redis!;
+            var sqlite = storeOptions.Sqlite!;
+            var sqlServer = storeOptions.SqlServer!;
+            var weaviate = storeOptions.Weaviate!;
 
             var options = new MemoryOptions();
             var services = new ServiceCollection();

@@ -1,38 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>AIToolbox</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
-    <NoWarn>$(NoWarn);CA1869</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="FluentAssertions.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Moq" />
-    <PackageReference Include="xunit" />
-    <PackageReference Include="xunit.runner.visualstudio">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection\AIToolbox.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\AIToolbox.DependencyInjection.Abstractions\AIToolbox.DependencyInjection.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureAISearch\SemanticKernel.Connectors.AzureAISearch.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureCosmosDBMongoDB\SemanticKernel.Connectors.AzureCosmosDBMongoDB.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.AzureCosmosDBNoSQL\SemanticKernel.Connectors.AzureCosmosDBNoSQL.csproj" />
@@ -54,13 +29,6 @@
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Sqlite\SemanticKernel.Connectors.Sqlite.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.SqlServer\SemanticKernel.Connectors.SqlServer.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel.Connectors.Weaviate\SemanticKernel.Connectors.Weaviate.csproj" />
-    <ProjectReference Include="..\..\src\connectors\SemanticKernel.DependencyInjection\SemanticKernel.DependencyInjection.csproj" />
-    <ProjectReference Include="..\AIToolbox.TestHelper\AIToolbox.TestHelper.csproj" />
-    <ProjectReference Include="..\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="Xunit" />
   </ItemGroup>
 
 </Project>

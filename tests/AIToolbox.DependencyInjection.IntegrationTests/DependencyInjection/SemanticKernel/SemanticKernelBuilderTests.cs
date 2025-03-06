@@ -1,6 +1,6 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
-using AIToolbox.Tests;
+using AIToolbox.TestHelper;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit.DependencyInjection;
@@ -9,12 +9,9 @@ namespace AIToolbox.DependencyInjection.SemanticKernel;
 
 public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
 {
-    private readonly KernelOptions _kernelOptions;
-
     public SemanticKernelBuilderTests(AIToolboxFixture fixture)
         : base(fixture)
     {
-        _kernelOptions = fixture.Options.SemanticKernel!.Kernel!;
     }
 
     [Fact]
@@ -24,8 +21,10 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         {
             services.AddAIToolbox(
                 aiToolbox => aiToolbox.AddSemanticKernel(semanticKernel =>
-                    semanticKernel.AddKernel(BuilderHelper.RegisterKernelMethods)),
-                options => options.SemanticKernel = Fixture.Options.SemanticKernel);
+                    semanticKernel
+                        .AddKernel(TestBuilder.AddKernelMethods)
+                        .AddMemory(TestBuilder.AddMemoryMethods)),
+                options => options.SemanticKernel = TestOptions.AIToolbox.SemanticKernel);
         });
 
         // Assert
@@ -38,7 +37,7 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
     {
         // Arrange
         var host = Fixture.GetHost((_, services) =>
-            services.AddAIToolbox(aiToolbox => act(aiToolbox, Fixture.Options.SemanticKernel!)));
+            services.AddAIToolbox(aiToolbox => act(aiToolbox, TestOptions.AIToolbox.SemanticKernel!)));
 
         // Assert
         AssertServices(host.Services);
@@ -51,7 +50,9 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
             (context, services) =>
                 services.AddAIToolbox(
                     aiToolbox => aiToolbox.AddSemanticKernel(semanticKernel =>
-                        semanticKernel.AddKernel(BuilderHelper.RegisterKernelMethods)),
+                        semanticKernel
+                            .AddKernel(TestBuilder.AddKernelMethods)
+                            .AddMemory(TestBuilder.AddMemoryMethods)),
                     context.Configuration),
             true);
 
@@ -59,21 +60,43 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         AssertServices(host.Services);
     }
 
-    private void AssertServices(IServiceProvider services)
+    private static void AssertServices(IServiceProvider services)
     {
-        var options = Fixture.Options.SemanticKernel!;
-        var connectors = options.Kernel!.Connectors!;
+        var semanticKernelOptions = TestOptions.AIToolbox.SemanticKernel!;
+        var kernelOptions = semanticKernelOptions.Kernel!;
+        var memoryOptions = semanticKernelOptions.Memory!;
+        var connectorOptions = kernelOptions.Connectors!;
+        var memoryStoreOptions = memoryOptions.Store!;
 
-        services.GetService<KernelOptions>().Should().BeEquivalentTo(options.Kernel);
+        services.GetService<KernelOptions>().Should().BeEquivalentTo(kernelOptions);
         services.GetService<IKernelProvider>().Should().NotBeNull();
 
-        services.GetService<AzureOpenAIOptions>().Should().BeEquivalentTo(connectors.AzureOpenAI);
-        services.GetService<GoogleOptions>().Should().BeEquivalentTo(connectors.Google);
-        services.GetService<HuggingFaceOptions>().Should().BeEquivalentTo(connectors.HuggingFace);
-        services.GetService<MistralAIOptions>().Should().BeEquivalentTo(connectors.MistralAI);
-        services.GetService<OllamaOptions>().Should().BeEquivalentTo(connectors.Ollama);
-        services.GetService<OpenAIOptions>().Should().BeEquivalentTo(connectors.OpenAI);
-        services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectors.VertexAI);
+        services.GetService<MemoryOptions>().Should().BeEquivalentTo(memoryOptions);
+        services.GetService<IMemoryProvider>().Should().NotBeNull();
+
+        services.GetService<AzureOpenAIOptions>().Should().BeEquivalentTo(connectorOptions.AzureOpenAI);
+        services.GetService<GoogleOptions>().Should().BeEquivalentTo(connectorOptions.Google);
+        services.GetService<HuggingFaceOptions>().Should().BeEquivalentTo(connectorOptions.HuggingFace);
+        services.GetService<MistralAIOptions>().Should().BeEquivalentTo(connectorOptions.MistralAI);
+        services.GetService<OllamaOptions>().Should().BeEquivalentTo(connectorOptions.Ollama);
+        services.GetService<OpenAIOptions>().Should().BeEquivalentTo(connectorOptions.OpenAI);
+        services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectorOptions.VertexAI);
+
+        services.GetService<AzureAISearchMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureAISearch);
+        services.GetService<AzureCosmosDBMongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBMongoDB);
+        services.GetService<AzureCosmosDBNoSQLMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBNoSQL);
+        services.GetService<ChromaMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Chroma);
+        services.GetService<DuckDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.DuckDB);
+        services.GetService<KustoMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Kusto);
+        services.GetService<MilvusMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Milvus);
+        services.GetService<MongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.MongoDB);
+        services.GetService<PineconeMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Pinecone);
+        services.GetService<PostgresMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Postgres);
+        services.GetService<QdrantMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Qdrant);
+        services.GetService<RedisMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Redis);
+        services.GetService<SqliteMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Sqlite);
+        services.GetService<SqlServerMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.SqlServer);
+        services.GetService<WeaviateMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Weaviate);
 
         var kernelBuilderConfigurators = services.GetServices<IKernelBuilderConfigurator>().ToList();
         kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is AzureOpenAIKernelBuilderConfigurator);
@@ -83,5 +106,10 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OllamaKernelBuilderConfigurator);
         kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OpenAIKernelBuilderConfigurator);
         kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is VertexAIKernelBuilderConfigurator);
+
+        var memoryBuilderConfigurators = services.GetServices<IMemoryBuilderConfigurator>().ToList();
+        memoryBuilderConfigurators.Should().ContainSingle(configurator => configurator is AzureOpenAIMemoryBuilderConfigurator);
+        memoryBuilderConfigurators.Should().ContainSingle(configurator => configurator is OllamaMemoryBuilderConfigurator);
+        memoryBuilderConfigurators.Should().ContainSingle(configurator => configurator is OpenAIMemoryBuilderConfigurator);
     }
 }

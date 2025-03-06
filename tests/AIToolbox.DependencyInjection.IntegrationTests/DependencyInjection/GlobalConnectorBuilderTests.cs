@@ -1,5 +1,5 @@
 using AIToolbox.Options.Connectors;
-using AIToolbox.Tests;
+using AIToolbox.TestHelper;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit.DependencyInjection;
@@ -22,21 +22,11 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
             services.AddAIToolbox(
                 aiToolbox =>
                 {
-                    aiToolbox.ConfigureGlobalConnectorOptions(globalConnectors =>
-                    {
-                        globalConnectors
-                            .AddGlobalAzureOpenAIOptions()
-                            .AddGlobalGoogleOptions()
-                            .AddGlobalHuggingFaceOptions()
-                            .AddGlobalMistralAIOptions()
-                            .AddGlobalOllamaOptions()
-                            .AddGlobalOpenAIOptions()
-                            .AddGlobalVertexAIOptions();
-                    });
+                    aiToolbox.ConfigureGlobalConnectorOptions(TestBuilder.AddGlobalConnectorMethods);
                 },
                 options =>
                 {
-                    options.GlobalConnectors = Fixture.Options.GlobalConnectors;
+                    options.GlobalConnectors = TestOptions.AIToolbox.GlobalConnectors;
                 });
         });
 
@@ -51,7 +41,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         // Arrange
         var host = Fixture.GetHost((_, services) =>
         {
-            services.AddAIToolbox(aiToolbox => act(aiToolbox, Fixture.Options.GlobalConnectors!));
+            services.AddAIToolbox(aiToolbox => act(aiToolbox, TestOptions.AIToolbox.GlobalConnectors!));
         });
 
         // Assert
@@ -68,17 +58,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
                 services.AddAIToolbox(
                     aiToolbox =>
                     {
-                        aiToolbox.ConfigureGlobalConnectorOptions(globalConnectors =>
-                        {
-                            globalConnectors
-                                .AddGlobalAzureOpenAIOptions()
-                                .AddGlobalGoogleOptions()
-                                .AddGlobalHuggingFaceOptions()
-                                .AddGlobalMistralAIOptions()
-                                .AddGlobalOllamaOptions()
-                                .AddGlobalOpenAIOptions()
-                                .AddGlobalVertexAIOptions();
-                        });
+                        aiToolbox.ConfigureGlobalConnectorOptions(TestBuilder.AddGlobalConnectorMethods);
                     },
                     context.Configuration);
             },
@@ -90,7 +70,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
 
     private void AssertServices(IServiceProvider services)
     {
-        var options = Fixture.Options.GlobalConnectors!;
+        var options = TestOptions.AIToolbox.GlobalConnectors!;
 
         services.GetService<GlobalAzureOpenAIOptions>().Should().BeEquivalentTo(options.AzureOpenAI);
         services.GetService<GlobalGoogleOptions>().Should().BeEquivalentTo(options.Google);

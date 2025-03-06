@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Connectors.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel.Connectors.Weaviate", "src\connectors\SemanticKernel.Connectors.Weaviate\SemanticKernel.Connectors.Weaviate.csproj", "{6942515F-91EA-447A-9C2B-00D64F58F682}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIToolbox.TestHelper", "tests\AIToolbox.TestHelper\AIToolbox.TestHelper.csproj", "{3907C78E-E6F6-4D73-AFD9-2477ACB69426}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -217,6 +219,10 @@ Global
 		{6942515F-91EA-447A-9C2B-00D64F58F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6942515F-91EA-447A-9C2B-00D64F58F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6942515F-91EA-447A-9C2B-00D64F58F682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3907C78E-E6F6-4D73-AFD9-2477ACB69426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3907C78E-E6F6-4D73-AFD9-2477ACB69426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3907C78E-E6F6-4D73-AFD9-2477ACB69426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3907C78E-E6F6-4D73-AFD9-2477ACB69426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +263,7 @@ Global
 		{F4EA259D-1DE7-4C15-A515-26F55F488F41} = {233FE246-87F8-4335-8188-91ACF927045B}
 		{DACFD2AC-3A57-47B4-AAAC-7E40D6F2C6F2} = {233FE246-87F8-4335-8188-91ACF927045B}
 		{6942515F-91EA-447A-9C2B-00D64F58F682} = {233FE246-87F8-4335-8188-91ACF927045B}
+		{3907C78E-E6F6-4D73-AFD9-2477ACB69426} = {109D0193-3161-42E0-A48E-4AA7282AB9F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF730793-C36F-463C-B7C4-8A2A7A5CF158}

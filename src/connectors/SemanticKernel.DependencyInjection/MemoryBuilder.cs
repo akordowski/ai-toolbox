@@ -1,4 +1,5 @@
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AIToolbox.DependencyInjection;
@@ -19,6 +20,8 @@ internal sealed class MemoryBuilder : IMemoryBuilder
         Options = options;
         Services = services;
 
-        services.AddSingleton(options);
+        services
+            .AddSingleton(options)
+            .AddSingleton<IMemoryProvider, MemoryProvider>();
     }
 }
