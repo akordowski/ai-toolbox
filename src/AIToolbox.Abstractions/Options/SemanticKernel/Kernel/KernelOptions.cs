@@ -11,4 +11,9 @@ public sealed class KernelOptions
     /// Gets <see cref="PluginOptions"/>.
     /// </summary>
     public PluginOptions? Plugins { get; set; }
+
+    /// <summary>
+    /// Gets <see cref="PromptExecutionSettingsOptions"/>.
+    /// </summary>
+    public PromptExecutionSettingsOptions? PromptExecutionSettings { get; set; }
 }
