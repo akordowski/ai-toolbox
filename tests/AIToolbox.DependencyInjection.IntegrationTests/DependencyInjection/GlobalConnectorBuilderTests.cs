@@ -14,7 +14,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
     }
 
     [Fact]
-    public void Should_Configure_By_Default_Options()
+    public void Should_Add_Services_By_Default_Options()
     {
         // Arrange
         var host = Fixture.GetHost((_, services) =>
@@ -36,7 +36,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
 
     [Theory]
     [MemberData(nameof(GlobalConnectorBuilderTestData.ConfigureByOptionsAction), MemberType = typeof(GlobalConnectorBuilderTestData))]
-    public void Should_Configure_By_Options_Action(Action<IAIToolboxBuilder, GlobalConnectorOptions> act)
+    public void Should_Add_Services_By_Options_Action(Action<IAIToolboxBuilder, GlobalConnectorOptions> act)
     {
         // Arrange
         var host = Fixture.GetHost((_, services) =>
@@ -49,7 +49,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
     }
 
     [Fact]
-    public void Should_Configure_By_Config_File()
+    public void Should_Add_Services_By_Config_File()
     {
         // Arrange
         var host = Fixture.GetHost(
@@ -68,7 +68,7 @@ public class GlobalConnectorBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         AssertServices(host.Services);
     }
 
-    private void AssertServices(IServiceProvider services)
+    private static void AssertServices(IServiceProvider services)
     {
         var options = TestOptions.AIToolbox.GlobalConnectors!;
 

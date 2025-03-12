@@ -26,7 +26,7 @@ public class AIToolboxFixture : BaseDisposable
             .ConfigureServices(configureServices)
             .Build();
 
-    private MemoryStream GetJsonMemoryStream()
+    private static MemoryStream GetJsonMemoryStream()
     {
         var config = new ConfigAIToolbox { AIToolbox = TestOptions.AIToolbox };
         var options = new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } };

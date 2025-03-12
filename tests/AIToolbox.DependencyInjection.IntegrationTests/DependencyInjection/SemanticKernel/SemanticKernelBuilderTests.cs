@@ -21,7 +21,7 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
     }
 
     [Fact]
-    public void Should_Get_Services_By_Default_Options()
+    public void Should_Add_Services_By_Default_Options()
     {
         var host = Fixture.GetHost((_, services) =>
         {
@@ -39,7 +39,7 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
 
     [Theory]
     [MemberData(nameof(SemanticKernelBuilderTestData.ConfigureByOptionsAction), MemberType = typeof(SemanticKernelBuilderTestData))]
-    public void Should_Configure_By_Options_Action(Action<IAIToolboxBuilder, SemanticKernelOptions> act)
+    public void Should_Add_Services_By_Options_Action(Action<IAIToolboxBuilder, SemanticKernelOptions> act)
     {
         // Arrange
         var host = Fixture.GetHost((_, services) =>
@@ -50,7 +50,7 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
     }
 
     [Fact]
-    public void Should_Get_Services_By_Config_File()
+    public void Should_Add_Services_By_Config_File()
     {
         var host = Fixture.GetHost(
             (context, services) =>
@@ -74,27 +74,17 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         var connectorOptions = kernelOptions.Connectors!;
         var memoryStoreOptions = memoryOptions.Store!;
 
+        // KernelBuilder
         services.GetService<KernelOptions>().Should().BeEquivalentTo(kernelOptions);
         services.GetService<IKernelProvider>().Should().NotBeNull();
 
+        // MemoryBuilder
         services.GetService<MemoryOptions>().Should().BeEquivalentTo(memoryOptions);
         services.GetService<IMemoryProvider>().Should().NotBeNull();
 
-        services.GetService<AzureAISearchMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureAISearch);
-        services.GetService<AzureCosmosDBMongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBMongoDB);
-        services.GetService<AzureCosmosDBNoSQLMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBNoSQL);
-        services.GetService<ChromaMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Chroma);
-        services.GetService<DuckDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.DuckDB);
-        services.GetService<KustoMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Kusto);
-        services.GetService<MilvusMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Milvus);
-        services.GetService<MongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.MongoDB);
-        services.GetService<PineconeMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Pinecone);
-        services.GetService<PostgresMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Postgres);
-        services.GetService<QdrantMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Qdrant);
-        services.GetService<RedisMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Redis);
-        services.GetService<SqliteMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Sqlite);
-        services.GetService<SqlServerMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.SqlServer);
-        services.GetService<WeaviateMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Weaviate);
+        // --------------------------------------------------
+        // Connectors
+        // --------------------------------------------------
 
         var kernelBuilderConfigurators = services.GetServices<IKernelBuilderConfigurator>().ToList();
         var memoryBuilderConfigurators = services.GetServices<IMemoryBuilderConfigurator>().ToList();
@@ -138,5 +128,54 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectorOptions.VertexAI);
         kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is VertexAIKernelBuilderConfigurator);
         services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(VertexAIGeminiChatCompletionService)).Should().BeOfType<GeminiPromptExecutionSettingsMapper>();
+
+        // --------------------------------------------------
+        // Memory Stores
+        // --------------------------------------------------
+
+        // AzureAISearch
+        services.GetService<AzureAISearchMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureAISearch);
+
+        // AzureCosmosDBMongoDB
+        services.GetService<AzureCosmosDBMongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBMongoDB);
+
+        // AzureCosmosDBNoSQL
+        services.GetService<AzureCosmosDBNoSQLMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBNoSQL);
+
+        // Chroma
+        services.GetService<ChromaMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Chroma);
+
+        // DuckDB
+        services.GetService<DuckDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.DuckDB);
+
+        // Kusto
+        services.GetService<KustoMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Kusto);
+
+        // Milvus
+        services.GetService<MilvusMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Milvus);
+
+        // MongoDB
+        services.GetService<MongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.MongoDB);
+
+        // Pinecone
+        services.GetService<PineconeMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Pinecone);
+
+        // Postgres
+        services.GetService<PostgresMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Postgres);
+
+        // Qdrant
+        services.GetService<QdrantMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Qdrant);
+
+        // Redis
+        services.GetService<RedisMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Redis);
+
+        // Sqlite
+        services.GetService<SqliteMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Sqlite);
+
+        // SqlServer
+        services.GetService<SqlServerMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.SqlServer);
+
+        // Weaviate
+        services.GetService<WeaviateMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Weaviate);
     }
 }
