@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>AIToolbox</RootNamespace>
     <TargetFramework>net8.0</TargetFramework>
-    <NoWarn>$(NoWarn);CA1869</NoWarn>
+    <NoWarn>$(NoWarn);CA1869;SKEXP0010;SKEXP0070</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 

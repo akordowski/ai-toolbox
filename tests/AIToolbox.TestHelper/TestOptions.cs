@@ -7,13 +7,15 @@ namespace AIToolbox.TestHelper;
 
 public static class TestOptions
 {
+    private const string EndpointPrefix = "http://localhost/";
+
     public static AIToolboxOptions AIToolbox { get; } = new()
     {
         GlobalConnectors = new GlobalConnectorOptions
         {
             AzureOpenAI = new GlobalAzureOpenAIOptions
             {
-                Endpoint = "GlobalAzureOpenAIOptionsEndpoint",
+                Endpoint = EndpointPrefix + "GlobalAzureOpenAIOptionsEndpoint",
                 ApiKey = "GlobalAzureOpenAIOptionsApiKey",
                 ServiceId = "GlobalAzureOpenAIOptionsServiceId"
             },
@@ -25,19 +27,19 @@ public static class TestOptions
             },
             HuggingFace = new GlobalHuggingFaceOptions
             {
-                Endpoint = "GlobalHuggingFaceOptionsEndpoint",
+                Endpoint = EndpointPrefix + "GlobalHuggingFaceOptionsEndpoint",
                 ApiKey = "GlobalHuggingFaceOptionsApiKey",
                 ServiceId = "GlobalHuggingFaceOptionsServiceId"
             },
             MistralAI = new GlobalMistralAIOptions
             {
-                Endpoint = "GlobalMistralAIOptionsEndpoint",
+                Endpoint = EndpointPrefix + "GlobalMistralAIOptionsEndpoint",
                 ApiKey = "GlobalMistralAIOptionsApiKey",
                 ServiceId = "GlobalMistralAIOptionsServiceId"
             },
             Ollama = new GlobalOllamaOptions
             {
-                Endpoint = "GlobalOllamaOptionsEndpoint",
+                Endpoint = EndpointPrefix + "GlobalOllamaOptionsEndpoint",
                 ServiceId = "GlobalOllamaOptionsServiceId"
             },
             OpenAI = new GlobalOpenAIOptions
@@ -65,7 +67,7 @@ public static class TestOptions
                     {
                         AudioToText = new AzureOpenAIAudioToTextOptions
                         {
-                            Endpoint = "AzureOpenAIAudioToTextOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAIAudioToTextOptionsEndpoint",
                             ApiKey = "AzureOpenAIAudioToTextOptionsApiKey",
                             DeploymentName = "AzureOpenAIAudioToTextOptionsDeploymentName",
                             ServiceId = "AzureOpenAIAudioToTextOptionsServiceId",
@@ -73,7 +75,7 @@ public static class TestOptions
                         },
                         ChatCompletion = new AzureOpenAIChatCompletionOptions
                         {
-                            Endpoint = "AzureOpenAIChatCompletionOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAIChatCompletionOptionsEndpoint",
                             ApiKey = "AzureOpenAIChatCompletionOptionsApiKey",
                             DeploymentName = "AzureOpenAIChatCompletionOptionsDeploymentName",
                             ServiceId = "AzureOpenAIChatCompletionOptionsServiceId",
@@ -81,7 +83,7 @@ public static class TestOptions
                         },
                         Files = new AzureOpenAIFilesOptions
                         {
-                            Endpoint = "AzureOpenAIFilesOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAIFilesOptionsEndpoint",
                             ApiKey = "AzureOpenAIFilesOptionsApiKey",
                             OrgId = "AzureOpenAIFilesOptionsOrgId",
                             Version = "AzureOpenAIFilesOptionsVersion",
@@ -89,7 +91,7 @@ public static class TestOptions
                         },
                         TextEmbeddingGeneration = new AzureOpenAITextEmbeddingGenerationOptions
                         {
-                            Endpoint = "AzureOpenAITextEmbeddingGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAITextEmbeddingGenerationOptionsEndpoint",
                             ApiKey = "AzureOpenAITextEmbeddingGenerationOptionsApiKey",
                             DeploymentName = "AzureOpenAITextEmbeddingGenerationOptionsDeploymentName",
                             ServiceId = "AzureOpenAITextEmbeddingGenerationOptionsServiceId",
@@ -98,7 +100,7 @@ public static class TestOptions
                         },
                         TextGeneration = new AzureOpenAITextGenerationOptions
                         {
-                            Endpoint = "AzureOpenAITextGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAITextGenerationOptionsEndpoint",
                             ApiKey = "AzureOpenAITextGenerationOptionsApiKey",
                             DeploymentName = "AzureOpenAITextGenerationOptionsDeploymentName",
                             ServiceId = "AzureOpenAITextGenerationOptionsServiceId",
@@ -106,7 +108,7 @@ public static class TestOptions
                         },
                         TextToAudio = new AzureOpenAITextToAudioOptions
                         {
-                            Endpoint = "AzureOpenAITextToAudioOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAITextToAudioOptionsEndpoint",
                             ApiKey = "AzureOpenAITextToAudioOptionsApiKey",
                             DeploymentName = "AzureOpenAITextToAudioOptionsDeploymentName",
                             ServiceId = "AzureOpenAITextToAudioOptionsServiceId",
@@ -114,7 +116,7 @@ public static class TestOptions
                         },
                         TextToImage = new AzureOpenAITextToImageOptions
                         {
-                            Endpoint = "AzureOpenAITextToImageOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "AzureOpenAITextToImageOptionsEndpoint",
                             ApiKey = "AzureOpenAITextToImageOptionsApiKey",
                             DeploymentName = "AzureOpenAITextToImageOptionsDeploymentName",
                             ServiceId = "AzureOpenAITextToImageOptionsServiceId",
@@ -143,28 +145,28 @@ public static class TestOptions
                         ChatCompletion = new HuggingFaceChatCompletionOptions
                         {
                             Model = "HuggingFaceChatCompletionOptionsModel",
-                            Endpoint = "HuggingFaceChatCompletionOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "HuggingFaceChatCompletionOptionsEndpoint",
                             ApiKey = "HuggingFaceChatCompletionOptionsApiKey",
                             ServiceId = "HuggingFaceChatCompletionOptionsServiceId"
                         },
                         ImageToText = new HuggingFaceImageToTextOptions
                         {
                             Model = "HuggingFaceImageToTextOptionsModel",
-                            Endpoint = "HuggingFaceImageToTextOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "HuggingFaceImageToTextOptionsEndpoint",
                             ApiKey = "HuggingFaceImageToTextOptionsApiKey",
                             ServiceId = "HuggingFaceImageToTextOptionsServiceId"
                         },
                         TextEmbeddingGeneration = new HuggingFaceTextEmbeddingGenerationOptions
                         {
                             Model = "HuggingFaceTextEmbeddingGenerationOptionsModel",
-                            Endpoint = "HuggingFaceTextEmbeddingGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "HuggingFaceTextEmbeddingGenerationOptionsEndpoint",
                             ApiKey = "HuggingFaceTextEmbeddingGenerationOptionsApiKey",
                             ServiceId = "HuggingFaceTextEmbeddingGenerationOptionsServiceId"
                         },
                         TextGeneration = new HuggingFaceTextGenerationOptions
                         {
                             Model = "HuggingFaceTextGenerationOptionsModel",
-                            Endpoint = "HuggingFaceTextGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "HuggingFaceTextGenerationOptionsEndpoint",
                             ApiKey = "HuggingFaceTextGenerationOptionsApiKey",
                             ServiceId = "HuggingFaceTextGenerationOptionsServiceId"
                         }
@@ -174,14 +176,14 @@ public static class TestOptions
                         ChatCompletion = new MistralAIChatCompletionOptions
                         {
                             Model = "MistralAIChatCompletionOptionsModel",
-                            Endpoint = "MistralAIChatCompletionOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "MistralAIChatCompletionOptionsEndpoint",
                             ApiKey = "MistralAIChatCompletionOptionsApiKey",
                             ServiceId = "MistralAIChatCompletionOptionsServiceId"
                         },
                         TextEmbeddingGeneration = new MistralAITextEmbeddingGenerationOptions
                         {
                             Model = "MistralAITextEmbeddingGenerationOptionsModel",
-                            Endpoint = "MistralAITextEmbeddingGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "MistralAITextEmbeddingGenerationOptionsEndpoint",
                             ApiKey = "MistralAITextEmbeddingGenerationOptionsApiKey",
                             ServiceId = "MistralAITextEmbeddingGenerationOptionsServiceId"
                         }
@@ -191,19 +193,19 @@ public static class TestOptions
                         ChatCompletion = new OllamaChatCompletionOptions
                         {
                             ModelId = "OllamaChatCompletionOptionsModelId",
-                            Endpoint = "OllamaChatCompletionOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "OllamaChatCompletionOptionsEndpoint",
                             ServiceId = "OllamaChatCompletionOptionsServiceId"
                         },
                         TextEmbeddingGeneration = new OllamaTextEmbeddingGenerationOptions
                         {
                             ModelId = "OllamaTextEmbeddingGenerationOptionsModelId",
-                            Endpoint = "OllamaTextEmbeddingGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "OllamaTextEmbeddingGenerationOptionsEndpoint",
                             ServiceId = "OllamaTextEmbeddingGenerationOptionsServiceId"
                         },
                         TextGeneration = new OllamaTextGenerationOptions
                         {
                             ModelId = "OllamaTextGenerationOptionsModelId",
-                            Endpoint = "OllamaTextGenerationOptionsEndpoint",
+                            Endpoint = EndpointPrefix + "OllamaTextGenerationOptionsEndpoint",
                             ServiceId = "OllamaTextGenerationOptionsServiceId"
                         }
                     },
@@ -280,7 +282,7 @@ public static class TestOptions
                 {
                     AzureAISearch = new AzureAISearchMemoryStoreOptions
                     {
-                        Endpoint = "AzureAISearchMemoryStoreOptionsEndpoint",
+                        Endpoint = EndpointPrefix + "AzureAISearchMemoryStoreOptionsEndpoint",
                         ApiKey = "AzureAISearchMemoryStoreOptionsApiKey"
                     },
                     AzureCosmosDBMongoDB = new AzureCosmosDBMongoDBMemoryStoreOptions
@@ -300,7 +302,7 @@ public static class TestOptions
                     },
                     Chroma = new ChromaMemoryStoreOptions
                     {
-                        Endpoint = "ChromaMemoryStoreOptionsEndpoint"
+                        Endpoint = EndpointPrefix + "ChromaMemoryStoreOptionsEndpoint"
                     },
                     DuckDB = new DuckDBMemoryStoreOptions
                     {
@@ -341,7 +343,7 @@ public static class TestOptions
                     },
                     Qdrant = new QdrantMemoryStoreOptions
                     {
-                        Endpoint = "QdrantMemoryStoreOptionsEndpoint",
+                        Endpoint = EndpointPrefix + "QdrantMemoryStoreOptionsEndpoint",
                         VectorSize = 1024
                     },
                     Redis = new RedisMemoryStoreOptions
@@ -363,7 +365,7 @@ public static class TestOptions
                     },
                     Weaviate = new WeaviateMemoryStoreOptions
                     {
-                        Endpoint = "WeaviateMemoryStoreOptionsEndpoint",
+                        Endpoint = EndpointPrefix + "WeaviateMemoryStoreOptionsEndpoint",
                         ApiKey = "WeaviateMemoryStoreOptionsApiKey",
                         ApiVersion = "WeaviateMemoryStoreOptionsApiVersion"
                     }

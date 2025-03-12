@@ -1,6 +1,7 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 // ReSharper disable once CheckNamespace
 namespace AIToolbox.DependencyInjection;
@@ -16,7 +17,10 @@ public static class KernelBuilderExtensions
         builder.Services
             .AddSingleton(builder.Options.Connectors!.OpenAI!)
             .AddSingleton<IKernelBuilderConfigurator, OpenAIKernelBuilderConfigurator>()
-            .AddSingleton<IMemoryBuilderConfigurator, OpenAIMemoryBuilderConfigurator>();
+            .AddSingleton<IMemoryBuilderConfigurator, OpenAIMemoryBuilderConfigurator>()
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, OpenAIPromptExecutionSettingsMapper>(typeof(OpenAIChatCompletionService))
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, OpenAIAudioToTextExecutionSettingsMapper>(typeof(OpenAIAudioToTextService))
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, OpenAITextToAudioExecutionSettingsMapper>(typeof(OpenAITextToAudioService));
 
         return builder;
     }

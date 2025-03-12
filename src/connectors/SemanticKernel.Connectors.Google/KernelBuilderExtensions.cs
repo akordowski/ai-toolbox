@@ -1,6 +1,7 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.Google;
 
 // ReSharper disable once CheckNamespace
 namespace AIToolbox.DependencyInjection;
@@ -15,7 +16,8 @@ public static class KernelBuilderExtensions
 
         builder.Services
             .AddSingleton(builder.Options.Connectors!.Google!)
-            .AddSingleton<IKernelBuilderConfigurator, GoogleKernelBuilderConfigurator>();
+            .AddSingleton<IKernelBuilderConfigurator, GoogleKernelBuilderConfigurator>()
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, GeminiPromptExecutionSettingsMapper>(typeof(GoogleAIGeminiChatCompletionService));
 
         return builder;
     }
@@ -43,7 +45,8 @@ public static class KernelBuilderExtensions
 
         builder.Services
             .AddSingleton(builder.Options.Connectors!.VertexAI!)
-            .AddSingleton<IKernelBuilderConfigurator, VertexAIKernelBuilderConfigurator>();
+            .AddSingleton<IKernelBuilderConfigurator, VertexAIKernelBuilderConfigurator>()
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, GeminiPromptExecutionSettingsMapper>(typeof(VertexAIGeminiChatCompletionService));
 
         return builder;
     }

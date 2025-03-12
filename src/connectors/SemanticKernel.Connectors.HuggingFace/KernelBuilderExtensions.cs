@@ -1,6 +1,7 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.HuggingFace;
 
 // ReSharper disable once CheckNamespace
 namespace AIToolbox.DependencyInjection;
@@ -15,7 +16,8 @@ public static class KernelBuilderExtensions
 
         builder.Services
             .AddSingleton(builder.Options.Connectors!.HuggingFace!)
-            .AddSingleton<IKernelBuilderConfigurator, HuggingFaceKernelBuilderConfigurator>();
+            .AddSingleton<IKernelBuilderConfigurator, HuggingFaceKernelBuilderConfigurator>()
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, HuggingFacePromptExecutionSettingsMapper>(typeof(HuggingFaceChatCompletionService));
 
         return builder;
     }

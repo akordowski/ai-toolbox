@@ -3,6 +3,12 @@ using AIToolbox.SemanticKernel;
 using AIToolbox.TestHelper;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
+using Microsoft.SemanticKernel.Connectors.Google;
+using Microsoft.SemanticKernel.Connectors.HuggingFace;
+using Microsoft.SemanticKernel.Connectors.MistralAI;
+using Microsoft.SemanticKernel.Connectors.Ollama;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Xunit.DependencyInjection;
 
 namespace AIToolbox.DependencyInjection.SemanticKernel;
@@ -74,14 +80,6 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         services.GetService<MemoryOptions>().Should().BeEquivalentTo(memoryOptions);
         services.GetService<IMemoryProvider>().Should().NotBeNull();
 
-        services.GetService<AzureOpenAIOptions>().Should().BeEquivalentTo(connectorOptions.AzureOpenAI);
-        services.GetService<GoogleOptions>().Should().BeEquivalentTo(connectorOptions.Google);
-        services.GetService<HuggingFaceOptions>().Should().BeEquivalentTo(connectorOptions.HuggingFace);
-        services.GetService<MistralAIOptions>().Should().BeEquivalentTo(connectorOptions.MistralAI);
-        services.GetService<OllamaOptions>().Should().BeEquivalentTo(connectorOptions.Ollama);
-        services.GetService<OpenAIOptions>().Should().BeEquivalentTo(connectorOptions.OpenAI);
-        services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectorOptions.VertexAI);
-
         services.GetService<AzureAISearchMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureAISearch);
         services.GetService<AzureCosmosDBMongoDBMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBMongoDB);
         services.GetService<AzureCosmosDBNoSQLMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.AzureCosmosDBNoSQL);
@@ -99,17 +97,46 @@ public class SemanticKernelBuilderTests : BaseTestWithFixture<AIToolboxFixture>
         services.GetService<WeaviateMemoryStoreOptions>().Should().BeEquivalentTo(memoryStoreOptions.Weaviate);
 
         var kernelBuilderConfigurators = services.GetServices<IKernelBuilderConfigurator>().ToList();
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is AzureOpenAIKernelBuilderConfigurator);
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is GoogleKernelBuilderConfigurator);
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is HuggingFaceKernelBuilderConfigurator);
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is MistralAIKernelBuilderConfigurator);
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OllamaKernelBuilderConfigurator);
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OpenAIKernelBuilderConfigurator);
-        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is VertexAIKernelBuilderConfigurator);
-
         var memoryBuilderConfigurators = services.GetServices<IMemoryBuilderConfigurator>().ToList();
+
+        // AzureOpenAI
+        services.GetService<AzureOpenAIOptions>().Should().BeEquivalentTo(connectorOptions.AzureOpenAI);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is AzureOpenAIKernelBuilderConfigurator);
         memoryBuilderConfigurators.Should().ContainSingle(configurator => configurator is AzureOpenAIMemoryBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(AzureOpenAIChatCompletionService)).Should().BeOfType<AzureOpenAIPromptExecutionSettingsMapper>();
+
+        // Google
+        services.GetService<GoogleOptions>().Should().BeEquivalentTo(connectorOptions.Google);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is GoogleKernelBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(GoogleAIGeminiChatCompletionService)).Should().BeOfType<GeminiPromptExecutionSettingsMapper>();
+
+        // HuggingFace
+        services.GetService<HuggingFaceOptions>().Should().BeEquivalentTo(connectorOptions.HuggingFace);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is HuggingFaceKernelBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(HuggingFaceChatCompletionService)).Should().BeOfType<HuggingFacePromptExecutionSettingsMapper>();
+
+        // MistralAI
+        services.GetService<MistralAIOptions>().Should().BeEquivalentTo(connectorOptions.MistralAI);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is MistralAIKernelBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(MistralAIChatCompletionService)).Should().BeOfType<MistralAIPromptExecutionSettingsMapper>();
+
+        // Ollama
+        services.GetService<OllamaOptions>().Should().BeEquivalentTo(connectorOptions.Ollama);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OllamaKernelBuilderConfigurator);
         memoryBuilderConfigurators.Should().ContainSingle(configurator => configurator is OllamaMemoryBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(OllamaChatCompletionService)).Should().BeOfType<OllamaPromptExecutionSettingsMapper>();
+
+        // OpenAI
+        services.GetService<OpenAIOptions>().Should().BeEquivalentTo(connectorOptions.OpenAI);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is OpenAIKernelBuilderConfigurator);
         memoryBuilderConfigurators.Should().ContainSingle(configurator => configurator is OpenAIMemoryBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(OpenAIChatCompletionService)).Should().BeOfType<OpenAIPromptExecutionSettingsMapper>();
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(OpenAIAudioToTextService)).Should().BeOfType<OpenAIAudioToTextExecutionSettingsMapper>();
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(OpenAITextToAudioService)).Should().BeOfType<OpenAITextToAudioExecutionSettingsMapper>();
+
+        // VertexA
+        services.GetService<VertexAIOptions>().Should().BeEquivalentTo(connectorOptions.VertexAI);
+        kernelBuilderConfigurators.Should().ContainSingle(configurator => configurator is VertexAIKernelBuilderConfigurator);
+        services.GetKeyedService<IPromptExecutionSettingsMapper>(typeof(VertexAIGeminiChatCompletionService)).Should().BeOfType<GeminiPromptExecutionSettingsMapper>();
     }
 }

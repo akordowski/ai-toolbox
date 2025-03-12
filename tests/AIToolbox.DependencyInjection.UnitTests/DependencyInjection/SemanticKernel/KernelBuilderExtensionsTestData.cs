@@ -2,6 +2,12 @@ using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
+using Microsoft.SemanticKernel.Connectors.Google;
+using Microsoft.SemanticKernel.Connectors.HuggingFace;
+using Microsoft.SemanticKernel.Connectors.MistralAI;
+using Microsoft.SemanticKernel.Connectors.Ollama;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 namespace AIToolbox.DependencyInjection.SemanticKernel;
 
@@ -626,6 +632,12 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IMemoryBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(AzureOpenAIMemoryBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(AzureOpenAIChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(AzureOpenAIPromptExecutionSettingsMapper));
     }
 
     private static void AssertGoogleServices(IServiceCollection services)
@@ -633,6 +645,12 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(GoogleKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(GoogleAIGeminiChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(GeminiPromptExecutionSettingsMapper));
     }
 
     private static void AssertHuggingFaceServices(IServiceCollection services)
@@ -640,6 +658,12 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(HuggingFaceKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(HuggingFaceChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(HuggingFacePromptExecutionSettingsMapper));
     }
 
     private static void AssertMistralAIServices(IServiceCollection services)
@@ -647,6 +671,12 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(MistralAIKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(MistralAIChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(MistralAIPromptExecutionSettingsMapper));
     }
 
     private static void AssertOllamaServices(IServiceCollection services)
@@ -658,6 +688,12 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IMemoryBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(OllamaMemoryBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(OllamaChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(OllamaPromptExecutionSettingsMapper));
     }
 
     private static void AssertOpenAIServices(IServiceCollection services)
@@ -669,6 +705,24 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IMemoryBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(OpenAIMemoryBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(OpenAIChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(OpenAIPromptExecutionSettingsMapper));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(OpenAIAudioToTextService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(OpenAIAudioToTextExecutionSettingsMapper));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(OpenAITextToAudioService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(OpenAITextToAudioExecutionSettingsMapper));
     }
 
     private static void AssertVertexAIServices(IServiceCollection services)
@@ -676,5 +730,11 @@ public class KernelBuilderExtensionsTestData
         services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
                                                       descriptor.ServiceType == typeof(IKernelBuilderConfigurator) &&
                                                       descriptor.ImplementationType == typeof(VertexAIKernelBuilderConfigurator));
+
+        services.Should().ContainSingle(descriptor => descriptor.Lifetime == ServiceLifetime.Singleton &&
+                                                      descriptor.IsKeyedService == true &&
+                                                      descriptor.ServiceKey == typeof(VertexAIGeminiChatCompletionService) &&
+                                                      descriptor.ServiceType == typeof(IPromptExecutionSettingsMapper) &&
+                                                      descriptor.KeyedImplementationType == typeof(GeminiPromptExecutionSettingsMapper));
     }
 }

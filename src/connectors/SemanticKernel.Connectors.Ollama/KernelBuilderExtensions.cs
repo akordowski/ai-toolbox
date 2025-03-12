@@ -1,6 +1,7 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.Ollama;
 
 // ReSharper disable once CheckNamespace
 namespace AIToolbox.DependencyInjection;
@@ -16,7 +17,8 @@ public static class KernelBuilderExtensions
         builder.Services
             .AddSingleton(builder.Options.Connectors!.Ollama!)
             .AddSingleton<IKernelBuilderConfigurator, OllamaKernelBuilderConfigurator>()
-            .AddSingleton<IMemoryBuilderConfigurator, OllamaMemoryBuilderConfigurator>();
+            .AddSingleton<IMemoryBuilderConfigurator, OllamaMemoryBuilderConfigurator>()
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, OllamaPromptExecutionSettingsMapper>(typeof(OllamaChatCompletionService));
 
         return builder;
     }

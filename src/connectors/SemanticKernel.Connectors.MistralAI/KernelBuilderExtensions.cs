@@ -1,6 +1,7 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.SemanticKernel.Connectors.MistralAI;
 
 // ReSharper disable once CheckNamespace
 namespace AIToolbox.DependencyInjection;
@@ -15,7 +16,8 @@ public static class KernelBuilderExtensions
 
         builder.Services
             .AddSingleton(builder.Options.Connectors!.MistralAI!)
-            .AddSingleton<IKernelBuilderConfigurator, MistralAIKernelBuilderConfigurator>();
+            .AddSingleton<IKernelBuilderConfigurator, MistralAIKernelBuilderConfigurator>()
+            .AddKeyedSingleton<IPromptExecutionSettingsMapper, MistralAIPromptExecutionSettingsMapper>(typeof(MistralAIChatCompletionService));
 
         return builder;
     }
