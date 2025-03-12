@@ -46,7 +46,6 @@ internal sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddAzureOpenAIAudioToText(
@@ -71,7 +70,6 @@ internal sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddAzureOpenAIChatCompletion(
@@ -96,7 +94,6 @@ internal sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddAzureOpenAITextEmbeddingGeneration(
@@ -122,7 +119,6 @@ internal sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddAzureOpenAITextToAudio(
@@ -147,7 +143,6 @@ internal sealed class AzureOpenAIKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddAzureOpenAITextToImage(

@@ -16,45 +16,38 @@ public static class TestOptions
             AzureOpenAI = new GlobalAzureOpenAIOptions
             {
                 Endpoint = EndpointPrefix + "GlobalAzureOpenAIOptionsEndpoint",
-                ApiKey = "GlobalAzureOpenAIOptionsApiKey",
-                ServiceId = "GlobalAzureOpenAIOptionsServiceId"
+                ApiKey = "GlobalAzureOpenAIOptionsApiKey"
             },
             Google = new GlobalGoogleOptions
             {
                 ApiKey = "GlobalGoogleOptionsApiKey",
-                ApiVersion = GoogleAIVersion.V1,
-                ServiceId = "GlobalGoogleOptionsServiceId"
+                ApiVersion = GoogleAIVersion.V1
             },
             HuggingFace = new GlobalHuggingFaceOptions
             {
                 Endpoint = EndpointPrefix + "GlobalHuggingFaceOptionsEndpoint",
-                ApiKey = "GlobalHuggingFaceOptionsApiKey",
-                ServiceId = "GlobalHuggingFaceOptionsServiceId"
+                ApiKey = "GlobalHuggingFaceOptionsApiKey"
             },
             MistralAI = new GlobalMistralAIOptions
             {
                 Endpoint = EndpointPrefix + "GlobalMistralAIOptionsEndpoint",
-                ApiKey = "GlobalMistralAIOptionsApiKey",
-                ServiceId = "GlobalMistralAIOptionsServiceId"
+                ApiKey = "GlobalMistralAIOptionsApiKey"
             },
             Ollama = new GlobalOllamaOptions
             {
-                Endpoint = EndpointPrefix + "GlobalOllamaOptionsEndpoint",
-                ServiceId = "GlobalOllamaOptionsServiceId"
+                Endpoint = EndpointPrefix + "GlobalOllamaOptionsEndpoint"
             },
             OpenAI = new GlobalOpenAIOptions
             {
                 ApiKey = "GlobalOpenAIOptionsApiKey",
-                OrgId = "GlobalOpenAIOptionsOrgId",
-                ServiceId = "GlobalOpenAIOptionsServiceId"
+                OrgId = "GlobalOpenAIOptionsOrgId"
             },
             VertexAI = new GlobalVertexAIOptions
             {
                 BearerKey = "GlobalVertexAIOptionsBearerKey",
                 Location = "GlobalVertexAIOptionsLocation",
                 ProjectId = "GlobalVertexAIOptionsProjectId",
-                ApiVersion = VertexAIVersion.V1,
-                ServiceId = "GlobalVertexAIOptionsServiceId"
+                ApiVersion = VertexAIVersion.V1
             }
         },
         SemanticKernel = new SemanticKernelOptions

@@ -45,7 +45,6 @@ internal sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddHuggingFaceChatCompletion(
@@ -69,7 +68,6 @@ internal sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddHuggingFaceImageToText(
@@ -93,7 +91,6 @@ internal sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddHuggingFaceTextEmbeddingGeneration(
@@ -117,7 +114,6 @@ internal sealed class HuggingFaceKernelBuilderConfigurator : IKernelBuilderConfi
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddHuggingFaceTextGeneration(

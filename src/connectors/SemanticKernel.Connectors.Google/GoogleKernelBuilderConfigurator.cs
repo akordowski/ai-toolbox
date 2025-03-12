@@ -44,7 +44,6 @@ internal sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.ApiVersion ??= _globalOptions.ApiVersion;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddGoogleAIGeminiChatCompletion(
@@ -68,7 +67,6 @@ internal sealed class GoogleKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.ApiVersion ??= _globalOptions.ApiVersion;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddGoogleAIEmbeddingGeneration(modelId: options.ModelId,

@@ -46,7 +46,6 @@ internal sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.OrgId ??= _globalOptions.OrgId;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddOpenAIAudioToText(
@@ -70,7 +69,6 @@ internal sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.OrgId ??= _globalOptions.OrgId;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddOpenAIChatCompletion(
@@ -94,7 +92,6 @@ internal sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.OrgId ??= _globalOptions.OrgId;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddOpenAITextEmbeddingGeneration(
@@ -119,7 +116,6 @@ internal sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.OrgId ??= _globalOptions.OrgId;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddOpenAITextToAudio(
@@ -143,7 +139,6 @@ internal sealed class OpenAIKernelBuilderConfigurator : IKernelBuilderConfigurat
         {
             options.ApiKey ??= _globalOptions.ApiKey;
             options.OrgId ??= _globalOptions.OrgId;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddOpenAITextToImage(

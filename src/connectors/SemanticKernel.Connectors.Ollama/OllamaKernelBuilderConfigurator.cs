@@ -47,7 +47,6 @@ internal sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurat
         if (_globalOptions is not null)
         {
             options.Endpoint ??= _globalOptions.Endpoint;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         if (_ollamaApiClient is not null)
@@ -84,7 +83,6 @@ internal sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurat
         if (_globalOptions is not null)
         {
             options.Endpoint ??= _globalOptions.Endpoint;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         if (_ollamaApiClient is not null)
@@ -121,7 +119,6 @@ internal sealed class OllamaKernelBuilderConfigurator : IKernelBuilderConfigurat
         if (_globalOptions is not null)
         {
             options.Endpoint ??= _globalOptions.Endpoint;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         if (_ollamaApiClient is not null)

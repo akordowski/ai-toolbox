@@ -46,7 +46,6 @@ internal sealed class VertexAIKernelBuilderConfigurator : IKernelBuilderConfigur
             options.Location ??= _globalOptions.Location;
             options.ProjectId ??= _globalOptions.ProjectId;
             options.ApiVersion ??= _globalOptions.ApiVersion;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddVertexAIGeminiChatCompletion(
@@ -74,7 +73,6 @@ internal sealed class VertexAIKernelBuilderConfigurator : IKernelBuilderConfigur
             options.Location ??= _globalOptions.Location;
             options.ProjectId ??= _globalOptions.ProjectId;
             options.ApiVersion ??= _globalOptions.ApiVersion;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddVertexAIEmbeddingGeneration(

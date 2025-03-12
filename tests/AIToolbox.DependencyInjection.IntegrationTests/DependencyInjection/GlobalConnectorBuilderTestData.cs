@@ -41,36 +41,30 @@ public class GlobalConnectorBuilderTestData
                         {
                             options.Endpoint = opt.AzureOpenAI!.Endpoint;
                             options.ApiKey = opt.AzureOpenAI.ApiKey;
-                            options.ServiceId = opt.AzureOpenAI.ServiceId;
                         })
                         .AddGlobalGoogleOptions(options =>
                         {
                             options.ApiKey = opt.Google!.ApiKey;
                             options.ApiVersion = opt.Google.ApiVersion;
-                            options.ServiceId = opt.Google.ServiceId;
                         })
                         .AddGlobalHuggingFaceOptions(options =>
                         {
                             options.Endpoint = opt.HuggingFace!.Endpoint;
                             options.ApiKey = opt.HuggingFace.ApiKey;
-                            options.ServiceId = opt.HuggingFace.ServiceId;
                         })
                         .AddGlobalMistralAIOptions(options =>
                         {
                             options.Endpoint = opt.MistralAI!.Endpoint;
                             options.ApiKey = opt.MistralAI.ApiKey;
-                            options.ServiceId = opt.MistralAI.ServiceId;
                         })
                         .AddGlobalOllamaOptions(options =>
                         {
                             options.Endpoint = opt.Ollama!.Endpoint;
-                            options.ServiceId = opt.Ollama.ServiceId;
                         })
                         .AddGlobalOpenAIOptions(options =>
                         {
                             options.ApiKey = opt.OpenAI!.ApiKey;
                             options.OrgId = opt.OpenAI.OrgId;
-                            options.ServiceId = opt.OpenAI.ServiceId;
                         })
                         .AddGlobalVertexAIOptions(options =>
                         {
@@ -78,7 +72,6 @@ public class GlobalConnectorBuilderTestData
                             options.Location = opt.VertexAI.Location;
                             options.ProjectId = opt.VertexAI.ProjectId;
                             options.ApiVersion = opt.VertexAI.ApiVersion;
-                            options.ServiceId = opt.VertexAI.ServiceId;
                         });
                 });
         }

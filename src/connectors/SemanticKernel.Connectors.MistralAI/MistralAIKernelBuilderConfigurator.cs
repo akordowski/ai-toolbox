@@ -43,7 +43,6 @@ internal sealed class MistralAIKernelBuilderConfigurator : IKernelBuilderConfigu
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddMistralChatCompletion(
@@ -67,7 +66,6 @@ internal sealed class MistralAIKernelBuilderConfigurator : IKernelBuilderConfigu
         {
             options.Endpoint ??= _globalOptions.Endpoint;
             options.ApiKey ??= _globalOptions.ApiKey;
-            options.ServiceId ??= _globalOptions.ServiceId;
         }
 
         builder.AddMistralTextEmbeddingGeneration(
