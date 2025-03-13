@@ -1,5 +1,6 @@
 using AIToolbox.Options.SemanticKernel;
 using AIToolbox.SemanticKernel;
+using AIToolbox.SemanticKernel.Memory;
 using AIToolbox.TestHelper;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;

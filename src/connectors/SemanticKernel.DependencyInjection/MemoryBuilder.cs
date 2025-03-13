@@ -1,5 +1,5 @@
 using AIToolbox.Options.SemanticKernel;
-using AIToolbox.SemanticKernel;
+using AIToolbox.SemanticKernel.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AIToolbox.DependencyInjection;

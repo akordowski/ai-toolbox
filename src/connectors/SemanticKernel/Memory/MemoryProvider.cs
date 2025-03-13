@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Embeddings;
 using Microsoft.SemanticKernel.Memory;
 
-namespace AIToolbox.SemanticKernel;
+namespace AIToolbox.SemanticKernel.Memory;
 
 internal sealed class MemoryProvider : IMemoryProvider
 {

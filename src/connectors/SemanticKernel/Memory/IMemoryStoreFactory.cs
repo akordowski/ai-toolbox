@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.Memory;
 
-namespace AIToolbox.SemanticKernel;
+namespace AIToolbox.SemanticKernel.Memory;
 
 public interface IMemoryStoreFactory
 {

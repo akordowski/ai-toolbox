@@ -1,6 +1,6 @@
 using Microsoft.SemanticKernel.Memory;
 
-namespace AIToolbox.SemanticKernel;
+namespace AIToolbox.SemanticKernel.Memory;
 
 public interface IMemoryProvider
 {

@@ -1,5 +1,6 @@
 using AIToolbox.Options.Connectors;
 using AIToolbox.Options.SemanticKernel;
+using AIToolbox.SemanticKernel.Memory;
 using Microsoft.SemanticKernel.Embeddings;
 using Microsoft.SemanticKernel.Memory;
 using OllamaSharp;
