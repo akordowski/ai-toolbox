@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Memory.Data" />
+  </ItemGroup>
+
+  <ItemGroup>
     <InternalsVisibleTo Include="AIToolbox.DependencyInjection" />
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.AzureOpenAI" />
     <InternalsVisibleTo Include="AIToolbox.SemanticKernel.Connectors.Google" />
