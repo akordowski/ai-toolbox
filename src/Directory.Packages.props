@@ -9,6 +9,7 @@
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
     <PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.2" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.40.1-alpha" />
     <PackageVersion Include="System.Memory.Data" Version="9.0.3" />
     <!-- SemanticKernel -->
     <PackageVersion Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.40.1-preview" />

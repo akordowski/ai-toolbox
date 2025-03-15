@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <NoWarn>SKEXP0001</NoWarn>
+    <NoWarn>SKEXP0001;SKEXP0050</NoWarn>
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\AIToolbox\AIToolbox.csproj" />
     <ProjectReference Include="..\..\src\connectors\SemanticKernel\SemanticKernel.csproj" />
     <ProjectReference Include="..\Xunit.DependencyInjection\Xunit.DependencyInjection.csproj" />
   </ItemGroup>
