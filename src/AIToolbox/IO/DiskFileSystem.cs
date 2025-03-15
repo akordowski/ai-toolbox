@@ -11,6 +11,8 @@ public class DiskFileSystem : FileSystem
         ILoggerFactory? loggerFactory = null)
         : base(loggerFactory?.CreateLogger<DiskFileSystem>())
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(directory, nameof(directory));
+
         _directory = directory;
     }
 

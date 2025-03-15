@@ -22,6 +22,14 @@ public class FileSystemTests : IDisposable
         }
     }
 
+    public static TheoryData<Action, string, Type> ConstructWithInvalidParameters =>
+        new()
+        {
+            { () => _ = new DiskFileSystem(null!), "directory", TypeArgumentNullException },
+            { () => _ = new DiskFileSystem(""), "directory", TypeArgumentException },
+            { () => _ = new DiskFileSystem(" "), "directory", TypeArgumentException }
+        };
+
     public static TheoryData<Func<Task>, string, Type> InvokeMethodWithInvalidParameters
     {
         get
@@ -117,6 +125,21 @@ public class FileSystemTests : IDisposable
             }
 
             return theoryData;
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(ConstructWithInvalidParameters))]
+    public void Should_Throw_On_Construct_With_Invalid_Parameters(Action act, string parameterName, Type exceptionType)
+    {
+        // Assert
+        if (exceptionType == TypeArgumentException)
+        {
+            act.Should().Throw<ArgumentException>().WithParameterName(parameterName);
+        }
+        else if (exceptionType == TypeArgumentNullException)
+        {
+            act.Should().Throw<ArgumentNullException>().WithParameterName(parameterName);
         }
     }
 
@@ -227,7 +250,8 @@ public class FileSystemTests : IDisposable
         await fileSystem.DeleteFileAsync(Volume, relPath, FileName);
 
         // Assert
-        var result = fileSystem.FileExistsAsync(Volume, relPath, FileName);
+        var result = await fileSystem.FileExistsAsync(Volume, relPath, FileName);
+        result.Should().BeFalse();
     }
 
     [Theory]
