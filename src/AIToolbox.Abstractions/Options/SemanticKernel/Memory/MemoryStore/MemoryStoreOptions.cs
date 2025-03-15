@@ -14,6 +14,7 @@ public sealed class MemoryStoreOptions
     public PostgresMemoryStoreOptions? Postgres { get; set; }
     public QdrantMemoryStoreOptions? Qdrant { get; set; }
     public RedisMemoryStoreOptions? Redis { get; set; }
+    public SimpleMemoryStoreOptions? SimpleMemoryStore { get; set; }
     public SqliteMemoryStoreOptions? Sqlite { get; set; }
     public SqlServerMemoryStoreOptions? SqlServer { get; set; }
     public WeaviateMemoryStoreOptions? Weaviate { get; set; }
