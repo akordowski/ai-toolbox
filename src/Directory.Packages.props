@@ -5,32 +5,6 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1" />
-    <PackageVersion Include="System.Memory.Data" Version="8.0.1" />
-    <!-- Semantic Kernel -->
-    <PackageVersion Include="Microsoft.SemanticKernel.Core" Version="1.22.0" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.AzureCosmosDBMongoDB" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.AzureCosmosDBNoSQL" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.AzureOpenAI" Version="1.22.0" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Chroma" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.DuckDB" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Google" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.HuggingFace" Version="1.22.0-preview" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Kusto" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Milvus" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.MistralAI" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.MongoDB" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.22.0" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Pinecone" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Postgres" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Qdrant" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Redis" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Sqlite" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Connectors.Weaviate" Version="1.22.0-alpha" />
-    <PackageVersion Include="Microsoft.SemanticKernel.Plugins.Memory" Version="1.22.0-alpha" />
     <!-- Symbols -->
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
