@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>AIToolbox.Abstractions</AssemblyName>
+    <RootNamespace>AIToolbox</RootNamespace>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <NoWarn>$(NoWarn)</NoWarn>
+    <EnablePackageValidation>false</EnablePackageValidation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AIToolbox" />
+    <InternalsVisibleTo Include="AIToolbox.UnitTests" />
+    <InternalsVisibleTo Include="AIToolbox.Abstractions.UnitTests" />
+  </ItemGroup>
+
+  <Import Project="$(RepoRoot)/nuget/NuGet.Package.props" />
+
+  <PropertyGroup>
+    <!-- NuGet Package Settings -->
+    <Title>AI Toolbox - Abstractions</Title>
+    <Description>AI Toolbox interfaces and abstractions. This package is automatically installed by AI Toolbox packages if needed.</Description>
+  </PropertyGroup>
+
+</Project>
